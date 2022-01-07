@@ -8,28 +8,29 @@ bibliography: [book.bib, packages.bib]
 # url: your book url like https://bookdown.org/yihui/bookdown
 # cover-image: path to the social sharing image like images/cover.jpg
 description: |
-  This site display the materials for our workshop on how to set Bayesian priors. 
+  This site is a hub for the materials for our workshop on Bayesian data analysis and priors. 
   
 link-citations: yes
 github-repo: rstudio/bookdown-demo
+
 ---
 
-# About
+# Part I: Introduction
 
 This is a website that provides the lectures and code for our workshop on how to set priors and the Bayesian workflow.
 
 ## Structure of this Workshop 
 
 This workshop takes you through how to set priors in a step-by-step fashion. The course consists of five parts: 
-        i) Part 0: General Introduction to Bayesian inference,
-        ii) Part 1: The Gaussian intercepts-only model, 
-        iii) Part 2: Linear regression with a dichotomous predictor,
-        iv) Part 3: Multi-level model with repeated measures,
-        v) Part 4: Multi-level model based on informed priors.
+        i) Part 1: General Introduction to Bayesian inference,
+        ii) Part 2: The Gaussian intercepts-only model, 
+        iii) Part 3: Linear regression with a dichotomous predictor,
+        iv) Part 4: Multi-level model with repeated measures,
+        v) Part 5: Multi-level model based on informed priors.
 
-## Links to videos:
-Here are the videos:
+## Link to Introductory Video
+
+Here is the first video, which provides a soft introduction to the basic concepts of Bayesian inference:
 https://www.youtube.com/watch?v=_7hlAJ6eWI4&t=213s
-XXXX
-XXX
-XXXX
+
+
