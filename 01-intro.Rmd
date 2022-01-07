@@ -1,11 +1,33 @@
-# Hello bookdown 
+# Part I: The Gaussian intercepts-only model
 
-All chapters start with a first-level heading followed by your chapter title, like the line above. There should be only one first-level heading (`#`) per .Rmd file.
+```{r setup, include=TRUE}
+#if you don't have the pacman package loaded on your computer, uncomment the next line, install pacman, and load in the required packages
+#install.packages('pacman')
+#load the required packages:
+pacman::p_load(tidyverse, 
+       glue,
+       data.table,
+       dplyr,
+       moments,
+       tidybayes,
+       ggplot2,
+       ggridges,
+       plyr,
+       ellipse,
+       brms,
+       cowplot,
+       viridis)
+```
 
-## A section
+PART I:
 
-All chapter sections start with a second-level (`##`) or higher heading followed by your section title, like the sections above and below here. You can have as many as you want within a chapter.
+Introduction to the data:
 
-### An unnumbered section {-}
-
-Chapters and sections are numbered by default. To un-number a heading, add a `{.unnumbered}` or the shorter `{-}` at the end of the heading, like in this section.
+Our research question concerns the hyperarticulation hypothesis of infant-directed speech. Do caregivers produce more peripheral vowels in infant-directed speech (IDS) compared to adult-directed speech (ADS)? To answer this question, we manually analysed 9267 extracted vowel tokens from individual caregivers' IDS and ADS. In order eliminate inter-individual differences in formant values that occur due to physiological characteristics, we first z-score-normalised the formant data according to participant and then computed the total area of each caregiver's ADS and IDS vowel space. We used this measure to calculate a standardised mean difference score: Cohen's d.
+    The dataset we will analyse here consists of the following information:
+      i)   Subject (i.e. unique participant pseudonym),
+      ii)  Register (i.e. the speech style used - adult-directed speech (ADS) vs. infant-directed speech (IDS)),
+      iii) ArticulationS (i.e. the dependent variable - represents a standardised version of the vowel space),
+      iv)  ChildSex (i.e. male vs. female), 
+      v)   ChildAge (i.e. from 11 m to 24 m), 
+      vi)  First_child (whether this is the caregiver's first child).

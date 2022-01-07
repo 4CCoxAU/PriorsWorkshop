@@ -1,4 +1,4 @@
-# Cross-references {#cross}
+# Part II: Linear regression with a dichotomous predictor
 
 Cross-references make it easier for your readers to find and link to elements in your book.
 
