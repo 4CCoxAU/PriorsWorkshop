@@ -24,7 +24,7 @@
 <meta name="author" content="Riccardo Fusaroli &amp; Chris Cox" />
 
 
-<meta name="date" content="2022-01-07" />
+<meta name="date" content="2022-01-08" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -141,12 +141,18 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="1.1" data-path="index.html"><a href="index.html#structure-of-this-workshop"><i class="fa fa-check"></i><b>1.1</b> Structure of this Workshop</a></li>
 <li class="chapter" data-level="1.2" data-path="index.html"><a href="index.html#link-to-introductory-video"><i class="fa fa-check"></i><b>1.2</b> Link to Introductory Video</a></li>
 </ul></li>
-<li class="chapter" data-level="2" data-path="part-ii-the-gaussian-intercepts-only-model.html"><a href="part-ii-the-gaussian-intercepts-only-model.html"><i class="fa fa-check"></i><b>2</b> Part II: The Gaussian intercepts-only model</a></li>
+<li class="chapter" data-level="2" data-path="part-ii-the-gaussian-intercepts-only-model.html"><a href="part-ii-the-gaussian-intercepts-only-model.html"><i class="fa fa-check"></i><b>2</b> Part II: The Gaussian intercepts-only model</a>
+<ul>
+<li class="chapter" data-level="2.1" data-path="part-ii-the-gaussian-intercepts-only-model.html"><a href="part-ii-the-gaussian-intercepts-only-model.html#part-i"><i class="fa fa-check"></i><b>2.1</b> PART I:</a></li>
+</ul></li>
 <li class="chapter" data-level="3" data-path="part-iii-linear-regression-with-a-dichotomous-predictor.html"><a href="part-iii-linear-regression-with-a-dichotomous-predictor.html"><i class="fa fa-check"></i><b>3</b> Part III: Linear regression with a dichotomous predictor</a></li>
-<li class="chapter" data-level="4" data-path="part-iv-multi-level-model-with-repeated-measures.html"><a href="part-iv-multi-level-model-with-repeated-measures.html"><i class="fa fa-check"></i><b>4</b> Part IV: Multi-level model with repeated measures</a></li>
+<li class="chapter" data-level="4" data-path="part-iv-multi-level-model-with-repeated-measures.html"><a href="part-iv-multi-level-model-with-repeated-measures.html"><i class="fa fa-check"></i><b>4</b> Part IV: Multi-level model with repeated measures</a>
+<ul>
+<li class="chapter" data-level="4.1" data-path="part-iv-multi-level-model-with-repeated-measures.html"><a href="part-iv-multi-level-model-with-repeated-measures.html#part-iv"><i class="fa fa-check"></i><b>4.1</b> PART IV:</a></li>
+</ul></li>
 <li class="chapter" data-level="5" data-path="part-v-multi-level-model-based-on-informed-priors.html"><a href="part-v-multi-level-model-based-on-informed-priors.html"><i class="fa fa-check"></i><b>5</b> Part V: Multi-level model based on informed priors</a>
 <ul>
-<li class="chapter" data-level="5.1" data-path="part-v-multi-level-model-based-on-informed-priors.html"><a href="part-v-multi-level-model-based-on-informed-priors.html#section"><i class="fa fa-check"></i><b>5.1</b> </a></li>
+<li class="chapter" data-level="5.1" data-path="part-v-multi-level-model-based-on-informed-priors.html"><a href="part-v-multi-level-model-based-on-informed-priors.html#part-v"><i class="fa fa-check"></i><b>5.1</b> PART V:</a></li>
 </ul></li>
 <li class="chapter" data-level="6" data-path="recommendations-for-further-study.html"><a href="recommendations-for-further-study.html"><i class="fa fa-check"></i><b>6</b> Recommendations for Further Study</a></li>
 <li class="divider"></li>
@@ -171,9 +177,193 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
             <section class="normal" id="section-">
 <div id="part-v-multi-level-model-based-on-informed-priors" class="section level1" number="5">
 <h1><span class="header-section-number">Chapter 5</span> Part V: Multi-level model based on informed priors</h1>
-<p>dasdasdsadsad</p>
-<div id="section" class="section level2" number="5.1">
-<h2><span class="header-section-number">5.1</span> </h2>
+<div id="part-v" class="section level2" number="5.1">
+<h2><span class="header-section-number">5.1</span> PART V:</h2>
+<p>In this part, we’ll have a closer look at how to encode information from previous studies within the prior specifications of our models. Let’s start with the meta-analytic prior (i.e., Mean ES: 0.62, SE = 0.13) and add it to our prior specifications for the multi-level model. We do this by specifying the prior for the slope as normal(0.62, 0.13), as in the code block below:</p>
+<div class="sourceCode" id="cb104"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb104-1"><a href="part-v-multi-level-model-based-on-informed-priors.html#cb104-1" aria-hidden="true" tabindex="-1"></a>Articulation_f3 <span class="ot">&lt;-</span> <span class="fu">bf</span>(ArticulationS <span class="sc">~</span> <span class="dv">1</span> <span class="sc">+</span> Register <span class="sc">+</span> (<span class="dv">1</span><span class="sc">+</span>Register<span class="sc">|</span>Subject))</span>
+<span id="cb104-2"><a href="part-v-multi-level-model-based-on-informed-priors.html#cb104-2" aria-hidden="true" tabindex="-1"></a>meta_analytic_prior <span class="ot">&lt;-</span> <span class="fu">c</span>(</span>
+<span id="cb104-3"><a href="part-v-multi-level-model-based-on-informed-priors.html#cb104-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">prior</span>(<span class="fu">normal</span>(<span class="dv">0</span>, <span class="dv">1</span>), <span class="at">class =</span> Intercept),</span>
+<span id="cb104-4"><a href="part-v-multi-level-model-based-on-informed-priors.html#cb104-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">prior</span>(<span class="fu">normal</span>(<span class="dv">0</span>, <span class="dv">1</span>), <span class="at">class =</span> sd, <span class="at">coef =</span> Intercept, <span class="at">group =</span> Subject),</span>
+<span id="cb104-5"><a href="part-v-multi-level-model-based-on-informed-priors.html#cb104-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">prior</span>(<span class="fu">normal</span>(<span class="fl">0.62</span>, <span class="fl">0.13</span>), <span class="at">class =</span> b),</span>
+<span id="cb104-6"><a href="part-v-multi-level-model-based-on-informed-priors.html#cb104-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">prior</span>(<span class="fu">normal</span>(<span class="dv">0</span>, <span class="dv">1</span>), <span class="at">class =</span> sd, <span class="at">coef =</span> RegisterIDS, <span class="at">group =</span> Subject),</span>
+<span id="cb104-7"><a href="part-v-multi-level-model-based-on-informed-priors.html#cb104-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">prior</span>(<span class="fu">normal</span>(<span class="dv">1</span>, <span class="fl">0.5</span>), <span class="at">class =</span> sigma),</span>
+<span id="cb104-8"><a href="part-v-multi-level-model-based-on-informed-priors.html#cb104-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">prior</span>(<span class="fu">lkj</span>(<span class="dv">2</span>), <span class="at">class =</span> cor))</span>
+<span id="cb104-9"><a href="part-v-multi-level-model-based-on-informed-priors.html#cb104-9" aria-hidden="true" tabindex="-1"></a>Articulation_MAprior_m3 <span class="ot">&lt;-</span> </span>
+<span id="cb104-10"><a href="part-v-multi-level-model-based-on-informed-priors.html#cb104-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">brm</span>(</span>
+<span id="cb104-11"><a href="part-v-multi-level-model-based-on-informed-priors.html#cb104-11" aria-hidden="true" tabindex="-1"></a>    Articulation_f3,</span>
+<span id="cb104-12"><a href="part-v-multi-level-model-based-on-informed-priors.html#cb104-12" aria-hidden="true" tabindex="-1"></a>    <span class="at">data =</span> d,</span>
+<span id="cb104-13"><a href="part-v-multi-level-model-based-on-informed-priors.html#cb104-13" aria-hidden="true" tabindex="-1"></a>    <span class="at">save_pars =</span> <span class="fu">save_pars</span>(<span class="at">all =</span> <span class="cn">TRUE</span>),</span>
+<span id="cb104-14"><a href="part-v-multi-level-model-based-on-informed-priors.html#cb104-14" aria-hidden="true" tabindex="-1"></a>    <span class="at">family =</span> gaussian,</span>
+<span id="cb104-15"><a href="part-v-multi-level-model-based-on-informed-priors.html#cb104-15" aria-hidden="true" tabindex="-1"></a>    <span class="at">prior =</span> meta_analytic_prior,</span>
+<span id="cb104-16"><a href="part-v-multi-level-model-based-on-informed-priors.html#cb104-16" aria-hidden="true" tabindex="-1"></a>    <span class="co">#file = &quot;Articulation_MAprior_m3&quot;,</span></span>
+<span id="cb104-17"><a href="part-v-multi-level-model-based-on-informed-priors.html#cb104-17" aria-hidden="true" tabindex="-1"></a>    <span class="at">sample_prior =</span> T,</span>
+<span id="cb104-18"><a href="part-v-multi-level-model-based-on-informed-priors.html#cb104-18" aria-hidden="true" tabindex="-1"></a>    <span class="at">iter =</span> <span class="dv">10000</span>, </span>
+<span id="cb104-19"><a href="part-v-multi-level-model-based-on-informed-priors.html#cb104-19" aria-hidden="true" tabindex="-1"></a>    <span class="at">warmup =</span> <span class="dv">1000</span>,</span>
+<span id="cb104-20"><a href="part-v-multi-level-model-based-on-informed-priors.html#cb104-20" aria-hidden="true" tabindex="-1"></a>    <span class="at">cores =</span> <span class="dv">2</span>,</span>
+<span id="cb104-21"><a href="part-v-multi-level-model-based-on-informed-priors.html#cb104-21" aria-hidden="true" tabindex="-1"></a>    <span class="at">chains =</span> <span class="dv">2</span>,</span>
+<span id="cb104-22"><a href="part-v-multi-level-model-based-on-informed-priors.html#cb104-22" aria-hidden="true" tabindex="-1"></a>    <span class="at">backend =</span> <span class="st">&quot;cmdstanr&quot;</span>,</span>
+<span id="cb104-23"><a href="part-v-multi-level-model-based-on-informed-priors.html#cb104-23" aria-hidden="true" tabindex="-1"></a>    <span class="at">threads =</span> <span class="fu">threading</span>(<span class="dv">2</span>),</span>
+<span id="cb104-24"><a href="part-v-multi-level-model-based-on-informed-priors.html#cb104-24" aria-hidden="true" tabindex="-1"></a>    <span class="at">control =</span> <span class="fu">list</span>(</span>
+<span id="cb104-25"><a href="part-v-multi-level-model-based-on-informed-priors.html#cb104-25" aria-hidden="true" tabindex="-1"></a>      <span class="at">adapt_delta =</span> <span class="fl">0.999</span>,</span>
+<span id="cb104-26"><a href="part-v-multi-level-model-based-on-informed-priors.html#cb104-26" aria-hidden="true" tabindex="-1"></a>      <span class="at">max_treedepth =</span> <span class="dv">20</span>))</span></code></pre></div>
+<div class="sourceCode" id="cb105"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb105-1"><a href="part-v-multi-level-model-based-on-informed-priors.html#cb105-1" aria-hidden="true" tabindex="-1"></a><span class="fu">pp_check</span>(Articulation_MAprior_m3, <span class="at">ndraws =</span> <span class="dv">50</span>)</span></code></pre></div>
+<p><img src="_main_files/figure-html/unnamed-chunk-46-1.png" width="672" /></p>
+<div class="sourceCode" id="cb106"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb106-1"><a href="part-v-multi-level-model-based-on-informed-priors.html#cb106-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(<span class="fu">conditional_effects</span>(Articulation_MAprior_m3), <span class="at">points =</span> T)</span></code></pre></div>
+<p><img src="_main_files/figure-html/unnamed-chunk-46-2.png" width="672" /></p>
+<div class="sourceCode" id="cb107"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb107-1"><a href="part-v-multi-level-model-based-on-informed-priors.html#cb107-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(Articulation_MAprior_m3)</span></code></pre></div>
+<pre><code>##  Family: gaussian 
+##   Links: mu = identity; sigma = identity 
+## Formula: ArticulationS ~ 1 + Register + (1 + Register | Subject) 
+##    Data: d (Number of observations: 48) 
+##   Draws: 2 chains, each with iter = 9000; warmup = 0; thin = 1;
+##          total post-warmup draws = 18000
+## 
+## Group-Level Effects: 
+## ~Subject (Number of levels: 24) 
+##                            Estimate Est.Error l-95% CI u-95% CI Rhat Bulk_ESS
+## sd(Intercept)                  0.32      0.23     0.01     0.85 1.00     3426
+## sd(RegisterIDS)                0.63      0.39     0.03     1.45 1.00     2259
+## cor(Intercept,RegisterIDS)    -0.10      0.44    -0.84     0.76 1.00     5864
+##                            Tail_ESS
+## sd(Intercept)                  3841
+## sd(RegisterIDS)                3882
+## cor(Intercept,RegisterIDS)     9645
+## 
+## Population-Level Effects: 
+##             Estimate Est.Error l-95% CI u-95% CI Rhat Bulk_ESS Tail_ESS
+## Intercept      -0.46      0.20    -0.85    -0.06 1.00     6002     7123
+## RegisterIDS     0.43      0.13     0.19     0.68 1.00    15619    12784
+## 
+## Family Specific Parameters: 
+##       Estimate Est.Error l-95% CI u-95% CI Rhat Bulk_ESS Tail_ESS
+## sigma     0.99      0.17     0.64     1.31 1.00     2545     1726
+## 
+## Draws were sampled using sample(hmc). For each parameter, Bulk_ESS
+## and Tail_ESS are effective sample size measures, and Rhat is the potential
+## scale reduction factor on split chains (at convergence, Rhat = 1).</code></pre>
+<p>Q8: How does the slope estimate for this model with the meta-analytic prior compare to that with the skeptical prior (i.e., Articulation_m3)?</p>
+<hr />
+<p>Let’s try to do the same analysis for the Danish prior (i.e., Mean ES: -0.1, SE = 0.04):</p>
+<div class="sourceCode" id="cb109"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb109-1"><a href="part-v-multi-level-model-based-on-informed-priors.html#cb109-1" aria-hidden="true" tabindex="-1"></a>danish_prior <span class="ot">&lt;-</span> <span class="fu">c</span>(</span>
+<span id="cb109-2"><a href="part-v-multi-level-model-based-on-informed-priors.html#cb109-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">prior</span>(<span class="fu">normal</span>(<span class="dv">0</span>, <span class="dv">1</span>), <span class="at">class =</span> Intercept),</span>
+<span id="cb109-3"><a href="part-v-multi-level-model-based-on-informed-priors.html#cb109-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">prior</span>(<span class="fu">normal</span>(<span class="dv">0</span>, <span class="dv">1</span>), <span class="at">class =</span> sd, <span class="at">coef =</span> Intercept, <span class="at">group =</span> Subject),</span>
+<span id="cb109-4"><a href="part-v-multi-level-model-based-on-informed-priors.html#cb109-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">prior</span>(<span class="fu">normal</span>(<span class="sc">-</span><span class="fl">0.1</span>, <span class="fl">0.04</span>), <span class="at">class =</span> b),</span>
+<span id="cb109-5"><a href="part-v-multi-level-model-based-on-informed-priors.html#cb109-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">prior</span>(<span class="fu">normal</span>(<span class="dv">0</span>, <span class="dv">1</span>), <span class="at">class =</span> sd, <span class="at">coef =</span> RegisterIDS, <span class="at">group =</span> Subject),</span>
+<span id="cb109-6"><a href="part-v-multi-level-model-based-on-informed-priors.html#cb109-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">prior</span>(<span class="fu">normal</span>(<span class="dv">1</span>, <span class="fl">0.5</span>), <span class="at">class =</span> sigma),</span>
+<span id="cb109-7"><a href="part-v-multi-level-model-based-on-informed-priors.html#cb109-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">prior</span>(<span class="fu">lkj</span>(<span class="dv">2</span>), <span class="at">class =</span> cor))</span>
+<span id="cb109-8"><a href="part-v-multi-level-model-based-on-informed-priors.html#cb109-8" aria-hidden="true" tabindex="-1"></a>Articulation_Danishprior_m3 <span class="ot">&lt;-</span> </span>
+<span id="cb109-9"><a href="part-v-multi-level-model-based-on-informed-priors.html#cb109-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">brm</span>(</span>
+<span id="cb109-10"><a href="part-v-multi-level-model-based-on-informed-priors.html#cb109-10" aria-hidden="true" tabindex="-1"></a>    Articulation_f3,</span>
+<span id="cb109-11"><a href="part-v-multi-level-model-based-on-informed-priors.html#cb109-11" aria-hidden="true" tabindex="-1"></a>    <span class="at">data =</span> d,</span>
+<span id="cb109-12"><a href="part-v-multi-level-model-based-on-informed-priors.html#cb109-12" aria-hidden="true" tabindex="-1"></a>    <span class="at">save_pars =</span> <span class="fu">save_pars</span>(<span class="at">all =</span> <span class="cn">TRUE</span>),</span>
+<span id="cb109-13"><a href="part-v-multi-level-model-based-on-informed-priors.html#cb109-13" aria-hidden="true" tabindex="-1"></a>    <span class="at">family =</span> gaussian,</span>
+<span id="cb109-14"><a href="part-v-multi-level-model-based-on-informed-priors.html#cb109-14" aria-hidden="true" tabindex="-1"></a>    <span class="at">prior =</span> danish_prior,</span>
+<span id="cb109-15"><a href="part-v-multi-level-model-based-on-informed-priors.html#cb109-15" aria-hidden="true" tabindex="-1"></a>    <span class="co">#file = &quot;Articulation_Danishprior_m3&quot;,</span></span>
+<span id="cb109-16"><a href="part-v-multi-level-model-based-on-informed-priors.html#cb109-16" aria-hidden="true" tabindex="-1"></a>    <span class="at">sample_prior =</span> T,</span>
+<span id="cb109-17"><a href="part-v-multi-level-model-based-on-informed-priors.html#cb109-17" aria-hidden="true" tabindex="-1"></a>    <span class="at">iter =</span> <span class="dv">10000</span>, </span>
+<span id="cb109-18"><a href="part-v-multi-level-model-based-on-informed-priors.html#cb109-18" aria-hidden="true" tabindex="-1"></a>    <span class="at">warmup =</span> <span class="dv">1000</span>,</span>
+<span id="cb109-19"><a href="part-v-multi-level-model-based-on-informed-priors.html#cb109-19" aria-hidden="true" tabindex="-1"></a>    <span class="at">cores =</span> <span class="dv">2</span>,</span>
+<span id="cb109-20"><a href="part-v-multi-level-model-based-on-informed-priors.html#cb109-20" aria-hidden="true" tabindex="-1"></a>    <span class="at">chains =</span> <span class="dv">2</span>,</span>
+<span id="cb109-21"><a href="part-v-multi-level-model-based-on-informed-priors.html#cb109-21" aria-hidden="true" tabindex="-1"></a>    <span class="at">backend =</span> <span class="st">&quot;cmdstanr&quot;</span>,</span>
+<span id="cb109-22"><a href="part-v-multi-level-model-based-on-informed-priors.html#cb109-22" aria-hidden="true" tabindex="-1"></a>    <span class="at">threads =</span> <span class="fu">threading</span>(<span class="dv">2</span>),</span>
+<span id="cb109-23"><a href="part-v-multi-level-model-based-on-informed-priors.html#cb109-23" aria-hidden="true" tabindex="-1"></a>    <span class="at">control =</span> <span class="fu">list</span>(</span>
+<span id="cb109-24"><a href="part-v-multi-level-model-based-on-informed-priors.html#cb109-24" aria-hidden="true" tabindex="-1"></a>      <span class="at">adapt_delta =</span> <span class="fl">0.999</span>,</span>
+<span id="cb109-25"><a href="part-v-multi-level-model-based-on-informed-priors.html#cb109-25" aria-hidden="true" tabindex="-1"></a>      <span class="at">max_treedepth =</span> <span class="dv">20</span>))</span></code></pre></div>
+<div class="sourceCode" id="cb110"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb110-1"><a href="part-v-multi-level-model-based-on-informed-priors.html#cb110-1" aria-hidden="true" tabindex="-1"></a><span class="fu">pp_check</span>(Articulation_Danishprior_m3, <span class="at">ndraws =</span> <span class="dv">50</span>)</span></code></pre></div>
+<p><img src="_main_files/figure-html/unnamed-chunk-48-1.png" width="672" /></p>
+<div class="sourceCode" id="cb111"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb111-1"><a href="part-v-multi-level-model-based-on-informed-priors.html#cb111-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(<span class="fu">conditional_effects</span>(Articulation_Danishprior_m3), <span class="at">points =</span> T)</span></code></pre></div>
+<p><img src="_main_files/figure-html/unnamed-chunk-48-2.png" width="672" /></p>
+<div class="sourceCode" id="cb112"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb112-1"><a href="part-v-multi-level-model-based-on-informed-priors.html#cb112-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(Articulation_Danishprior_m3)</span></code></pre></div>
+<pre><code>##  Family: gaussian 
+##   Links: mu = identity; sigma = identity 
+## Formula: ArticulationS ~ 1 + Register + (1 + Register | Subject) 
+##    Data: d (Number of observations: 48) 
+##   Draws: 2 chains, each with iter = 9000; warmup = 0; thin = 1;
+##          total post-warmup draws = 18000
+## 
+## Group-Level Effects: 
+## ~Subject (Number of levels: 24) 
+##                            Estimate Est.Error l-95% CI u-95% CI Rhat Bulk_ESS
+## sd(Intercept)                  0.38      0.23     0.02     0.88 1.00     2622
+## sd(RegisterIDS)                0.47      0.31     0.02     1.16 1.00     2706
+## cor(Intercept,RegisterIDS)    -0.05      0.43    -0.80     0.78 1.00    12702
+##                            Tail_ESS
+## sd(Intercept)                  3422
+## sd(RegisterIDS)                2200
+## cor(Intercept,RegisterIDS)    12617
+## 
+## Population-Level Effects: 
+##             Estimate Est.Error l-95% CI u-95% CI Rhat Bulk_ESS Tail_ESS
+## Intercept      -0.24      0.17    -0.57     0.09 1.00    11397    10223
+## RegisterIDS    -0.11      0.04    -0.19    -0.03 1.00    28793    13780
+## 
+## Family Specific Parameters: 
+##       Estimate Est.Error l-95% CI u-95% CI Rhat Bulk_ESS Tail_ESS
+## sigma     0.88      0.15     0.56     1.15 1.00     2182     1021
+## 
+## Draws were sampled using sample(hmc). For each parameter, Bulk_ESS
+## and Tail_ESS are effective sample size measures, and Rhat is the potential
+## scale reduction factor on split chains (at convergence, Rhat = 1).</code></pre>
+<p>Q9: How does the slope estimate for this model with the Danish prior compare to that with the skeptical prior (i.e., Articulation_m3)?</p>
+<hr />
+<p>Let’s run the following code to extract and visualise the prior and posterior distributions from the different models:</p>
+<div class="sourceCode" id="cb114"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb114-1"><a href="part-v-multi-level-model-based-on-informed-priors.html#cb114-1" aria-hidden="true" tabindex="-1"></a>danish_prior_posterior <span class="ot">&lt;-</span> <span class="fu">as_draws_df</span>(Articulation_Danishprior_m3) <span class="sc">%&gt;%</span></span>
+<span id="cb114-2"><a href="part-v-multi-level-model-based-on-informed-priors.html#cb114-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">priors =</span> <span class="st">&quot;Danish&quot;</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb114-3"><a href="part-v-multi-level-model-based-on-informed-priors.html#cb114-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(prior_b, b_RegisterIDS, priors)</span></code></pre></div>
+<pre><code>## Warning: Dropping &#39;draws_df&#39; class as required metadata was removed.</code></pre>
+<div class="sourceCode" id="cb116"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb116-1"><a href="part-v-multi-level-model-based-on-informed-priors.html#cb116-1" aria-hidden="true" tabindex="-1"></a>ma_prior_posterior <span class="ot">&lt;-</span> <span class="fu">as_draws_df</span>(Articulation_MAprior_m3) <span class="sc">%&gt;%</span></span>
+<span id="cb116-2"><a href="part-v-multi-level-model-based-on-informed-priors.html#cb116-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">priors =</span> <span class="st">&quot;MA estimates&quot;</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb116-3"><a href="part-v-multi-level-model-based-on-informed-priors.html#cb116-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(prior_b, b_RegisterIDS, priors)</span></code></pre></div>
+<pre><code>## Warning: Dropping &#39;draws_df&#39; class as required metadata was removed.</code></pre>
+<div class="sourceCode" id="cb118"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb118-1"><a href="part-v-multi-level-model-based-on-informed-priors.html#cb118-1" aria-hidden="true" tabindex="-1"></a>skeptical_prior_posterior <span class="ot">&lt;-</span> <span class="fu">as_draws_df</span>(Articulation_m3) <span class="sc">%&gt;%</span></span>
+<span id="cb118-2"><a href="part-v-multi-level-model-based-on-informed-priors.html#cb118-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">priors =</span> <span class="st">&quot;Skeptical estimates&quot;</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb118-3"><a href="part-v-multi-level-model-based-on-informed-priors.html#cb118-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(prior_b, b_RegisterIDS, priors)</span></code></pre></div>
+<pre><code>## Warning: Dropping &#39;draws_df&#39; class as required metadata was removed.</code></pre>
+<div class="sourceCode" id="cb120"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb120-1"><a href="part-v-multi-level-model-based-on-informed-priors.html#cb120-1" aria-hidden="true" tabindex="-1"></a>Posterior <span class="ot">&lt;-</span> <span class="fu">rbind</span>(danish_prior_posterior, ma_prior_posterior, skeptical_prior_posterior)</span>
+<span id="cb120-2"><a href="part-v-multi-level-model-based-on-informed-priors.html#cb120-2" aria-hidden="true" tabindex="-1"></a>plot1 <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(Posterior) <span class="sc">+</span> </span>
+<span id="cb120-3"><a href="part-v-multi-level-model-based-on-informed-priors.html#cb120-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_classic</span>() <span class="sc">+</span></span>
+<span id="cb120-4"><a href="part-v-multi-level-model-based-on-informed-priors.html#cb120-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggtitle</span>(<span class="st">&quot;Priors&quot;</span>) <span class="sc">+</span></span>
+<span id="cb120-5"><a href="part-v-multi-level-model-based-on-informed-priors.html#cb120-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_density</span>(<span class="fu">aes</span>(<span class="at">x =</span> prior_b, <span class="at">fill =</span> priors), <span class="at">alpha =</span> <span class="fl">0.7</span>) <span class="sc">+</span></span>
+<span id="cb120-6"><a href="part-v-multi-level-model-based-on-informed-priors.html#cb120-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">xlim</span>(<span class="fu">c</span>(<span class="sc">-</span><span class="fl">1.5</span>, <span class="fl">1.5</span>)) <span class="sc">+</span></span>
+<span id="cb120-7"><a href="part-v-multi-level-model-based-on-informed-priors.html#cb120-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_vline</span>(<span class="at">xintercept =</span> <span class="fl">0.0</span>, <span class="at">linetype =</span> <span class="dv">3</span>) <span class="sc">+</span></span>
+<span id="cb120-8"><a href="part-v-multi-level-model-based-on-informed-priors.html#cb120-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_fill_manual</span>(<span class="at">name =</span> <span class="st">&quot;Prior&quot;</span>,</span>
+<span id="cb120-9"><a href="part-v-multi-level-model-based-on-informed-priors.html#cb120-9" aria-hidden="true" tabindex="-1"></a>                  <span class="at">labels =</span> <span class="fu">c</span>(<span class="st">&#39;Meta-analytic&#39;</span>, <span class="st">&quot;Danish&quot;</span>, <span class="st">&quot;Skeptical&quot;</span>),</span>
+<span id="cb120-10"><a href="part-v-multi-level-model-based-on-informed-priors.html#cb120-10" aria-hidden="true" tabindex="-1"></a>                  <span class="at">values=</span><span class="fu">c</span>(<span class="st">&quot;#FC4E07&quot;</span>, <span class="st">&quot;steelblue&quot;</span>, <span class="st">&quot;#228B22&quot;</span>)) <span class="sc">+</span></span>
+<span id="cb120-11"><a href="part-v-multi-level-model-based-on-informed-priors.html#cb120-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">plot.title =</span> <span class="fu">element_text</span>(<span class="at">hjust =</span> <span class="fl">0.5</span>, <span class="at">size=</span><span class="dv">15</span>),</span>
+<span id="cb120-12"><a href="part-v-multi-level-model-based-on-informed-priors.html#cb120-12" aria-hidden="true" tabindex="-1"></a>        <span class="at">axis.ticks.y =</span> <span class="fu">element_blank</span>(),</span>
+<span id="cb120-13"><a href="part-v-multi-level-model-based-on-informed-priors.html#cb120-13" aria-hidden="true" tabindex="-1"></a>        <span class="at">axis.text.y =</span> <span class="fu">element_blank</span>(),</span>
+<span id="cb120-14"><a href="part-v-multi-level-model-based-on-informed-priors.html#cb120-14" aria-hidden="true" tabindex="-1"></a>        <span class="at">axis.title.y=</span><span class="fu">element_blank</span>(),</span>
+<span id="cb120-15"><a href="part-v-multi-level-model-based-on-informed-priors.html#cb120-15" aria-hidden="true" tabindex="-1"></a>        <span class="at">axis.line.x =</span> <span class="fu">element_line</span>(<span class="at">size=</span><span class="fl">0.1</span>),</span>
+<span id="cb120-16"><a href="part-v-multi-level-model-based-on-informed-priors.html#cb120-16" aria-hidden="true" tabindex="-1"></a>        <span class="at">axis.line.y =</span> <span class="fu">element_line</span>(<span class="at">size=</span><span class="fl">0.0</span>),</span>
+<span id="cb120-17"><a href="part-v-multi-level-model-based-on-informed-priors.html#cb120-17" aria-hidden="true" tabindex="-1"></a>        <span class="at">axis.text.x =</span> <span class="fu">element_blank</span>(),</span>
+<span id="cb120-18"><a href="part-v-multi-level-model-based-on-informed-priors.html#cb120-18" aria-hidden="true" tabindex="-1"></a>        <span class="at">axis.title.x=</span><span class="fu">element_blank</span>(),</span>
+<span id="cb120-19"><a href="part-v-multi-level-model-based-on-informed-priors.html#cb120-19" aria-hidden="true" tabindex="-1"></a>        <span class="at">legend.position =</span> <span class="st">&quot;none&quot;</span>)</span>
+<span id="cb120-20"><a href="part-v-multi-level-model-based-on-informed-priors.html#cb120-20" aria-hidden="true" tabindex="-1"></a>plot2 <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(Posterior) <span class="sc">+</span> </span>
+<span id="cb120-21"><a href="part-v-multi-level-model-based-on-informed-priors.html#cb120-21" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_classic</span>() <span class="sc">+</span></span>
+<span id="cb120-22"><a href="part-v-multi-level-model-based-on-informed-priors.html#cb120-22" aria-hidden="true" tabindex="-1"></a>  <span class="fu">xlim</span>(<span class="fu">c</span>(<span class="sc">-</span><span class="fl">1.5</span>, <span class="fl">1.5</span>)) <span class="sc">+</span></span>
+<span id="cb120-23"><a href="part-v-multi-level-model-based-on-informed-priors.html#cb120-23" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_density</span>(<span class="fu">aes</span>(<span class="at">x =</span> b_RegisterIDS, <span class="at">fill =</span> priors), <span class="at">alpha =</span> <span class="fl">0.7</span>) <span class="sc">+</span></span>
+<span id="cb120-24"><a href="part-v-multi-level-model-based-on-informed-priors.html#cb120-24" aria-hidden="true" tabindex="-1"></a>  <span class="fu">xlab</span>(<span class="st">&#39;Effect Size&#39;</span>) <span class="sc">+</span></span>
+<span id="cb120-25"><a href="part-v-multi-level-model-based-on-informed-priors.html#cb120-25" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggtitle</span>(<span class="fu">expression</span>(<span class="fu">paste</span>(<span class="st">&quot;Posteriors&quot;</span>))) <span class="sc">+</span></span>
+<span id="cb120-26"><a href="part-v-multi-level-model-based-on-informed-priors.html#cb120-26" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_vline</span>(<span class="at">xintercept =</span> <span class="fl">0.0</span>, <span class="at">linetype =</span> <span class="dv">3</span>) <span class="sc">+</span></span>
+<span id="cb120-27"><a href="part-v-multi-level-model-based-on-informed-priors.html#cb120-27" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_fill_manual</span>(<span class="at">name =</span> <span class="st">&quot;Priors:&quot;</span>,</span>
+<span id="cb120-28"><a href="part-v-multi-level-model-based-on-informed-priors.html#cb120-28" aria-hidden="true" tabindex="-1"></a>                  <span class="at">labels =</span> <span class="fu">c</span>(<span class="st">&#39;Danish&#39;</span>, <span class="st">&#39;Meta-analytic&#39;</span>, <span class="st">&quot;Skeptical&quot;</span>),</span>
+<span id="cb120-29"><a href="part-v-multi-level-model-based-on-informed-priors.html#cb120-29" aria-hidden="true" tabindex="-1"></a>                  <span class="at">values=</span><span class="fu">c</span>(<span class="st">&quot;#FC4E07&quot;</span>, <span class="st">&quot;steelblue&quot;</span>, <span class="st">&quot;#228B22&quot;</span>)) <span class="sc">+</span></span>
+<span id="cb120-30"><a href="part-v-multi-level-model-based-on-informed-priors.html#cb120-30" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_color_manual</span>(<span class="at">values=</span><span class="fu">c</span>(<span class="st">&quot;#FC4E07&quot;</span>,<span class="st">&quot;#228B22&quot;</span>, <span class="st">&quot;steelblue&quot;</span>)) <span class="sc">+</span> </span>
+<span id="cb120-31"><a href="part-v-multi-level-model-based-on-informed-priors.html#cb120-31" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">plot.title =</span> <span class="fu">element_text</span>(<span class="at">hjust =</span> <span class="fl">0.5</span>, <span class="at">size=</span><span class="dv">15</span>),</span>
+<span id="cb120-32"><a href="part-v-multi-level-model-based-on-informed-priors.html#cb120-32" aria-hidden="true" tabindex="-1"></a>        <span class="at">axis.ticks.y =</span> <span class="fu">element_blank</span>(),</span>
+<span id="cb120-33"><a href="part-v-multi-level-model-based-on-informed-priors.html#cb120-33" aria-hidden="true" tabindex="-1"></a>        <span class="at">axis.text.y =</span> <span class="fu">element_blank</span>(),</span>
+<span id="cb120-34"><a href="part-v-multi-level-model-based-on-informed-priors.html#cb120-34" aria-hidden="true" tabindex="-1"></a>        <span class="at">axis.title.y=</span><span class="fu">element_blank</span>(),</span>
+<span id="cb120-35"><a href="part-v-multi-level-model-based-on-informed-priors.html#cb120-35" aria-hidden="true" tabindex="-1"></a>        <span class="at">axis.line =</span> <span class="fu">element_line</span>(<span class="at">size=</span><span class="dv">0</span>),</span>
+<span id="cb120-36"><a href="part-v-multi-level-model-based-on-informed-priors.html#cb120-36" aria-hidden="true" tabindex="-1"></a>        <span class="at">legend.position =</span> <span class="st">&quot;bottom&quot;</span>)</span>
+<span id="cb120-37"><a href="part-v-multi-level-model-based-on-informed-priors.html#cb120-37" aria-hidden="true" tabindex="-1"></a>priors_posteriors_plot <span class="ot">&lt;-</span> <span class="fu">plot_grid</span>(plot1, plot2, <span class="at">ncol=</span><span class="dv">1</span>)</span>
+<span id="cb120-38"><a href="part-v-multi-level-model-based-on-informed-priors.html#cb120-38" aria-hidden="true" tabindex="-1"></a>priors_posteriors_plot</span></code></pre></div>
+<p><img src="_main_files/figure-html/unnamed-chunk-49-1.png" width="672" /></p>
+<p>Q10: Why does the model with the Danish study prior not shift as much as those with the skeptical and meta-analytic priors?</p>
+<p>Answer:</p>
+<hr />
+<p>Q11: What does this tell us about the nature of evidence accumulation in Bayesian models?</p>
+<p>Answer:</p>
+<hr />
 
 </div>
 </div>

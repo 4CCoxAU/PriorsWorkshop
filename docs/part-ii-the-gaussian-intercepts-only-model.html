@@ -24,7 +24,7 @@
 <meta name="author" content="Riccardo Fusaroli &amp; Chris Cox" />
 
 
-<meta name="date" content="2022-01-07" />
+<meta name="date" content="2022-01-08" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -141,12 +141,18 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="1.1" data-path="index.html"><a href="index.html#structure-of-this-workshop"><i class="fa fa-check"></i><b>1.1</b> Structure of this Workshop</a></li>
 <li class="chapter" data-level="1.2" data-path="index.html"><a href="index.html#link-to-introductory-video"><i class="fa fa-check"></i><b>1.2</b> Link to Introductory Video</a></li>
 </ul></li>
-<li class="chapter" data-level="2" data-path="part-ii-the-gaussian-intercepts-only-model.html"><a href="part-ii-the-gaussian-intercepts-only-model.html"><i class="fa fa-check"></i><b>2</b> Part II: The Gaussian intercepts-only model</a></li>
+<li class="chapter" data-level="2" data-path="part-ii-the-gaussian-intercepts-only-model.html"><a href="part-ii-the-gaussian-intercepts-only-model.html"><i class="fa fa-check"></i><b>2</b> Part II: The Gaussian intercepts-only model</a>
+<ul>
+<li class="chapter" data-level="2.1" data-path="part-ii-the-gaussian-intercepts-only-model.html"><a href="part-ii-the-gaussian-intercepts-only-model.html#part-i"><i class="fa fa-check"></i><b>2.1</b> PART I:</a></li>
+</ul></li>
 <li class="chapter" data-level="3" data-path="part-iii-linear-regression-with-a-dichotomous-predictor.html"><a href="part-iii-linear-regression-with-a-dichotomous-predictor.html"><i class="fa fa-check"></i><b>3</b> Part III: Linear regression with a dichotomous predictor</a></li>
-<li class="chapter" data-level="4" data-path="part-iv-multi-level-model-with-repeated-measures.html"><a href="part-iv-multi-level-model-with-repeated-measures.html"><i class="fa fa-check"></i><b>4</b> Part IV: Multi-level model with repeated measures</a></li>
+<li class="chapter" data-level="4" data-path="part-iv-multi-level-model-with-repeated-measures.html"><a href="part-iv-multi-level-model-with-repeated-measures.html"><i class="fa fa-check"></i><b>4</b> Part IV: Multi-level model with repeated measures</a>
+<ul>
+<li class="chapter" data-level="4.1" data-path="part-iv-multi-level-model-with-repeated-measures.html"><a href="part-iv-multi-level-model-with-repeated-measures.html#part-iv"><i class="fa fa-check"></i><b>4.1</b> PART IV:</a></li>
+</ul></li>
 <li class="chapter" data-level="5" data-path="part-v-multi-level-model-based-on-informed-priors.html"><a href="part-v-multi-level-model-based-on-informed-priors.html"><i class="fa fa-check"></i><b>5</b> Part V: Multi-level model based on informed priors</a>
 <ul>
-<li class="chapter" data-level="5.1" data-path="part-v-multi-level-model-based-on-informed-priors.html"><a href="part-v-multi-level-model-based-on-informed-priors.html#section"><i class="fa fa-check"></i><b>5.1</b> </a></li>
+<li class="chapter" data-level="5.1" data-path="part-v-multi-level-model-based-on-informed-priors.html"><a href="part-v-multi-level-model-based-on-informed-priors.html#part-v"><i class="fa fa-check"></i><b>5.1</b> PART V:</a></li>
 </ul></li>
 <li class="chapter" data-level="6" data-path="recommendations-for-further-study.html"><a href="recommendations-for-further-study.html"><i class="fa fa-check"></i><b>6</b> Recommendations for Further Study</a></li>
 <li class="divider"></li>
@@ -187,7 +193,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb1-14"><a href="part-ii-the-gaussian-intercepts-only-model.html#cb1-14" aria-hidden="true" tabindex="-1"></a>       brms,</span>
 <span id="cb1-15"><a href="part-ii-the-gaussian-intercepts-only-model.html#cb1-15" aria-hidden="true" tabindex="-1"></a>       cowplot,</span>
 <span id="cb1-16"><a href="part-ii-the-gaussian-intercepts-only-model.html#cb1-16" aria-hidden="true" tabindex="-1"></a>       viridis)</span></code></pre></div>
-<p>PART I:</p>
+<div id="part-i" class="section level2" number="2.1">
+<h2><span class="header-section-number">2.1</span> PART I:</h2>
 <p>Introduction to the data:</p>
 <p>Our research question concerns the hyperarticulation hypothesis of infant-directed speech. Do caregivers produce more peripheral vowels in infant-directed speech (IDS) compared to adult-directed speech (ADS)? To answer this question, we manually analysed 9267 extracted vowel tokens from individual caregivers’ IDS and ADS. In order eliminate inter-individual differences in formant values that occur due to physiological characteristics, we first z-score-normalised the formant data according to participant and then computed the total area of each caregiver’s ADS and IDS vowel space. We used this measure to calculate a standardised mean difference score: Cohen’s d.
 The dataset we will analyse here consists of the following information:
@@ -350,11 +357,11 @@ prior(normal(0, 10), class = sigma))</p>
 ## 
 ## Population-Level Effects: 
 ##           Estimate Est.Error l-95% CI u-95% CI Rhat Bulk_ESS Tail_ESS
-## Intercept    -0.34      0.14    -0.63    -0.06 1.00     4014     3592
+## Intercept    -0.34      0.15    -0.63    -0.05 1.00     4532     3920
 ## 
 ## Family Specific Parameters: 
 ##       Estimate Est.Error l-95% CI u-95% CI Rhat Bulk_ESS Tail_ESS
-## sigma     1.02      0.11     0.84     1.26 1.00     3990     3311
+## sigma     1.02      0.11     0.84     1.25 1.00     3630     3742
 ## 
 ## Draws were sampled using sample(hmc). For each parameter, Bulk_ESS
 ## and Tail_ESS are effective sample size measures, and Rhat is the potential
@@ -368,6 +375,7 @@ approximately [-.63; -.04]).</li>
 <li>The Bulk_ESS and Tail_ESS (effective sample size (ESS)) capture the sampling efficiency in the bulk and tails of the distribution.</li>
 </ul>
 
+</div>
 </div>
             </section>
 

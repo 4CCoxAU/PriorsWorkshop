@@ -2,8 +2,10 @@ part-i-introduction
 structure-of-this-workshop
 link-to-introductory-video
 part-ii-the-gaussian-intercepts-only-model
+part-i
 part-iii-linear-regression-with-a-dichotomous-predictor
 part-iv-multi-level-model-with-repeated-measures
+part-iv
 part-v-multi-level-model-based-on-informed-priors
-section
+part-v
 recommendations-for-further-study
