@@ -133,7 +133,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
       <nav role="navigation">
 
 <ul class="summary">
-<li><a href="./">A Minimal Book Example</a></li>
+<li><a href="./"> </a></li>
 
 <li class="divider"></li>
 <li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> Introduction</a>
@@ -141,7 +141,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="1.1" data-path="index.html"><a href="index.html#structure-of-this-workshop"><i class="fa fa-check"></i><b>1.1</b> Structure of this Workshop</a></li>
 <li class="chapter" data-level="1.2" data-path="index.html"><a href="index.html#preparation"><i class="fa fa-check"></i><b>1.2</b> Preparation</a></li>
 <li class="chapter" data-level="1.3" data-path="index.html"><a href="index.html#introductory-video"><i class="fa fa-check"></i><b>1.3</b> Introductory Video</a></li>
-<li class="chapter" data-level="1.4" data-path="index.html"><a href="index.html#video-on-bayesian-inference-basics"><i class="fa fa-check"></i><b>1.4</b> Video on Bayesian inference basics</a></li>
+<li class="chapter" data-level="1.4" data-path="index.html"><a href="index.html#video-on-bayesian-inference"><i class="fa fa-check"></i><b>1.4</b> Video on Bayesian inference</a></li>
 </ul></li>
 <li class="chapter" data-level="2" data-path="intercepts-only-model.html"><a href="intercepts-only-model.html"><i class="fa fa-check"></i><b>2</b> Intercepts-only model</a>
 <ul>
@@ -196,9 +196,10 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="6" data-path="recommendations.html"><a href="recommendations.html"><i class="fa fa-check"></i><b>6</b> Recommendations</a>
 <ul>
 <li class="chapter" data-level="6.1" data-path="recommendations.html"><a href="recommendations.html#where-to-go-for-further-study"><i class="fa fa-check"></i><b>6.1</b> Where to go for further study</a></li>
+<li class="chapter" data-level="6.2" data-path="recommendations.html"><a href="recommendations.html#feedback-on-the-course"><i class="fa fa-check"></i><b>6.2</b> Feedback on the course</a></li>
 </ul></li>
 <li class="divider"></li>
-<li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
+<li><a href="https://github.com/rstudio/bookdown" target="blank"> </a></li>
 
 </ul>
 
@@ -259,9 +260,6 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div class="sourceCode" id="cb94"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb94-1"><a href="informed-priors.html#cb94-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(<span class="fu">conditional_effects</span>(Articulation_MAprior_m3), <span class="at">points =</span> T)</span></code></pre></div>
 <p><img src="_main_files/figure-html/unnamed-chunk-47-2.png" width="672" /></p>
 <div class="sourceCode" id="cb95"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb95-1"><a href="informed-priors.html#cb95-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(Articulation_MAprior_m3)</span></code></pre></div>
-<pre><code>## Warning: There were 1 divergent transitions after warmup. Increasing adapt_delta
-## above may help. See http://mc-stan.org/misc/warnings.html#divergent-transitions-
-## after-warmup</code></pre>
 <pre><code>##  Family: gaussian 
 ##   Links: mu = identity; sigma = identity 
 ## Formula: ArticulationS ~ 1 + Register + (1 + Register | Subject) 
@@ -272,22 +270,22 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ## Group-Level Effects: 
 ## ~Subject (Number of levels: 24) 
 ##                            Estimate Est.Error l-95% CI u-95% CI Rhat Bulk_ESS
-## sd(Intercept)                  0.32      0.23     0.01     0.85 1.00     3433
-## sd(RegisterIDS)                0.62      0.39     0.03     1.46 1.00     2536
-## cor(Intercept,RegisterIDS)    -0.10      0.44    -0.84     0.76 1.00     9493
+## sd(Intercept)                  0.32      0.23     0.01     0.85 1.00     3649
+## sd(RegisterIDS)                0.62      0.39     0.03     1.44 1.00     2658
+## cor(Intercept,RegisterIDS)    -0.11      0.44    -0.85     0.76 1.00     6550
 ##                            Tail_ESS
-## sd(Intercept)                  2436
-## sd(RegisterIDS)                2755
-## cor(Intercept,RegisterIDS)    13112
+## sd(Intercept)                  3953
+## sd(RegisterIDS)                4576
+## cor(Intercept,RegisterIDS)     9596
 ## 
 ## Population-Level Effects: 
 ##             Estimate Est.Error l-95% CI u-95% CI Rhat Bulk_ESS Tail_ESS
-## Intercept      -0.47      0.20    -0.86    -0.07 1.00     8719     9657
-## RegisterIDS     0.43      0.13     0.18     0.69 1.00    27474    13051
+## Intercept      -0.47      0.20    -0.86    -0.08 1.00     7477     9663
+## RegisterIDS     0.43      0.13     0.19     0.68 1.00    18296    14214
 ## 
 ## Family Specific Parameters: 
 ##       Estimate Est.Error l-95% CI u-95% CI Rhat Bulk_ESS Tail_ESS
-## sigma     1.00      0.17     0.64     1.30 1.00     2486     1237
+## sigma     1.00      0.16     0.67     1.31 1.00     2752     1986
 ## 
 ## Draws were sampled using sample(hmc). For each parameter, Bulk_ESS
 ## and Tail_ESS are effective sample size measures, and Rhat is the potential
@@ -295,36 +293,36 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>Q8: How does the slope estimate for this model with the meta-analytic prior compare to that with the skeptical prior (i.e., Articulation_m3)?</p>
 <hr />
 <p>Let’s try to do the same analysis for the Danish prior (i.e., Mean ES: -0.1, SE = 0.04):</p>
-<div class="sourceCode" id="cb98"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb98-1"><a href="informed-priors.html#cb98-1" aria-hidden="true" tabindex="-1"></a>danish_prior <span class="ot">&lt;-</span> <span class="fu">c</span>(</span>
-<span id="cb98-2"><a href="informed-priors.html#cb98-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">prior</span>(<span class="fu">normal</span>(<span class="dv">0</span>, <span class="dv">1</span>), <span class="at">class =</span> Intercept),</span>
-<span id="cb98-3"><a href="informed-priors.html#cb98-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">prior</span>(<span class="fu">normal</span>(<span class="dv">0</span>, <span class="dv">1</span>), <span class="at">class =</span> sd, <span class="at">coef =</span> Intercept, <span class="at">group =</span> Subject),</span>
-<span id="cb98-4"><a href="informed-priors.html#cb98-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">prior</span>(<span class="fu">normal</span>(<span class="sc">-</span><span class="fl">0.1</span>, <span class="fl">0.04</span>), <span class="at">class =</span> b),</span>
-<span id="cb98-5"><a href="informed-priors.html#cb98-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">prior</span>(<span class="fu">normal</span>(<span class="dv">0</span>, <span class="dv">1</span>), <span class="at">class =</span> sd, <span class="at">coef =</span> RegisterIDS, <span class="at">group =</span> Subject),</span>
-<span id="cb98-6"><a href="informed-priors.html#cb98-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">prior</span>(<span class="fu">normal</span>(<span class="dv">1</span>, <span class="fl">0.5</span>), <span class="at">class =</span> sigma),</span>
-<span id="cb98-7"><a href="informed-priors.html#cb98-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">prior</span>(<span class="fu">lkj</span>(<span class="dv">2</span>), <span class="at">class =</span> cor))</span>
-<span id="cb98-8"><a href="informed-priors.html#cb98-8" aria-hidden="true" tabindex="-1"></a>Articulation_Danishprior_m3 <span class="ot">&lt;-</span> </span>
-<span id="cb98-9"><a href="informed-priors.html#cb98-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">brm</span>(</span>
-<span id="cb98-10"><a href="informed-priors.html#cb98-10" aria-hidden="true" tabindex="-1"></a>    Articulation_f3,</span>
-<span id="cb98-11"><a href="informed-priors.html#cb98-11" aria-hidden="true" tabindex="-1"></a>    <span class="at">data =</span> d,</span>
-<span id="cb98-12"><a href="informed-priors.html#cb98-12" aria-hidden="true" tabindex="-1"></a>    <span class="at">save_pars =</span> <span class="fu">save_pars</span>(<span class="at">all =</span> <span class="cn">TRUE</span>),</span>
-<span id="cb98-13"><a href="informed-priors.html#cb98-13" aria-hidden="true" tabindex="-1"></a>    <span class="at">family =</span> gaussian,</span>
-<span id="cb98-14"><a href="informed-priors.html#cb98-14" aria-hidden="true" tabindex="-1"></a>    <span class="at">prior =</span> danish_prior,</span>
-<span id="cb98-15"><a href="informed-priors.html#cb98-15" aria-hidden="true" tabindex="-1"></a>    <span class="co">#file = &quot;Articulation_Danishprior_m3&quot;,</span></span>
-<span id="cb98-16"><a href="informed-priors.html#cb98-16" aria-hidden="true" tabindex="-1"></a>    <span class="at">sample_prior =</span> T,</span>
-<span id="cb98-17"><a href="informed-priors.html#cb98-17" aria-hidden="true" tabindex="-1"></a>    <span class="at">iter =</span> <span class="dv">10000</span>, </span>
-<span id="cb98-18"><a href="informed-priors.html#cb98-18" aria-hidden="true" tabindex="-1"></a>    <span class="at">warmup =</span> <span class="dv">1000</span>,</span>
-<span id="cb98-19"><a href="informed-priors.html#cb98-19" aria-hidden="true" tabindex="-1"></a>    <span class="at">cores =</span> <span class="dv">2</span>,</span>
-<span id="cb98-20"><a href="informed-priors.html#cb98-20" aria-hidden="true" tabindex="-1"></a>    <span class="at">chains =</span> <span class="dv">2</span>,</span>
-<span id="cb98-21"><a href="informed-priors.html#cb98-21" aria-hidden="true" tabindex="-1"></a>    <span class="at">backend =</span> <span class="st">&quot;cmdstanr&quot;</span>,</span>
-<span id="cb98-22"><a href="informed-priors.html#cb98-22" aria-hidden="true" tabindex="-1"></a>    <span class="at">threads =</span> <span class="fu">threading</span>(<span class="dv">2</span>),</span>
-<span id="cb98-23"><a href="informed-priors.html#cb98-23" aria-hidden="true" tabindex="-1"></a>    <span class="at">control =</span> <span class="fu">list</span>(</span>
-<span id="cb98-24"><a href="informed-priors.html#cb98-24" aria-hidden="true" tabindex="-1"></a>      <span class="at">adapt_delta =</span> <span class="fl">0.999</span>,</span>
-<span id="cb98-25"><a href="informed-priors.html#cb98-25" aria-hidden="true" tabindex="-1"></a>      <span class="at">max_treedepth =</span> <span class="dv">20</span>))</span></code></pre></div>
-<div class="sourceCode" id="cb99"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb99-1"><a href="informed-priors.html#cb99-1" aria-hidden="true" tabindex="-1"></a><span class="fu">pp_check</span>(Articulation_Danishprior_m3, <span class="at">ndraws =</span> <span class="dv">50</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb97"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb97-1"><a href="informed-priors.html#cb97-1" aria-hidden="true" tabindex="-1"></a>danish_prior <span class="ot">&lt;-</span> <span class="fu">c</span>(</span>
+<span id="cb97-2"><a href="informed-priors.html#cb97-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">prior</span>(<span class="fu">normal</span>(<span class="dv">0</span>, <span class="dv">1</span>), <span class="at">class =</span> Intercept),</span>
+<span id="cb97-3"><a href="informed-priors.html#cb97-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">prior</span>(<span class="fu">normal</span>(<span class="dv">0</span>, <span class="dv">1</span>), <span class="at">class =</span> sd, <span class="at">coef =</span> Intercept, <span class="at">group =</span> Subject),</span>
+<span id="cb97-4"><a href="informed-priors.html#cb97-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">prior</span>(<span class="fu">normal</span>(<span class="sc">-</span><span class="fl">0.1</span>, <span class="fl">0.04</span>), <span class="at">class =</span> b),</span>
+<span id="cb97-5"><a href="informed-priors.html#cb97-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">prior</span>(<span class="fu">normal</span>(<span class="dv">0</span>, <span class="dv">1</span>), <span class="at">class =</span> sd, <span class="at">coef =</span> RegisterIDS, <span class="at">group =</span> Subject),</span>
+<span id="cb97-6"><a href="informed-priors.html#cb97-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">prior</span>(<span class="fu">normal</span>(<span class="dv">1</span>, <span class="fl">0.5</span>), <span class="at">class =</span> sigma),</span>
+<span id="cb97-7"><a href="informed-priors.html#cb97-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">prior</span>(<span class="fu">lkj</span>(<span class="dv">2</span>), <span class="at">class =</span> cor))</span>
+<span id="cb97-8"><a href="informed-priors.html#cb97-8" aria-hidden="true" tabindex="-1"></a>Articulation_Danishprior_m3 <span class="ot">&lt;-</span> </span>
+<span id="cb97-9"><a href="informed-priors.html#cb97-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">brm</span>(</span>
+<span id="cb97-10"><a href="informed-priors.html#cb97-10" aria-hidden="true" tabindex="-1"></a>    Articulation_f3,</span>
+<span id="cb97-11"><a href="informed-priors.html#cb97-11" aria-hidden="true" tabindex="-1"></a>    <span class="at">data =</span> d,</span>
+<span id="cb97-12"><a href="informed-priors.html#cb97-12" aria-hidden="true" tabindex="-1"></a>    <span class="at">save_pars =</span> <span class="fu">save_pars</span>(<span class="at">all =</span> <span class="cn">TRUE</span>),</span>
+<span id="cb97-13"><a href="informed-priors.html#cb97-13" aria-hidden="true" tabindex="-1"></a>    <span class="at">family =</span> gaussian,</span>
+<span id="cb97-14"><a href="informed-priors.html#cb97-14" aria-hidden="true" tabindex="-1"></a>    <span class="at">prior =</span> danish_prior,</span>
+<span id="cb97-15"><a href="informed-priors.html#cb97-15" aria-hidden="true" tabindex="-1"></a>    <span class="co">#file = &quot;Articulation_Danishprior_m3&quot;,</span></span>
+<span id="cb97-16"><a href="informed-priors.html#cb97-16" aria-hidden="true" tabindex="-1"></a>    <span class="at">sample_prior =</span> T,</span>
+<span id="cb97-17"><a href="informed-priors.html#cb97-17" aria-hidden="true" tabindex="-1"></a>    <span class="at">iter =</span> <span class="dv">10000</span>, </span>
+<span id="cb97-18"><a href="informed-priors.html#cb97-18" aria-hidden="true" tabindex="-1"></a>    <span class="at">warmup =</span> <span class="dv">1000</span>,</span>
+<span id="cb97-19"><a href="informed-priors.html#cb97-19" aria-hidden="true" tabindex="-1"></a>    <span class="at">cores =</span> <span class="dv">2</span>,</span>
+<span id="cb97-20"><a href="informed-priors.html#cb97-20" aria-hidden="true" tabindex="-1"></a>    <span class="at">chains =</span> <span class="dv">2</span>,</span>
+<span id="cb97-21"><a href="informed-priors.html#cb97-21" aria-hidden="true" tabindex="-1"></a>    <span class="at">backend =</span> <span class="st">&quot;cmdstanr&quot;</span>,</span>
+<span id="cb97-22"><a href="informed-priors.html#cb97-22" aria-hidden="true" tabindex="-1"></a>    <span class="at">threads =</span> <span class="fu">threading</span>(<span class="dv">2</span>),</span>
+<span id="cb97-23"><a href="informed-priors.html#cb97-23" aria-hidden="true" tabindex="-1"></a>    <span class="at">control =</span> <span class="fu">list</span>(</span>
+<span id="cb97-24"><a href="informed-priors.html#cb97-24" aria-hidden="true" tabindex="-1"></a>      <span class="at">adapt_delta =</span> <span class="fl">0.999</span>,</span>
+<span id="cb97-25"><a href="informed-priors.html#cb97-25" aria-hidden="true" tabindex="-1"></a>      <span class="at">max_treedepth =</span> <span class="dv">20</span>))</span></code></pre></div>
+<div class="sourceCode" id="cb98"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb98-1"><a href="informed-priors.html#cb98-1" aria-hidden="true" tabindex="-1"></a><span class="fu">pp_check</span>(Articulation_Danishprior_m3, <span class="at">ndraws =</span> <span class="dv">50</span>)</span></code></pre></div>
 <p><img src="_main_files/figure-html/unnamed-chunk-49-1.png" width="672" /></p>
-<div class="sourceCode" id="cb100"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb100-1"><a href="informed-priors.html#cb100-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(<span class="fu">conditional_effects</span>(Articulation_Danishprior_m3), <span class="at">points =</span> T)</span></code></pre></div>
+<div class="sourceCode" id="cb99"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb99-1"><a href="informed-priors.html#cb99-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(<span class="fu">conditional_effects</span>(Articulation_Danishprior_m3), <span class="at">points =</span> T)</span></code></pre></div>
 <p><img src="_main_files/figure-html/unnamed-chunk-49-2.png" width="672" /></p>
-<div class="sourceCode" id="cb101"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb101-1"><a href="informed-priors.html#cb101-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(Articulation_Danishprior_m3)</span></code></pre></div>
+<div class="sourceCode" id="cb100"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb100-1"><a href="informed-priors.html#cb100-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(Articulation_Danishprior_m3)</span></code></pre></div>
 <pre><code>##  Family: gaussian 
 ##   Links: mu = identity; sigma = identity 
 ## Formula: ArticulationS ~ 1 + Register + (1 + Register | Subject) 
@@ -335,22 +333,22 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ## Group-Level Effects: 
 ## ~Subject (Number of levels: 24) 
 ##                            Estimate Est.Error l-95% CI u-95% CI Rhat Bulk_ESS
-## sd(Intercept)                  0.37      0.24     0.02     0.89 1.00     2126
-## sd(RegisterIDS)                0.48      0.32     0.02     1.17 1.00     2042
-## cor(Intercept,RegisterIDS)    -0.05      0.43    -0.80     0.79 1.00     7429
+## sd(Intercept)                  0.38      0.24     0.02     0.88 1.00     2921
+## sd(RegisterIDS)                0.48      0.31     0.02     1.16 1.00     2668
+## cor(Intercept,RegisterIDS)    -0.05      0.43    -0.80     0.78 1.00     7762
 ##                            Tail_ESS
-## sd(Intercept)                  3047
-## sd(RegisterIDS)                2609
-## cor(Intercept,RegisterIDS)    10448
+## sd(Intercept)                  5101
+## sd(RegisterIDS)                3438
+## cor(Intercept,RegisterIDS)    11310
 ## 
 ## Population-Level Effects: 
 ##             Estimate Est.Error l-95% CI u-95% CI Rhat Bulk_ESS Tail_ESS
-## Intercept      -0.25      0.17    -0.57     0.08 1.00     8813     9131
-## RegisterIDS    -0.11      0.04    -0.19    -0.04 1.00    14943    12928
+## Intercept      -0.24      0.17    -0.57     0.08 1.00    12237    12809
+## RegisterIDS    -0.11      0.04    -0.19    -0.03 1.00    23874    13170
 ## 
 ## Family Specific Parameters: 
 ##       Estimate Est.Error l-95% CI u-95% CI Rhat Bulk_ESS Tail_ESS
-## sigma     0.88      0.15     0.55     1.16 1.00     2025     1360
+## sigma     0.88      0.15     0.55     1.16 1.00     2692     1672
 ## 
 ## Draws were sampled using sample(hmc). For each parameter, Bulk_ESS
 ## and Tail_ESS are effective sample size measures, and Rhat is the potential
@@ -361,55 +359,55 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div id="prior-posterior-updates-plot" class="section level3" number="5.2.2">
 <h3><span class="header-section-number">5.2.2</span> Prior-Posterior Updates Plot</h3>
 <p>Let’s run the following code to extract and visualise the prior and posterior distributions from the different models:</p>
-<div class="sourceCode" id="cb103"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb103-1"><a href="informed-priors.html#cb103-1" aria-hidden="true" tabindex="-1"></a>danish_prior_posterior <span class="ot">&lt;-</span> <span class="fu">as_draws_df</span>(Articulation_Danishprior_m3) <span class="sc">%&gt;%</span></span>
-<span id="cb103-2"><a href="informed-priors.html#cb103-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">priors =</span> <span class="st">&quot;Danish&quot;</span>) <span class="sc">%&gt;%</span></span>
-<span id="cb103-3"><a href="informed-priors.html#cb103-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(prior_b, b_RegisterIDS, priors)</span>
-<span id="cb103-4"><a href="informed-priors.html#cb103-4" aria-hidden="true" tabindex="-1"></a>  </span>
-<span id="cb103-5"><a href="informed-priors.html#cb103-5" aria-hidden="true" tabindex="-1"></a>ma_prior_posterior <span class="ot">&lt;-</span> <span class="fu">as_draws_df</span>(Articulation_MAprior_m3) <span class="sc">%&gt;%</span></span>
-<span id="cb103-6"><a href="informed-priors.html#cb103-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">priors =</span> <span class="st">&quot;MA estimates&quot;</span>) <span class="sc">%&gt;%</span></span>
-<span id="cb103-7"><a href="informed-priors.html#cb103-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(prior_b, b_RegisterIDS, priors)</span>
-<span id="cb103-8"><a href="informed-priors.html#cb103-8" aria-hidden="true" tabindex="-1"></a>  </span>
-<span id="cb103-9"><a href="informed-priors.html#cb103-9" aria-hidden="true" tabindex="-1"></a>skeptical_prior_posterior <span class="ot">&lt;-</span> <span class="fu">as_draws_df</span>(Articulation_m3) <span class="sc">%&gt;%</span></span>
-<span id="cb103-10"><a href="informed-priors.html#cb103-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">priors =</span> <span class="st">&quot;Skeptical estimates&quot;</span>) <span class="sc">%&gt;%</span></span>
-<span id="cb103-11"><a href="informed-priors.html#cb103-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(prior_b, b_RegisterIDS, priors)</span>
-<span id="cb103-12"><a href="informed-priors.html#cb103-12" aria-hidden="true" tabindex="-1"></a>Posterior <span class="ot">&lt;-</span> <span class="fu">rbind</span>(danish_prior_posterior, ma_prior_posterior, skeptical_prior_posterior)</span>
-<span id="cb103-13"><a href="informed-priors.html#cb103-13" aria-hidden="true" tabindex="-1"></a>plot1 <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(Posterior) <span class="sc">+</span> </span>
-<span id="cb103-14"><a href="informed-priors.html#cb103-14" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_classic</span>() <span class="sc">+</span></span>
-<span id="cb103-15"><a href="informed-priors.html#cb103-15" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggtitle</span>(<span class="st">&quot;Priors&quot;</span>) <span class="sc">+</span></span>
-<span id="cb103-16"><a href="informed-priors.html#cb103-16" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_density</span>(<span class="fu">aes</span>(<span class="at">x =</span> prior_b, <span class="at">fill =</span> priors), <span class="at">alpha =</span> <span class="fl">0.7</span>) <span class="sc">+</span></span>
-<span id="cb103-17"><a href="informed-priors.html#cb103-17" aria-hidden="true" tabindex="-1"></a>  <span class="fu">xlim</span>(<span class="fu">c</span>(<span class="sc">-</span><span class="fl">1.5</span>, <span class="fl">1.5</span>)) <span class="sc">+</span></span>
-<span id="cb103-18"><a href="informed-priors.html#cb103-18" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_vline</span>(<span class="at">xintercept =</span> <span class="fl">0.0</span>, <span class="at">linetype =</span> <span class="dv">3</span>) <span class="sc">+</span></span>
-<span id="cb103-19"><a href="informed-priors.html#cb103-19" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_fill_manual</span>(<span class="at">name =</span> <span class="st">&quot;Prior&quot;</span>,</span>
-<span id="cb103-20"><a href="informed-priors.html#cb103-20" aria-hidden="true" tabindex="-1"></a>                  <span class="at">labels =</span> <span class="fu">c</span>(<span class="st">&#39;Meta-analytic&#39;</span>, <span class="st">&quot;Danish&quot;</span>, <span class="st">&quot;Skeptical&quot;</span>),</span>
-<span id="cb103-21"><a href="informed-priors.html#cb103-21" aria-hidden="true" tabindex="-1"></a>                  <span class="at">values=</span><span class="fu">c</span>(<span class="st">&quot;#FC4E07&quot;</span>, <span class="st">&quot;steelblue&quot;</span>, <span class="st">&quot;#228B22&quot;</span>)) <span class="sc">+</span></span>
-<span id="cb103-22"><a href="informed-priors.html#cb103-22" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">plot.title =</span> <span class="fu">element_text</span>(<span class="at">hjust =</span> <span class="fl">0.5</span>, <span class="at">size=</span><span class="dv">15</span>),</span>
-<span id="cb103-23"><a href="informed-priors.html#cb103-23" aria-hidden="true" tabindex="-1"></a>        <span class="at">axis.ticks.y =</span> <span class="fu">element_blank</span>(),</span>
-<span id="cb103-24"><a href="informed-priors.html#cb103-24" aria-hidden="true" tabindex="-1"></a>        <span class="at">axis.text.y =</span> <span class="fu">element_blank</span>(),</span>
-<span id="cb103-25"><a href="informed-priors.html#cb103-25" aria-hidden="true" tabindex="-1"></a>        <span class="at">axis.title.y=</span><span class="fu">element_blank</span>(),</span>
-<span id="cb103-26"><a href="informed-priors.html#cb103-26" aria-hidden="true" tabindex="-1"></a>        <span class="at">axis.line.x =</span> <span class="fu">element_line</span>(<span class="at">size=</span><span class="fl">0.1</span>),</span>
-<span id="cb103-27"><a href="informed-priors.html#cb103-27" aria-hidden="true" tabindex="-1"></a>        <span class="at">axis.line.y =</span> <span class="fu">element_line</span>(<span class="at">size=</span><span class="fl">0.0</span>),</span>
-<span id="cb103-28"><a href="informed-priors.html#cb103-28" aria-hidden="true" tabindex="-1"></a>        <span class="at">axis.text.x =</span> <span class="fu">element_blank</span>(),</span>
-<span id="cb103-29"><a href="informed-priors.html#cb103-29" aria-hidden="true" tabindex="-1"></a>        <span class="at">axis.title.x=</span><span class="fu">element_blank</span>(),</span>
-<span id="cb103-30"><a href="informed-priors.html#cb103-30" aria-hidden="true" tabindex="-1"></a>        <span class="at">legend.position =</span> <span class="st">&quot;none&quot;</span>)</span>
-<span id="cb103-31"><a href="informed-priors.html#cb103-31" aria-hidden="true" tabindex="-1"></a>plot2 <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(Posterior) <span class="sc">+</span> </span>
-<span id="cb103-32"><a href="informed-priors.html#cb103-32" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_classic</span>() <span class="sc">+</span></span>
-<span id="cb103-33"><a href="informed-priors.html#cb103-33" aria-hidden="true" tabindex="-1"></a>  <span class="fu">xlim</span>(<span class="fu">c</span>(<span class="sc">-</span><span class="fl">1.5</span>, <span class="fl">1.5</span>)) <span class="sc">+</span></span>
-<span id="cb103-34"><a href="informed-priors.html#cb103-34" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_density</span>(<span class="fu">aes</span>(<span class="at">x =</span> b_RegisterIDS, <span class="at">fill =</span> priors), <span class="at">alpha =</span> <span class="fl">0.7</span>) <span class="sc">+</span></span>
-<span id="cb103-35"><a href="informed-priors.html#cb103-35" aria-hidden="true" tabindex="-1"></a>  <span class="fu">xlab</span>(<span class="st">&#39;Effect Size&#39;</span>) <span class="sc">+</span></span>
-<span id="cb103-36"><a href="informed-priors.html#cb103-36" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggtitle</span>(<span class="fu">expression</span>(<span class="fu">paste</span>(<span class="st">&quot;Posteriors&quot;</span>))) <span class="sc">+</span></span>
-<span id="cb103-37"><a href="informed-priors.html#cb103-37" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_vline</span>(<span class="at">xintercept =</span> <span class="fl">0.0</span>, <span class="at">linetype =</span> <span class="dv">3</span>) <span class="sc">+</span></span>
-<span id="cb103-38"><a href="informed-priors.html#cb103-38" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_fill_manual</span>(<span class="at">name =</span> <span class="st">&quot;Priors:&quot;</span>,</span>
-<span id="cb103-39"><a href="informed-priors.html#cb103-39" aria-hidden="true" tabindex="-1"></a>                  <span class="at">labels =</span> <span class="fu">c</span>(<span class="st">&#39;Danish&#39;</span>, <span class="st">&#39;Meta-analytic&#39;</span>, <span class="st">&quot;Skeptical&quot;</span>),</span>
-<span id="cb103-40"><a href="informed-priors.html#cb103-40" aria-hidden="true" tabindex="-1"></a>                  <span class="at">values=</span><span class="fu">c</span>(<span class="st">&quot;#FC4E07&quot;</span>, <span class="st">&quot;steelblue&quot;</span>, <span class="st">&quot;#228B22&quot;</span>)) <span class="sc">+</span></span>
-<span id="cb103-41"><a href="informed-priors.html#cb103-41" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_color_manual</span>(<span class="at">values=</span><span class="fu">c</span>(<span class="st">&quot;#FC4E07&quot;</span>,<span class="st">&quot;#228B22&quot;</span>, <span class="st">&quot;steelblue&quot;</span>)) <span class="sc">+</span> </span>
-<span id="cb103-42"><a href="informed-priors.html#cb103-42" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">plot.title =</span> <span class="fu">element_text</span>(<span class="at">hjust =</span> <span class="fl">0.5</span>, <span class="at">size=</span><span class="dv">15</span>),</span>
-<span id="cb103-43"><a href="informed-priors.html#cb103-43" aria-hidden="true" tabindex="-1"></a>        <span class="at">axis.ticks.y =</span> <span class="fu">element_blank</span>(),</span>
-<span id="cb103-44"><a href="informed-priors.html#cb103-44" aria-hidden="true" tabindex="-1"></a>        <span class="at">axis.text.y =</span> <span class="fu">element_blank</span>(),</span>
-<span id="cb103-45"><a href="informed-priors.html#cb103-45" aria-hidden="true" tabindex="-1"></a>        <span class="at">axis.title.y=</span><span class="fu">element_blank</span>(),</span>
-<span id="cb103-46"><a href="informed-priors.html#cb103-46" aria-hidden="true" tabindex="-1"></a>        <span class="at">axis.line =</span> <span class="fu">element_line</span>(<span class="at">size=</span><span class="dv">0</span>),</span>
-<span id="cb103-47"><a href="informed-priors.html#cb103-47" aria-hidden="true" tabindex="-1"></a>        <span class="at">legend.position =</span> <span class="st">&quot;bottom&quot;</span>)</span>
-<span id="cb103-48"><a href="informed-priors.html#cb103-48" aria-hidden="true" tabindex="-1"></a>priors_posteriors_plot <span class="ot">&lt;-</span> <span class="fu">plot_grid</span>(plot1, plot2, <span class="at">ncol=</span><span class="dv">1</span>)</span>
-<span id="cb103-49"><a href="informed-priors.html#cb103-49" aria-hidden="true" tabindex="-1"></a>priors_posteriors_plot</span></code></pre></div>
+<div class="sourceCode" id="cb102"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb102-1"><a href="informed-priors.html#cb102-1" aria-hidden="true" tabindex="-1"></a>danish_prior_posterior <span class="ot">&lt;-</span> <span class="fu">as_draws_df</span>(Articulation_Danishprior_m3) <span class="sc">%&gt;%</span></span>
+<span id="cb102-2"><a href="informed-priors.html#cb102-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">priors =</span> <span class="st">&quot;Danish&quot;</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb102-3"><a href="informed-priors.html#cb102-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(prior_b, b_RegisterIDS, priors)</span>
+<span id="cb102-4"><a href="informed-priors.html#cb102-4" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb102-5"><a href="informed-priors.html#cb102-5" aria-hidden="true" tabindex="-1"></a>ma_prior_posterior <span class="ot">&lt;-</span> <span class="fu">as_draws_df</span>(Articulation_MAprior_m3) <span class="sc">%&gt;%</span></span>
+<span id="cb102-6"><a href="informed-priors.html#cb102-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">priors =</span> <span class="st">&quot;MA estimates&quot;</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb102-7"><a href="informed-priors.html#cb102-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(prior_b, b_RegisterIDS, priors)</span>
+<span id="cb102-8"><a href="informed-priors.html#cb102-8" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb102-9"><a href="informed-priors.html#cb102-9" aria-hidden="true" tabindex="-1"></a>skeptical_prior_posterior <span class="ot">&lt;-</span> <span class="fu">as_draws_df</span>(Articulation_m3) <span class="sc">%&gt;%</span></span>
+<span id="cb102-10"><a href="informed-priors.html#cb102-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">priors =</span> <span class="st">&quot;Skeptical estimates&quot;</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb102-11"><a href="informed-priors.html#cb102-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(prior_b, b_RegisterIDS, priors)</span>
+<span id="cb102-12"><a href="informed-priors.html#cb102-12" aria-hidden="true" tabindex="-1"></a>Posterior <span class="ot">&lt;-</span> <span class="fu">rbind</span>(danish_prior_posterior, ma_prior_posterior, skeptical_prior_posterior)</span>
+<span id="cb102-13"><a href="informed-priors.html#cb102-13" aria-hidden="true" tabindex="-1"></a>plot1 <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(Posterior) <span class="sc">+</span> </span>
+<span id="cb102-14"><a href="informed-priors.html#cb102-14" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_classic</span>() <span class="sc">+</span></span>
+<span id="cb102-15"><a href="informed-priors.html#cb102-15" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggtitle</span>(<span class="st">&quot;Priors&quot;</span>) <span class="sc">+</span></span>
+<span id="cb102-16"><a href="informed-priors.html#cb102-16" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_density</span>(<span class="fu">aes</span>(<span class="at">x =</span> prior_b, <span class="at">fill =</span> priors), <span class="at">alpha =</span> <span class="fl">0.7</span>) <span class="sc">+</span></span>
+<span id="cb102-17"><a href="informed-priors.html#cb102-17" aria-hidden="true" tabindex="-1"></a>  <span class="fu">xlim</span>(<span class="fu">c</span>(<span class="sc">-</span><span class="fl">1.5</span>, <span class="fl">1.5</span>)) <span class="sc">+</span></span>
+<span id="cb102-18"><a href="informed-priors.html#cb102-18" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_vline</span>(<span class="at">xintercept =</span> <span class="fl">0.0</span>, <span class="at">linetype =</span> <span class="dv">3</span>) <span class="sc">+</span></span>
+<span id="cb102-19"><a href="informed-priors.html#cb102-19" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_fill_manual</span>(<span class="at">name =</span> <span class="st">&quot;Prior&quot;</span>,</span>
+<span id="cb102-20"><a href="informed-priors.html#cb102-20" aria-hidden="true" tabindex="-1"></a>                  <span class="at">labels =</span> <span class="fu">c</span>(<span class="st">&#39;Meta-analytic&#39;</span>, <span class="st">&quot;Danish&quot;</span>, <span class="st">&quot;Skeptical&quot;</span>),</span>
+<span id="cb102-21"><a href="informed-priors.html#cb102-21" aria-hidden="true" tabindex="-1"></a>                  <span class="at">values=</span><span class="fu">c</span>(<span class="st">&quot;#FC4E07&quot;</span>, <span class="st">&quot;steelblue&quot;</span>, <span class="st">&quot;#228B22&quot;</span>)) <span class="sc">+</span></span>
+<span id="cb102-22"><a href="informed-priors.html#cb102-22" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">plot.title =</span> <span class="fu">element_text</span>(<span class="at">hjust =</span> <span class="fl">0.5</span>, <span class="at">size=</span><span class="dv">15</span>),</span>
+<span id="cb102-23"><a href="informed-priors.html#cb102-23" aria-hidden="true" tabindex="-1"></a>        <span class="at">axis.ticks.y =</span> <span class="fu">element_blank</span>(),</span>
+<span id="cb102-24"><a href="informed-priors.html#cb102-24" aria-hidden="true" tabindex="-1"></a>        <span class="at">axis.text.y =</span> <span class="fu">element_blank</span>(),</span>
+<span id="cb102-25"><a href="informed-priors.html#cb102-25" aria-hidden="true" tabindex="-1"></a>        <span class="at">axis.title.y=</span><span class="fu">element_blank</span>(),</span>
+<span id="cb102-26"><a href="informed-priors.html#cb102-26" aria-hidden="true" tabindex="-1"></a>        <span class="at">axis.line.x =</span> <span class="fu">element_line</span>(<span class="at">size=</span><span class="fl">0.1</span>),</span>
+<span id="cb102-27"><a href="informed-priors.html#cb102-27" aria-hidden="true" tabindex="-1"></a>        <span class="at">axis.line.y =</span> <span class="fu">element_line</span>(<span class="at">size=</span><span class="fl">0.0</span>),</span>
+<span id="cb102-28"><a href="informed-priors.html#cb102-28" aria-hidden="true" tabindex="-1"></a>        <span class="at">axis.text.x =</span> <span class="fu">element_blank</span>(),</span>
+<span id="cb102-29"><a href="informed-priors.html#cb102-29" aria-hidden="true" tabindex="-1"></a>        <span class="at">axis.title.x=</span><span class="fu">element_blank</span>(),</span>
+<span id="cb102-30"><a href="informed-priors.html#cb102-30" aria-hidden="true" tabindex="-1"></a>        <span class="at">legend.position =</span> <span class="st">&quot;none&quot;</span>)</span>
+<span id="cb102-31"><a href="informed-priors.html#cb102-31" aria-hidden="true" tabindex="-1"></a>plot2 <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(Posterior) <span class="sc">+</span> </span>
+<span id="cb102-32"><a href="informed-priors.html#cb102-32" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_classic</span>() <span class="sc">+</span></span>
+<span id="cb102-33"><a href="informed-priors.html#cb102-33" aria-hidden="true" tabindex="-1"></a>  <span class="fu">xlim</span>(<span class="fu">c</span>(<span class="sc">-</span><span class="fl">1.5</span>, <span class="fl">1.5</span>)) <span class="sc">+</span></span>
+<span id="cb102-34"><a href="informed-priors.html#cb102-34" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_density</span>(<span class="fu">aes</span>(<span class="at">x =</span> b_RegisterIDS, <span class="at">fill =</span> priors), <span class="at">alpha =</span> <span class="fl">0.7</span>) <span class="sc">+</span></span>
+<span id="cb102-35"><a href="informed-priors.html#cb102-35" aria-hidden="true" tabindex="-1"></a>  <span class="fu">xlab</span>(<span class="st">&#39;Effect Size&#39;</span>) <span class="sc">+</span></span>
+<span id="cb102-36"><a href="informed-priors.html#cb102-36" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggtitle</span>(<span class="fu">expression</span>(<span class="fu">paste</span>(<span class="st">&quot;Posteriors&quot;</span>))) <span class="sc">+</span></span>
+<span id="cb102-37"><a href="informed-priors.html#cb102-37" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_vline</span>(<span class="at">xintercept =</span> <span class="fl">0.0</span>, <span class="at">linetype =</span> <span class="dv">3</span>) <span class="sc">+</span></span>
+<span id="cb102-38"><a href="informed-priors.html#cb102-38" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_fill_manual</span>(<span class="at">name =</span> <span class="st">&quot;Priors:&quot;</span>,</span>
+<span id="cb102-39"><a href="informed-priors.html#cb102-39" aria-hidden="true" tabindex="-1"></a>                  <span class="at">labels =</span> <span class="fu">c</span>(<span class="st">&#39;Danish&#39;</span>, <span class="st">&#39;Meta-analytic&#39;</span>, <span class="st">&quot;Skeptical&quot;</span>),</span>
+<span id="cb102-40"><a href="informed-priors.html#cb102-40" aria-hidden="true" tabindex="-1"></a>                  <span class="at">values=</span><span class="fu">c</span>(<span class="st">&quot;#FC4E07&quot;</span>, <span class="st">&quot;steelblue&quot;</span>, <span class="st">&quot;#228B22&quot;</span>)) <span class="sc">+</span></span>
+<span id="cb102-41"><a href="informed-priors.html#cb102-41" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_color_manual</span>(<span class="at">values=</span><span class="fu">c</span>(<span class="st">&quot;#FC4E07&quot;</span>,<span class="st">&quot;#228B22&quot;</span>, <span class="st">&quot;steelblue&quot;</span>)) <span class="sc">+</span> </span>
+<span id="cb102-42"><a href="informed-priors.html#cb102-42" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">plot.title =</span> <span class="fu">element_text</span>(<span class="at">hjust =</span> <span class="fl">0.5</span>, <span class="at">size=</span><span class="dv">15</span>),</span>
+<span id="cb102-43"><a href="informed-priors.html#cb102-43" aria-hidden="true" tabindex="-1"></a>        <span class="at">axis.ticks.y =</span> <span class="fu">element_blank</span>(),</span>
+<span id="cb102-44"><a href="informed-priors.html#cb102-44" aria-hidden="true" tabindex="-1"></a>        <span class="at">axis.text.y =</span> <span class="fu">element_blank</span>(),</span>
+<span id="cb102-45"><a href="informed-priors.html#cb102-45" aria-hidden="true" tabindex="-1"></a>        <span class="at">axis.title.y=</span><span class="fu">element_blank</span>(),</span>
+<span id="cb102-46"><a href="informed-priors.html#cb102-46" aria-hidden="true" tabindex="-1"></a>        <span class="at">axis.line =</span> <span class="fu">element_line</span>(<span class="at">size=</span><span class="dv">0</span>),</span>
+<span id="cb102-47"><a href="informed-priors.html#cb102-47" aria-hidden="true" tabindex="-1"></a>        <span class="at">legend.position =</span> <span class="st">&quot;bottom&quot;</span>)</span>
+<span id="cb102-48"><a href="informed-priors.html#cb102-48" aria-hidden="true" tabindex="-1"></a>priors_posteriors_plot <span class="ot">&lt;-</span> <span class="fu">plot_grid</span>(plot1, plot2, <span class="at">ncol=</span><span class="dv">1</span>)</span>
+<span id="cb102-49"><a href="informed-priors.html#cb102-49" aria-hidden="true" tabindex="-1"></a>priors_posteriors_plot</span></code></pre></div>
 <p><img src="_main_files/figure-html/unnamed-chunk-50-1.png" width="672" /></p>
 <p>Q10: Why does the model with the Danish study prior not shift as much as those with the skeptical and meta-analytic priors?</p>
 <p>Answer:</p>

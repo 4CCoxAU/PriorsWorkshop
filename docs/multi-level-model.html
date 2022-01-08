@@ -133,7 +133,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
       <nav role="navigation">
 
 <ul class="summary">
-<li><a href="./">A Minimal Book Example</a></li>
+<li><a href="./"> </a></li>
 
 <li class="divider"></li>
 <li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> Introduction</a>
@@ -141,7 +141,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="1.1" data-path="index.html"><a href="index.html#structure-of-this-workshop"><i class="fa fa-check"></i><b>1.1</b> Structure of this Workshop</a></li>
 <li class="chapter" data-level="1.2" data-path="index.html"><a href="index.html#preparation"><i class="fa fa-check"></i><b>1.2</b> Preparation</a></li>
 <li class="chapter" data-level="1.3" data-path="index.html"><a href="index.html#introductory-video"><i class="fa fa-check"></i><b>1.3</b> Introductory Video</a></li>
-<li class="chapter" data-level="1.4" data-path="index.html"><a href="index.html#video-on-bayesian-inference-basics"><i class="fa fa-check"></i><b>1.4</b> Video on Bayesian inference basics</a></li>
+<li class="chapter" data-level="1.4" data-path="index.html"><a href="index.html#video-on-bayesian-inference"><i class="fa fa-check"></i><b>1.4</b> Video on Bayesian inference</a></li>
 </ul></li>
 <li class="chapter" data-level="2" data-path="intercepts-only-model.html"><a href="intercepts-only-model.html"><i class="fa fa-check"></i><b>2</b> Intercepts-only model</a>
 <ul>
@@ -196,9 +196,10 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="6" data-path="recommendations.html"><a href="recommendations.html"><i class="fa fa-check"></i><b>6</b> Recommendations</a>
 <ul>
 <li class="chapter" data-level="6.1" data-path="recommendations.html"><a href="recommendations.html#where-to-go-for-further-study"><i class="fa fa-check"></i><b>6.1</b> Where to go for further study</a></li>
+<li class="chapter" data-level="6.2" data-path="recommendations.html"><a href="recommendations.html#feedback-on-the-course"><i class="fa fa-check"></i><b>6.2</b> Feedback on the course</a></li>
 </ul></li>
 <li class="divider"></li>
-<li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
+<li><a href="https://github.com/rstudio/bookdown" target="blank"> </a></li>
 
 </ul>
 
@@ -221,18 +222,20 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <h1><span class="header-section-number">Chapter 4</span> Multi-level model</h1>
 <div id="videos-on-multi-level-model" class="section level2" number="4.1">
 <h2><span class="header-section-number">4.1</span> Videos on Multi-level model:</h2>
-<p><a href="https://youtu.be/yUs4LB_9KWw" class="uri">https://youtu.be/yUs4LB_9KWw</a>
-<a href="https://youtu.be/A1osWXChYr8" class="uri">https://youtu.be/A1osWXChYr8</a></p>
+<ul>
+<li><p><a href="https://youtu.be/yUs4LB_9KWw" class="uri">https://youtu.be/yUs4LB_9KWw</a></p></li>
+<li><p><a href="https://youtu.be/A1osWXChYr8" class="uri">https://youtu.be/A1osWXChYr8</a></p></li>
+</ul>
 </div>
 <div id="hands-on-exercises-2" class="section level2" number="4.2">
 <h2><span class="header-section-number">4.2</span> Hands-on Exercises</h2>
 <div id="prior-specification" class="section level3" number="4.2.1">
 <h3><span class="header-section-number">4.2.1</span> Prior Specification</h3>
 <p>Let’s take our analysis to the next level (pun intended) by making a multi-level model with varying intercepts and varying slopes. In this model, we assign unique intercepts and slopes for each subject and assign them a common prior distribution. Let’s check which priors we need to specify for this model:</p>
-<div class="sourceCode" id="cb48"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb48-1"><a href="multi-level-model.html#cb48-1" aria-hidden="true" tabindex="-1"></a>Articulation_f3 <span class="ot">&lt;-</span> <span class="fu">bf</span>(ArticulationS <span class="sc">~</span> <span class="dv">1</span> <span class="sc">+</span> Register <span class="sc">+</span> (<span class="dv">1</span><span class="sc">+</span>Register<span class="sc">|</span>Subject))</span>
-<span id="cb48-2"><a href="multi-level-model.html#cb48-2" aria-hidden="true" tabindex="-1"></a><span class="fu">get_prior</span>(Articulation_f3,</span>
-<span id="cb48-3"><a href="multi-level-model.html#cb48-3" aria-hidden="true" tabindex="-1"></a>          <span class="at">data =</span> d, </span>
-<span id="cb48-4"><a href="multi-level-model.html#cb48-4" aria-hidden="true" tabindex="-1"></a>          <span class="at">family =</span> gaussian)</span></code></pre></div>
+<div class="sourceCode" id="cb47"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb47-1"><a href="multi-level-model.html#cb47-1" aria-hidden="true" tabindex="-1"></a>Articulation_f3 <span class="ot">&lt;-</span> <span class="fu">bf</span>(ArticulationS <span class="sc">~</span> <span class="dv">1</span> <span class="sc">+</span> Register <span class="sc">+</span> (<span class="dv">1</span><span class="sc">+</span>Register<span class="sc">|</span>Subject))</span>
+<span id="cb47-2"><a href="multi-level-model.html#cb47-2" aria-hidden="true" tabindex="-1"></a><span class="fu">get_prior</span>(Articulation_f3,</span>
+<span id="cb47-3"><a href="multi-level-model.html#cb47-3" aria-hidden="true" tabindex="-1"></a>          <span class="at">data =</span> d, </span>
+<span id="cb47-4"><a href="multi-level-model.html#cb47-4" aria-hidden="true" tabindex="-1"></a>          <span class="at">family =</span> gaussian)</span></code></pre></div>
 <pre><code>##                    prior     class        coef   group resp dpar nlpar bound
 ##                   (flat)         b                                          
 ##                   (flat)         b RegisterIDS                              
@@ -259,64 +262,67 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>We are also told that we need to specify a prior for the correlation between the varying intercepts and the varying slopes (i.e. class = ‘cor’). This correlation captures the fact that we cannot assume the intercept and slope to be entirely independent. For example, caregivers who naturally produce a small vowel space in ADS can expand their vowel space when using IDS to a greater extent and may therefore show stronger effects.</p>
 <p>We model the correlation between varying intercepts and slopes by using a so-called LKJ prior. The basic idea of the LKJ prior is that as its parameter increases, the prior favors less extreme correlations - that is, if we specify the LKJ parameter as 1, the prior represents a uniform, uninformative distribution (similar to that of a beta(1,1) distribution). If we set the parameter to 2, on the other hand, the prior serves to dampen the likelihood of extreme correlations, and we represent our lack of knowledge about the extent of correlation between the parameters. We’ll see what our prior(lkj(2), class = cor) looks like in the prior-posterior update plot below.</p>
 <p>As usual, let’s start by performing a prior predictive check:</p>
-<div class="sourceCode" id="cb50"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb50-1"><a href="multi-level-model.html#cb50-1" aria-hidden="true" tabindex="-1"></a>Articulation_p3 <span class="ot">&lt;-</span> <span class="fu">c</span>(</span>
-<span id="cb50-2"><a href="multi-level-model.html#cb50-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">prior</span>(<span class="fu">normal</span>(<span class="dv">0</span>, <span class="dv">1</span>), <span class="at">class =</span> Intercept),</span>
-<span id="cb50-3"><a href="multi-level-model.html#cb50-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">prior</span>(<span class="fu">normal</span>(<span class="dv">0</span>, <span class="dv">1</span>), <span class="at">class =</span> sd, <span class="at">coef =</span> Intercept, <span class="at">group =</span> Subject),</span>
-<span id="cb50-4"><a href="multi-level-model.html#cb50-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">prior</span>(<span class="fu">normal</span>(<span class="dv">0</span>, <span class="fl">0.3</span>), <span class="at">class =</span> b),</span>
-<span id="cb50-5"><a href="multi-level-model.html#cb50-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">prior</span>(<span class="fu">normal</span>(<span class="dv">0</span>, <span class="dv">1</span>), <span class="at">class =</span> sd, <span class="at">coef =</span> RegisterIDS, <span class="at">group =</span> Subject),</span>
-<span id="cb50-6"><a href="multi-level-model.html#cb50-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">prior</span>(<span class="fu">normal</span>(<span class="dv">1</span>, <span class="fl">0.5</span>), <span class="at">class =</span> sigma),</span>
-<span id="cb50-7"><a href="multi-level-model.html#cb50-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">prior</span>(<span class="fu">lkj</span>(<span class="dv">2</span>), <span class="at">class =</span> cor))</span>
-<span id="cb50-8"><a href="multi-level-model.html#cb50-8" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb50-9"><a href="multi-level-model.html#cb50-9" aria-hidden="true" tabindex="-1"></a>Articulation_m3_prior <span class="ot">&lt;-</span> </span>
-<span id="cb50-10"><a href="multi-level-model.html#cb50-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">brm</span>(</span>
-<span id="cb50-11"><a href="multi-level-model.html#cb50-11" aria-hidden="true" tabindex="-1"></a>    Articulation_f3,</span>
-<span id="cb50-12"><a href="multi-level-model.html#cb50-12" aria-hidden="true" tabindex="-1"></a>    <span class="at">data =</span> d,</span>
-<span id="cb50-13"><a href="multi-level-model.html#cb50-13" aria-hidden="true" tabindex="-1"></a>    <span class="at">save_pars =</span> <span class="fu">save_pars</span>(<span class="at">all =</span> <span class="cn">TRUE</span>),</span>
-<span id="cb50-14"><a href="multi-level-model.html#cb50-14" aria-hidden="true" tabindex="-1"></a>    <span class="at">family =</span> gaussian,</span>
-<span id="cb50-15"><a href="multi-level-model.html#cb50-15" aria-hidden="true" tabindex="-1"></a>    <span class="at">prior =</span> Articulation_p3,</span>
-<span id="cb50-16"><a href="multi-level-model.html#cb50-16" aria-hidden="true" tabindex="-1"></a>    <span class="co">#file = &quot;Articulation_m3_prior&quot;,</span></span>
-<span id="cb50-17"><a href="multi-level-model.html#cb50-17" aria-hidden="true" tabindex="-1"></a>    <span class="at">sample_prior =</span> <span class="st">&quot;only&quot;</span>,</span>
-<span id="cb50-18"><a href="multi-level-model.html#cb50-18" aria-hidden="true" tabindex="-1"></a>    <span class="at">iter =</span> <span class="dv">5000</span>, </span>
-<span id="cb50-19"><a href="multi-level-model.html#cb50-19" aria-hidden="true" tabindex="-1"></a>    <span class="at">warmup =</span> <span class="dv">1000</span>,</span>
-<span id="cb50-20"><a href="multi-level-model.html#cb50-20" aria-hidden="true" tabindex="-1"></a>    <span class="at">cores =</span> <span class="dv">2</span>,</span>
-<span id="cb50-21"><a href="multi-level-model.html#cb50-21" aria-hidden="true" tabindex="-1"></a>    <span class="at">chains =</span> <span class="dv">2</span>,</span>
-<span id="cb50-22"><a href="multi-level-model.html#cb50-22" aria-hidden="true" tabindex="-1"></a>    <span class="at">backend =</span> <span class="st">&quot;cmdstanr&quot;</span>,</span>
-<span id="cb50-23"><a href="multi-level-model.html#cb50-23" aria-hidden="true" tabindex="-1"></a>    <span class="at">threads =</span> <span class="fu">threading</span>(<span class="dv">2</span>),</span>
-<span id="cb50-24"><a href="multi-level-model.html#cb50-24" aria-hidden="true" tabindex="-1"></a>    <span class="at">control =</span> <span class="fu">list</span>(</span>
-<span id="cb50-25"><a href="multi-level-model.html#cb50-25" aria-hidden="true" tabindex="-1"></a>      <span class="at">adapt_delta =</span> <span class="fl">0.999</span>,</span>
-<span id="cb50-26"><a href="multi-level-model.html#cb50-26" aria-hidden="true" tabindex="-1"></a>      <span class="at">max_treedepth =</span> <span class="dv">20</span>))</span>
-<span id="cb50-27"><a href="multi-level-model.html#cb50-27" aria-hidden="true" tabindex="-1"></a><span class="fu">pp_check</span>(Articulation_m3_prior, <span class="at">ndraws=</span><span class="dv">100</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb49"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb49-1"><a href="multi-level-model.html#cb49-1" aria-hidden="true" tabindex="-1"></a>Articulation_p3 <span class="ot">&lt;-</span> <span class="fu">c</span>(</span>
+<span id="cb49-2"><a href="multi-level-model.html#cb49-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">prior</span>(<span class="fu">normal</span>(<span class="dv">0</span>, <span class="dv">1</span>), <span class="at">class =</span> Intercept),</span>
+<span id="cb49-3"><a href="multi-level-model.html#cb49-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">prior</span>(<span class="fu">normal</span>(<span class="dv">0</span>, <span class="dv">1</span>), <span class="at">class =</span> sd, <span class="at">coef =</span> Intercept, <span class="at">group =</span> Subject),</span>
+<span id="cb49-4"><a href="multi-level-model.html#cb49-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">prior</span>(<span class="fu">normal</span>(<span class="dv">0</span>, <span class="fl">0.3</span>), <span class="at">class =</span> b),</span>
+<span id="cb49-5"><a href="multi-level-model.html#cb49-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">prior</span>(<span class="fu">normal</span>(<span class="dv">0</span>, <span class="dv">1</span>), <span class="at">class =</span> sd, <span class="at">coef =</span> RegisterIDS, <span class="at">group =</span> Subject),</span>
+<span id="cb49-6"><a href="multi-level-model.html#cb49-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">prior</span>(<span class="fu">normal</span>(<span class="dv">1</span>, <span class="fl">0.5</span>), <span class="at">class =</span> sigma),</span>
+<span id="cb49-7"><a href="multi-level-model.html#cb49-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">prior</span>(<span class="fu">lkj</span>(<span class="dv">2</span>), <span class="at">class =</span> cor))</span>
+<span id="cb49-8"><a href="multi-level-model.html#cb49-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb49-9"><a href="multi-level-model.html#cb49-9" aria-hidden="true" tabindex="-1"></a>Articulation_m3_prior <span class="ot">&lt;-</span> </span>
+<span id="cb49-10"><a href="multi-level-model.html#cb49-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">brm</span>(</span>
+<span id="cb49-11"><a href="multi-level-model.html#cb49-11" aria-hidden="true" tabindex="-1"></a>    Articulation_f3,</span>
+<span id="cb49-12"><a href="multi-level-model.html#cb49-12" aria-hidden="true" tabindex="-1"></a>    <span class="at">data =</span> d,</span>
+<span id="cb49-13"><a href="multi-level-model.html#cb49-13" aria-hidden="true" tabindex="-1"></a>    <span class="at">save_pars =</span> <span class="fu">save_pars</span>(<span class="at">all =</span> <span class="cn">TRUE</span>),</span>
+<span id="cb49-14"><a href="multi-level-model.html#cb49-14" aria-hidden="true" tabindex="-1"></a>    <span class="at">family =</span> gaussian,</span>
+<span id="cb49-15"><a href="multi-level-model.html#cb49-15" aria-hidden="true" tabindex="-1"></a>    <span class="at">prior =</span> Articulation_p3,</span>
+<span id="cb49-16"><a href="multi-level-model.html#cb49-16" aria-hidden="true" tabindex="-1"></a>    <span class="co">#file = &quot;Articulation_m3_prior&quot;,</span></span>
+<span id="cb49-17"><a href="multi-level-model.html#cb49-17" aria-hidden="true" tabindex="-1"></a>    <span class="at">sample_prior =</span> <span class="st">&quot;only&quot;</span>,</span>
+<span id="cb49-18"><a href="multi-level-model.html#cb49-18" aria-hidden="true" tabindex="-1"></a>    <span class="at">iter =</span> <span class="dv">5000</span>, </span>
+<span id="cb49-19"><a href="multi-level-model.html#cb49-19" aria-hidden="true" tabindex="-1"></a>    <span class="at">warmup =</span> <span class="dv">1000</span>,</span>
+<span id="cb49-20"><a href="multi-level-model.html#cb49-20" aria-hidden="true" tabindex="-1"></a>    <span class="at">cores =</span> <span class="dv">2</span>,</span>
+<span id="cb49-21"><a href="multi-level-model.html#cb49-21" aria-hidden="true" tabindex="-1"></a>    <span class="at">chains =</span> <span class="dv">2</span>,</span>
+<span id="cb49-22"><a href="multi-level-model.html#cb49-22" aria-hidden="true" tabindex="-1"></a>    <span class="at">backend =</span> <span class="st">&quot;cmdstanr&quot;</span>,</span>
+<span id="cb49-23"><a href="multi-level-model.html#cb49-23" aria-hidden="true" tabindex="-1"></a>    <span class="at">threads =</span> <span class="fu">threading</span>(<span class="dv">2</span>),</span>
+<span id="cb49-24"><a href="multi-level-model.html#cb49-24" aria-hidden="true" tabindex="-1"></a>    <span class="at">control =</span> <span class="fu">list</span>(</span>
+<span id="cb49-25"><a href="multi-level-model.html#cb49-25" aria-hidden="true" tabindex="-1"></a>      <span class="at">adapt_delta =</span> <span class="fl">0.999</span>,</span>
+<span id="cb49-26"><a href="multi-level-model.html#cb49-26" aria-hidden="true" tabindex="-1"></a>      <span class="at">max_treedepth =</span> <span class="dv">20</span>))</span>
+<span id="cb49-27"><a href="multi-level-model.html#cb49-27" aria-hidden="true" tabindex="-1"></a><span class="fu">pp_check</span>(Articulation_m3_prior, <span class="at">ndraws=</span><span class="dv">100</span>)</span></code></pre></div>
 <p><img src="_main_files/figure-html/unnamed-chunk-31-1.png" width="672" /></p>
 <p>After running the pp_check() function a couple of times, we should be convinced that our priors are within the order of magnitude that we expect. Great, let’s run the model on the actual data then:</p>
 </div>
 <div id="multi-level-model-1" class="section level3" number="4.2.2">
 <h3><span class="header-section-number">4.2.2</span> Multi-Level Model</h3>
-<div class="sourceCode" id="cb51"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb51-1"><a href="multi-level-model.html#cb51-1" aria-hidden="true" tabindex="-1"></a>Articulation_m3 <span class="ot">&lt;-</span> </span>
-<span id="cb51-2"><a href="multi-level-model.html#cb51-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">brm</span>(</span>
-<span id="cb51-3"><a href="multi-level-model.html#cb51-3" aria-hidden="true" tabindex="-1"></a>    Articulation_f3,</span>
-<span id="cb51-4"><a href="multi-level-model.html#cb51-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">data =</span> d,</span>
-<span id="cb51-5"><a href="multi-level-model.html#cb51-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">save_pars =</span> <span class="fu">save_pars</span>(<span class="at">all =</span> <span class="cn">TRUE</span>),</span>
-<span id="cb51-6"><a href="multi-level-model.html#cb51-6" aria-hidden="true" tabindex="-1"></a>    <span class="at">family =</span> gaussian,</span>
-<span id="cb51-7"><a href="multi-level-model.html#cb51-7" aria-hidden="true" tabindex="-1"></a>    <span class="at">prior =</span> Articulation_p3,</span>
-<span id="cb51-8"><a href="multi-level-model.html#cb51-8" aria-hidden="true" tabindex="-1"></a>    <span class="co">#file = &quot;Articulation_m3&quot;,</span></span>
-<span id="cb51-9"><a href="multi-level-model.html#cb51-9" aria-hidden="true" tabindex="-1"></a>    <span class="at">sample_prior =</span> T,</span>
-<span id="cb51-10"><a href="multi-level-model.html#cb51-10" aria-hidden="true" tabindex="-1"></a>    <span class="at">iter =</span> <span class="dv">5000</span>, </span>
-<span id="cb51-11"><a href="multi-level-model.html#cb51-11" aria-hidden="true" tabindex="-1"></a>    <span class="at">warmup =</span> <span class="dv">1000</span>,</span>
-<span id="cb51-12"><a href="multi-level-model.html#cb51-12" aria-hidden="true" tabindex="-1"></a>    <span class="at">cores =</span> <span class="dv">2</span>,</span>
-<span id="cb51-13"><a href="multi-level-model.html#cb51-13" aria-hidden="true" tabindex="-1"></a>    <span class="at">chains =</span> <span class="dv">2</span>,</span>
-<span id="cb51-14"><a href="multi-level-model.html#cb51-14" aria-hidden="true" tabindex="-1"></a>    <span class="at">backend =</span> <span class="st">&quot;cmdstanr&quot;</span>,</span>
-<span id="cb51-15"><a href="multi-level-model.html#cb51-15" aria-hidden="true" tabindex="-1"></a>    <span class="at">threads =</span> <span class="fu">threading</span>(<span class="dv">2</span>),</span>
-<span id="cb51-16"><a href="multi-level-model.html#cb51-16" aria-hidden="true" tabindex="-1"></a>    <span class="at">control =</span> <span class="fu">list</span>(</span>
-<span id="cb51-17"><a href="multi-level-model.html#cb51-17" aria-hidden="true" tabindex="-1"></a>      <span class="at">adapt_delta =</span> <span class="fl">0.999</span>,</span>
-<span id="cb51-18"><a href="multi-level-model.html#cb51-18" aria-hidden="true" tabindex="-1"></a>      <span class="at">max_treedepth =</span> <span class="dv">20</span>))</span></code></pre></div>
+<div class="sourceCode" id="cb50"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb50-1"><a href="multi-level-model.html#cb50-1" aria-hidden="true" tabindex="-1"></a>Articulation_m3 <span class="ot">&lt;-</span> </span>
+<span id="cb50-2"><a href="multi-level-model.html#cb50-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">brm</span>(</span>
+<span id="cb50-3"><a href="multi-level-model.html#cb50-3" aria-hidden="true" tabindex="-1"></a>    Articulation_f3,</span>
+<span id="cb50-4"><a href="multi-level-model.html#cb50-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">data =</span> d,</span>
+<span id="cb50-5"><a href="multi-level-model.html#cb50-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">save_pars =</span> <span class="fu">save_pars</span>(<span class="at">all =</span> <span class="cn">TRUE</span>),</span>
+<span id="cb50-6"><a href="multi-level-model.html#cb50-6" aria-hidden="true" tabindex="-1"></a>    <span class="at">family =</span> gaussian,</span>
+<span id="cb50-7"><a href="multi-level-model.html#cb50-7" aria-hidden="true" tabindex="-1"></a>    <span class="at">prior =</span> Articulation_p3,</span>
+<span id="cb50-8"><a href="multi-level-model.html#cb50-8" aria-hidden="true" tabindex="-1"></a>    <span class="co">#file = &quot;Articulation_m3&quot;,</span></span>
+<span id="cb50-9"><a href="multi-level-model.html#cb50-9" aria-hidden="true" tabindex="-1"></a>    <span class="at">sample_prior =</span> T,</span>
+<span id="cb50-10"><a href="multi-level-model.html#cb50-10" aria-hidden="true" tabindex="-1"></a>    <span class="at">iter =</span> <span class="dv">5000</span>, </span>
+<span id="cb50-11"><a href="multi-level-model.html#cb50-11" aria-hidden="true" tabindex="-1"></a>    <span class="at">warmup =</span> <span class="dv">1000</span>,</span>
+<span id="cb50-12"><a href="multi-level-model.html#cb50-12" aria-hidden="true" tabindex="-1"></a>    <span class="at">cores =</span> <span class="dv">2</span>,</span>
+<span id="cb50-13"><a href="multi-level-model.html#cb50-13" aria-hidden="true" tabindex="-1"></a>    <span class="at">chains =</span> <span class="dv">2</span>,</span>
+<span id="cb50-14"><a href="multi-level-model.html#cb50-14" aria-hidden="true" tabindex="-1"></a>    <span class="at">backend =</span> <span class="st">&quot;cmdstanr&quot;</span>,</span>
+<span id="cb50-15"><a href="multi-level-model.html#cb50-15" aria-hidden="true" tabindex="-1"></a>    <span class="at">threads =</span> <span class="fu">threading</span>(<span class="dv">2</span>),</span>
+<span id="cb50-16"><a href="multi-level-model.html#cb50-16" aria-hidden="true" tabindex="-1"></a>    <span class="at">control =</span> <span class="fu">list</span>(</span>
+<span id="cb50-17"><a href="multi-level-model.html#cb50-17" aria-hidden="true" tabindex="-1"></a>      <span class="at">adapt_delta =</span> <span class="fl">0.999</span>,</span>
+<span id="cb50-18"><a href="multi-level-model.html#cb50-18" aria-hidden="true" tabindex="-1"></a>      <span class="at">max_treedepth =</span> <span class="dv">20</span>))</span></code></pre></div>
 <p>As usual, let’s perform some posterior predictive checks to make sure that the model captures the data:</p>
-<div class="sourceCode" id="cb52"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb52-1"><a href="multi-level-model.html#cb52-1" aria-hidden="true" tabindex="-1"></a><span class="fu">pp_check</span>(Articulation_m3, <span class="at">ndraws=</span><span class="dv">100</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb51"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb51-1"><a href="multi-level-model.html#cb51-1" aria-hidden="true" tabindex="-1"></a><span class="fu">pp_check</span>(Articulation_m3, <span class="at">ndraws=</span><span class="dv">100</span>)</span></code></pre></div>
 <p><img src="_main_files/figure-html/unnamed-chunk-33-1.png" width="672" /></p>
 <p>Everything looks great, so let’s plot the conditional effects and compare the output of the multi-level model with that of the previous constant-effect model:</p>
-<div class="sourceCode" id="cb53"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb53-1"><a href="multi-level-model.html#cb53-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(<span class="fu">conditional_effects</span>(Articulation_m3), <span class="at">points =</span> T)</span></code></pre></div>
+<div class="sourceCode" id="cb52"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb52-1"><a href="multi-level-model.html#cb52-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(<span class="fu">conditional_effects</span>(Articulation_m3), <span class="at">points =</span> T)</span></code></pre></div>
 <p><img src="_main_files/figure-html/unnamed-chunk-34-1.png" width="672" /></p>
-<div class="sourceCode" id="cb54"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb54-1"><a href="multi-level-model.html#cb54-1" aria-hidden="true" tabindex="-1"></a><span class="co">#summary of the multi-level model:</span></span>
-<span id="cb54-2"><a href="multi-level-model.html#cb54-2" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(Articulation_m3)</span></code></pre></div>
+<div class="sourceCode" id="cb53"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb53-1"><a href="multi-level-model.html#cb53-1" aria-hidden="true" tabindex="-1"></a><span class="co">#summary of the multi-level model:</span></span>
+<span id="cb53-2"><a href="multi-level-model.html#cb53-2" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(Articulation_m3)</span></code></pre></div>
+<pre><code>## Warning: There were 1 divergent transitions after warmup. Increasing adapt_delta
+## above may help. See http://mc-stan.org/misc/warnings.html#divergent-transitions-
+## after-warmup</code></pre>
 <pre><code>##  Family: gaussian 
 ##   Links: mu = identity; sigma = identity 
 ## Formula: ArticulationS ~ 1 + Register + (1 + Register | Subject) 
@@ -327,22 +333,22 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ## Group-Level Effects: 
 ## ~Subject (Number of levels: 24) 
 ##                            Estimate Est.Error l-95% CI u-95% CI Rhat Bulk_ESS
-## sd(Intercept)                  0.40      0.24     0.02     0.88 1.00     1115
-## sd(RegisterIDS)                0.46      0.30     0.02     1.10 1.00     1327
-## cor(Intercept,RegisterIDS)    -0.04      0.43    -0.79     0.79 1.00     3707
+## sd(Intercept)                  0.41      0.24     0.03     0.90 1.00     1220
+## sd(RegisterIDS)                0.45      0.30     0.02     1.09 1.00     1278
+## cor(Intercept,RegisterIDS)    -0.04      0.42    -0.77     0.77 1.00     4556
 ##                            Tail_ESS
-## sd(Intercept)                  2384
-## sd(RegisterIDS)                1744
-## cor(Intercept,RegisterIDS)     5099
+## sd(Intercept)                  2941
+## sd(RegisterIDS)                1983
+## cor(Intercept,RegisterIDS)     5486
 ## 
 ## Population-Level Effects: 
 ##             Estimate Est.Error l-95% CI u-95% CI Rhat Bulk_ESS Tail_ESS
-## Intercept      -0.13      0.18    -0.49     0.23 1.00     5350     5062
-## RegisterIDS    -0.39      0.20    -0.78     0.02 1.00     7459     5813
+## Intercept      -0.12      0.18    -0.48     0.23 1.00     6419     5607
+## RegisterIDS    -0.39      0.20    -0.77     0.01 1.00     8035     5680
 ## 
 ## Family Specific Parameters: 
 ##       Estimate Est.Error l-95% CI u-95% CI Rhat Bulk_ESS Tail_ESS
-## sigma     0.84      0.15     0.53     1.13 1.00     1043      843
+## sigma     0.84      0.15     0.52     1.12 1.00     1012      709
 ## 
 ## Draws were sampled using sample(hmc). For each parameter, Bulk_ESS
 ## and Tail_ESS are effective sample size measures, and Rhat is the potential
@@ -358,12 +364,12 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ## 
 ## Population-Level Effects: 
 ##             Estimate Est.Error l-95% CI u-95% CI Rhat Bulk_ESS Tail_ESS
-## Intercept      -0.15      0.18    -0.51     0.19 1.00     5661     5001
-## RegisterIDS    -0.37      0.21    -0.76     0.04 1.00     5646     5047
+## Intercept      -0.16      0.17    -0.49     0.16 1.00     6403     5168
+## RegisterIDS    -0.36      0.21    -0.76     0.05 1.00     5968     4631
 ## 
 ## Family Specific Parameters: 
 ##       Estimate Est.Error l-95% CI u-95% CI Rhat Bulk_ESS Tail_ESS
-## sigma     0.98      0.10     0.81     1.21 1.00     5763     5051
+## sigma     0.98      0.11     0.80     1.21 1.00     5444     5040
 ## 
 ## Draws were sampled using sample(hmc). For each parameter, Bulk_ESS
 ## and Tail_ESS are effective sample size measures, and Rhat is the potential
@@ -422,7 +428,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb63-2"><a href="multi-level-model.html#cb63-2" aria-hidden="true" tabindex="-1"></a><span class="fu">hypothesis</span>(Articulation_m3, <span class="st">&quot;RegisterIDS &lt; 0&quot;</span>)</span></code></pre></div>
 <pre><code>## Hypothesis Tests for class b:
 ##          Hypothesis Estimate Est.Error CI.Lower CI.Upper Evid.Ratio Post.Prob
-## 1 (RegisterIDS) &lt; 0    -0.39       0.2    -0.72    -0.05      31.65      0.97
+## 1 (RegisterIDS) &lt; 0    -0.39       0.2    -0.71    -0.05      33.33      0.97
 ##   Star
 ## 1    *
 ## ---
@@ -434,54 +440,54 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb65-2"><a href="multi-level-model.html#cb65-2" aria-hidden="true" tabindex="-1"></a><span class="fu">hypothesis</span>(Articulation_m3, <span class="st">&quot;RegisterIDS &lt; 0&quot;</span>, <span class="at">group =</span> <span class="st">&quot;Subject&quot;</span>, <span class="at">scope=</span><span class="st">&quot;coef&quot;</span>)</span></code></pre></div>
 <pre><code>## Hypothesis Tests for class :
 ##    Group        Hypothesis Estimate Est.Error CI.Lower CI.Upper Evid.Ratio
-## 1     AF (RegisterIDS) &lt; 0     0.10      0.63    -0.73     1.30       1.09
-## 2     AN (RegisterIDS) &lt; 0    -0.67      0.52    -1.63     0.07      14.59
-## 3     CL (RegisterIDS) &lt; 0    -0.32      0.45    -1.01     0.48       4.01
-## 4     DM (RegisterIDS) &lt; 0    -0.36      0.45    -1.06     0.43       4.44
-## 5     IA (RegisterIDS) &lt; 0    -0.42      0.45    -1.18     0.31       5.79
-## 6     JA (RegisterIDS) &lt; 0    -0.86      0.66    -2.19    -0.05      24.72
-## 7     JE (RegisterIDS) &lt; 0    -0.43      0.46    -1.18     0.32       5.88
-## 8     KA (RegisterIDS) &lt; 0    -0.50      0.46    -1.34     0.19       7.80
-## 9     KV (RegisterIDS) &lt; 0    -0.54      0.47    -1.37     0.17       9.05
-## 10    LK (RegisterIDS) &lt; 0    -0.65      0.53    -1.69     0.07      13.29
-## 11    LM (RegisterIDS) &lt; 0    -0.29      0.46    -0.97     0.53       3.47
-## 12    LV (RegisterIDS) &lt; 0    -0.29      0.47    -0.98     0.56       3.38
-## 13    MA (RegisterIDS) &lt; 0    -0.35      0.50    -1.20     0.47       3.74
-## 14    ME (RegisterIDS) &lt; 0    -0.52      0.46    -1.32     0.19       8.79
-## 15   MPS (RegisterIDS) &lt; 0    -0.49      0.45    -1.26     0.23       7.60
-## 16    MS (RegisterIDS) &lt; 0    -0.47      0.45    -1.23     0.22       7.15
-## 17    MV (RegisterIDS) &lt; 0    -0.16      0.50    -0.84     0.78       2.25
-## 18    PV (RegisterIDS) &lt; 0    -0.29      0.49    -1.05     0.55       3.13
-## 19    RV (RegisterIDS) &lt; 0    -0.25      0.48    -0.95     0.62       2.95
-## 20    SA (RegisterIDS) &lt; 0    -0.70      0.52    -1.70     0.00      19.41
-## 21   SAF (RegisterIDS) &lt; 0    -0.39      0.46    -1.17     0.38       5.06
-## 22    SC (RegisterIDS) &lt; 0    -0.36      0.45    -1.06     0.41       4.58
-## 23    TL (RegisterIDS) &lt; 0    -0.76      0.59    -1.92     0.00      18.85
-## 24    TM (RegisterIDS) &lt; 0    -0.56      0.48    -1.41     0.15      10.32
+## 1     AF (RegisterIDS) &lt; 0     0.09      0.64    -0.72     1.32       1.10
+## 2     AN (RegisterIDS) &lt; 0    -0.66      0.52    -1.61     0.06      14.47
+## 3     CL (RegisterIDS) &lt; 0    -0.31      0.47    -1.03     0.49       3.80
+## 4     DM (RegisterIDS) &lt; 0    -0.36      0.46    -1.10     0.43       4.45
+## 5     IA (RegisterIDS) &lt; 0    -0.42      0.46    -1.19     0.32       5.66
+## 6     JA (RegisterIDS) &lt; 0    -0.85      0.67    -2.18    -0.05      26.30
+## 7     JE (RegisterIDS) &lt; 0    -0.43      0.45    -1.16     0.30       5.97
+## 8     KA (RegisterIDS) &lt; 0    -0.51      0.45    -1.32     0.18       8.65
+## 9     KV (RegisterIDS) &lt; 0    -0.53      0.47    -1.36     0.19       9.14
+## 10    LK (RegisterIDS) &lt; 0    -0.64      0.50    -1.60     0.06      14.07
+## 11    LM (RegisterIDS) &lt; 0    -0.29      0.45    -0.96     0.50       3.52
+## 12    LV (RegisterIDS) &lt; 0    -0.29      0.46    -0.99     0.53       3.54
+## 13    MA (RegisterIDS) &lt; 0    -0.36      0.50    -1.21     0.45       3.91
+## 14    ME (RegisterIDS) &lt; 0    -0.52      0.45    -1.32     0.15       9.15
+## 15   MPS (RegisterIDS) &lt; 0    -0.48      0.46    -1.28     0.25       7.24
+## 16    MS (RegisterIDS) &lt; 0    -0.46      0.45    -1.24     0.24       7.22
+## 17    MV (RegisterIDS) &lt; 0    -0.15      0.49    -0.83     0.79       2.23
+## 18    PV (RegisterIDS) &lt; 0    -0.29      0.50    -1.06     0.57       3.25
+## 19    RV (RegisterIDS) &lt; 0    -0.26      0.48    -0.96     0.61       3.07
+## 20    SA (RegisterIDS) &lt; 0    -0.70      0.53    -1.71     0.01      17.26
+## 21   SAF (RegisterIDS) &lt; 0    -0.40      0.46    -1.17     0.35       5.25
+## 22    SC (RegisterIDS) &lt; 0    -0.37      0.44    -1.07     0.37       4.71
+## 23    TL (RegisterIDS) &lt; 0    -0.76      0.57    -1.88    -0.03      22.46
+## 24    TM (RegisterIDS) &lt; 0    -0.55      0.48    -1.42     0.14       9.97
 ##    Post.Prob Star
 ## 1       0.52     
 ## 2       0.94     
-## 3       0.80     
+## 3       0.79     
 ## 4       0.82     
 ## 5       0.85     
 ## 6       0.96    *
-## 7       0.85     
-## 8       0.89     
+## 7       0.86     
+## 8       0.90     
 ## 9       0.90     
 ## 10      0.93     
 ## 11      0.78     
-## 12      0.77     
-## 13      0.79     
+## 12      0.78     
+## 13      0.80     
 ## 14      0.90     
 ## 15      0.88     
 ## 16      0.88     
 ## 17      0.69     
 ## 18      0.76     
 ## 19      0.75     
-## 20      0.95    *
-## 21      0.83     
+## 20      0.95     
+## 21      0.84     
 ## 22      0.82     
-## 23      0.95     
+## 23      0.96    *
 ## 24      0.91     
 ## ---
 ## &#39;CI&#39;: 90%-CI for one-sided and 95%-CI for two-sided hypotheses.
@@ -538,7 +544,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb67-44"><a href="multi-level-model.html#cb67-44" aria-hidden="true" tabindex="-1"></a>        <span class="at">axis.text.x =</span> <span class="fu">element_text</span>(<span class="at">size =</span> <span class="dv">12</span>),</span>
 <span id="cb67-45"><a href="multi-level-model.html#cb67-45" aria-hidden="true" tabindex="-1"></a>        <span class="at">axis.title.y =</span> <span class="fu">element_text</span>(<span class="at">size =</span> <span class="dv">13</span>))</span></code></pre></div>
 <p><img src="_main_files/figure-html/unnamed-chunk-37-1.png" width="672" /></p>
-<p>Q6: How does this prior robustness check compare to that of the model in Part 2?</p>
+<p>Q6: How does this prior robustness check compare to that of the simple linear regression model?</p>
 <p>Answer:</p>
 <hr />
 </div>
@@ -623,7 +629,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ##         ADS RegisterIDS Type                     
 ##       &lt;dbl&gt;       &lt;dbl&gt; &lt;chr&gt;                    
 ## 1  1.83e-16      -0.691 Total pooling            
-## 2 -1.25e- 1      -0.388 Partial pooling (average)</code></pre>
+## 2 -1.23e- 1      -0.389 Partial pooling (average)</code></pre>
 <div class="sourceCode" id="cb71"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb71-1"><a href="multi-level-model.html#cb71-1" aria-hidden="true" tabindex="-1"></a>df_pulled <span class="ot">&lt;-</span> <span class="fu">bind_rows</span>(df_no, df_partial)</span>
 <span id="cb71-2"><a href="multi-level-model.html#cb71-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb71-3"><a href="multi-level-model.html#cb71-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Extract the variance covariance matrix</span></span>
@@ -635,8 +641,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb71-9"><a href="multi-level-model.html#cb71-9" aria-hidden="true" tabindex="-1"></a>cov_mat[<span class="dv">2</span>,<span class="dv">2</span>]<span class="ot">&lt;-</span>cov_mat_t[,,<span class="st">&quot;RegisterIDS&quot;</span>][<span class="dv">2</span>,<span class="dv">1</span>]</span>
 <span id="cb71-10"><a href="multi-level-model.html#cb71-10" aria-hidden="true" tabindex="-1"></a>cov_mat</span></code></pre></div>
 <pre><code>##             [,1]        [,2]
-## [1,]  0.21756699 -0.03183609
-## [2,] -0.03183609  0.29741922</code></pre>
+## [1,]  0.22634014 -0.03015617
+## [2,] -0.03015617  0.29111834</code></pre>
 <div class="sourceCode" id="cb73"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb73-1"><a href="multi-level-model.html#cb73-1" aria-hidden="true" tabindex="-1"></a>make_ellipse <span class="ot">&lt;-</span> <span class="cf">function</span>(cov_mat, center, level) {</span>
 <span id="cb73-2"><a href="multi-level-model.html#cb73-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ellipse</span>(cov_mat, <span class="at">centre =</span> center, <span class="at">level =</span> level) <span class="sc">%&gt;%</span></span>
 <span id="cb73-3"><a href="multi-level-model.html#cb73-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">as.data.frame</span>() <span class="sc">%&gt;%</span></span>
@@ -653,18 +659,18 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb73-14"><a href="multi-level-model.html#cb73-14" aria-hidden="true" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">rename</span>(<span class="at">ADS =</span> x, <span class="at">RegisterIDS =</span> y)</span>
 <span id="cb73-15"><a href="multi-level-model.html#cb73-15" aria-hidden="true" tabindex="-1"></a>df_ellipse</span></code></pre></div>
 <pre><code>## # A tibble: 500 × 3
-##         ADS RegisterIDS level
-##       &lt;dbl&gt;       &lt;dbl&gt; &lt;dbl&gt;
-##  1  0.0165       -0.222   0.1
-##  2  0.00603      -0.211   0.1
-##  3 -0.00497      -0.200   0.1
-##  4 -0.0165       -0.190   0.1
-##  5 -0.0284       -0.181   0.1
-##  6 -0.0407       -0.172   0.1
-##  7 -0.0533       -0.165   0.1
-##  8 -0.0663       -0.158   0.1
-##  9 -0.0795       -0.152   0.1
-## 10 -0.0928       -0.147   0.1
+##          ADS RegisterIDS level
+##        &lt;dbl&gt;       &lt;dbl&gt; &lt;dbl&gt;
+##  1  0.0222        -0.224   0.1
+##  2  0.0116        -0.213   0.1
+##  3  0.000381      -0.202   0.1
+##  4 -0.0113        -0.192   0.1
+##  5 -0.0234        -0.183   0.1
+##  6 -0.0360        -0.175   0.1
+##  7 -0.0489        -0.167   0.1
+##  8 -0.0620        -0.161   0.1
+##  9 -0.0755        -0.155   0.1
+## 10 -0.0891        -0.150   0.1
 ## # … with 490 more rows</code></pre>
 <div class="sourceCode" id="cb75"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb75-1"><a href="multi-level-model.html#cb75-1" aria-hidden="true" tabindex="-1"></a>Gaussian_ellipsis <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(df_pulled) <span class="sc">+</span> </span>
 <span id="cb75-2"><a href="multi-level-model.html#cb75-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">aes</span>(<span class="at">x =</span> ADS, <span class="at">y =</span> RegisterIDS, <span class="at">color =</span> Type) <span class="sc">+</span> </span>
@@ -800,7 +806,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb84-2"><a href="multi-level-model.html#cb84-2" aria-hidden="true" tabindex="-1"></a><span class="fu">hypothesis</span>(Articulation_m3, <span class="st">&quot;RegisterIDS &lt; 0&quot;</span>)</span></code></pre></div>
 <pre><code>## Hypothesis Tests for class b:
 ##          Hypothesis Estimate Est.Error CI.Lower CI.Upper Evid.Ratio Post.Prob
-## 1 (RegisterIDS) &lt; 0    -0.39       0.2    -0.72    -0.05      31.65      0.97
+## 1 (RegisterIDS) &lt; 0    -0.39       0.2    -0.71    -0.05      33.33      0.97
 ##   Star
 ## 1    *
 ## ---
@@ -812,7 +818,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb86-2"><a href="multi-level-model.html#cb86-2" aria-hidden="true" tabindex="-1"></a><span class="fu">hypothesis</span>(Articulation_student_m3, <span class="st">&quot;RegisterIDS &lt; 0&quot;</span>)</span></code></pre></div>
 <pre><code>## Hypothesis Tests for class b:
 ##          Hypothesis Estimate Est.Error CI.Lower CI.Upper Evid.Ratio Post.Prob
-## 1 (RegisterIDS) &lt; 0    -0.39       0.2    -0.71    -0.05       32.4      0.97
+## 1 (RegisterIDS) &lt; 0    -0.39      0.21    -0.72    -0.04      29.82      0.97
 ##   Star
 ## 1    *
 ## ---

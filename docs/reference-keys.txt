@@ -2,7 +2,7 @@ introduction
 structure-of-this-workshop
 preparation
 introductory-video
-video-on-bayesian-inference-basics
+video-on-bayesian-inference
 intercepts-only-model
 video-on-intercepts-only-model
 hands-on-exercises
@@ -39,3 +39,4 @@ how-to-encode-information-in-priors
 prior-posterior-updates-plot
 recommendations
 where-to-go-for-further-study
+feedback-on-the-course
