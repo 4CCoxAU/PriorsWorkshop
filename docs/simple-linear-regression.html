@@ -4,11 +4,11 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>Chapter 3 Simple Linear Regression | Workshop on Bayesian Data Analysis &amp; Priors</title>
+  <title>Chapter 3 Simple Linear Regression | Workshop on Bayesian Priors</title>
   <meta name="description" content="This site is a hub for the materials for our workshop on Bayesian data analysis and priors." />
   <meta name="generator" content="bookdown 0.24 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="Chapter 3 Simple Linear Regression | Workshop on Bayesian Data Analysis &amp; Priors" />
+  <meta property="og:title" content="Chapter 3 Simple Linear Regression | Workshop on Bayesian Priors" />
   <meta property="og:type" content="book" />
   
   
@@ -16,7 +16,7 @@
   <meta name="github-repo" content="rstudio/bookdown-demo" />
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="Chapter 3 Simple Linear Regression | Workshop on Bayesian Data Analysis &amp; Priors" />
+  <meta name="twitter:title" content="Chapter 3 Simple Linear Regression | Workshop on Bayesian Priors" />
   
   <meta name="twitter:description" content="This site is a hub for the materials for our workshop on Bayesian data analysis and priors." />
   
@@ -24,7 +24,7 @@
 <meta name="author" content="Riccardo Fusaroli &amp; Chris Cox" />
 
 
-<meta name="date" content="2022-01-08" />
+<meta name="date" content="2022-01-09" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -133,7 +133,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
       <nav role="navigation">
 
 <ul class="summary">
-<li><a href="./"> </a></li>
+<li><a href="./">Workshop on Bayesian Priors</a></li>
 
 <li class="divider"></li>
 <li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> Introduction</a>
@@ -199,7 +199,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="6.2" data-path="recommendations.html"><a href="recommendations.html#feedback-on-the-course"><i class="fa fa-check"></i><b>6.2</b> Feedback on the course</a></li>
 </ul></li>
 <li class="divider"></li>
-<li><a href="https://github.com/rstudio/bookdown" target="blank"> </a></li>
+<li><a href="https://4ccoxau.github.io/PriorsWorkshop/" target="blank"> </a></li>
 
 </ul>
 
@@ -210,7 +210,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
       <div class="body-inner">
         <div class="book-header" role="navigation">
           <h1>
-            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Workshop on Bayesian Data Analysis &amp; Priors</a>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Workshop on Bayesian Priors</a>
           </h1>
         </div>
 
@@ -222,7 +222,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <h1><span class="header-section-number">Chapter 3</span> Simple Linear Regression</h1>
 <div id="video-on-simple-linear-regression" class="section level2" number="3.1">
 <h2><span class="header-section-number">3.1</span> Video on Simple Linear Regression:</h2>
-<p><a href="https://youtu.be/7tGixoOdW5U" class="uri">https://youtu.be/7tGixoOdW5U</a></p>
+<p><img src="https://youtu.be/7tGixoOdW5U" style="width:90.0%" /></p>
 </div>
 <div id="hands-on-exercises-1" class="section level2" number="3.2">
 <h2><span class="header-section-number">3.2</span> Hands-on Exercises</h2>
@@ -348,12 +348,12 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ## 
 ## Population-Level Effects: 
 ##             Estimate Est.Error l-95% CI u-95% CI Rhat Bulk_ESS Tail_ESS
-## Intercept      -0.16      0.17    -0.49     0.16 1.00     6403     5168
-## RegisterIDS    -0.36      0.21    -0.76     0.05 1.00     5968     4631
+## Intercept      -0.16      0.18    -0.51     0.20 1.00     5175     4566
+## RegisterIDS    -0.37      0.21    -0.76     0.06 1.00     4900     4045
 ## 
 ## Family Specific Parameters: 
 ##       Estimate Est.Error l-95% CI u-95% CI Rhat Bulk_ESS Tail_ESS
-## sigma     0.98      0.11     0.80     1.21 1.00     5444     5040
+## sigma     0.98      0.10     0.80     1.21 1.00     5601     5072
 ## 
 ## Draws were sampled using sample(hmc). For each parameter, Bulk_ESS
 ## and Tail_ESS are effective sample size measures, and Rhat is the potential
@@ -368,7 +368,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div class="sourceCode" id="cb38"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb38-1"><a href="simple-linear-regression.html#cb38-1" aria-hidden="true" tabindex="-1"></a><span class="fu">hypothesis</span>(Articulation_m2, <span class="st">&quot;RegisterIDS &lt; 0&quot;</span>)</span></code></pre></div>
 <pre><code>## Hypothesis Tests for class b:
 ##          Hypothesis Estimate Est.Error CI.Lower CI.Upper Evid.Ratio Post.Prob
-## 1 (RegisterIDS) &lt; 0    -0.36      0.21     -0.7    -0.02      23.46      0.96
+## 1 (RegisterIDS) &lt; 0    -0.37      0.21    -0.71    -0.01      21.16      0.95
 ##   Star
 ## 1    *
 ## ---
@@ -504,10 +504,10 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ## 
 ## Population-Level Effects: 
 ##                   Estimate Est.Error l-95% CI u-95% CI Rhat Bulk_ESS Tail_ESS
-## Intercept            -0.15      0.18    -0.50     0.19 1.00     1610     1240
-## sigma_Intercept      -0.03      0.15    -0.31     0.28 1.00     1493     1007
-## RegisterIDS          -0.35      0.22    -0.76     0.09 1.00     1621     1376
-## sigma_RegisterIDS     0.10      0.22    -0.35     0.52 1.00     1418     1278
+## Intercept            -0.15      0.17    -0.49     0.17 1.00     1518     1052
+## sigma_Intercept      -0.04      0.15    -0.32     0.27 1.00     1607     1083
+## RegisterIDS          -0.34      0.22    -0.77     0.09 1.00     1481     1386
+## sigma_RegisterIDS     0.12      0.22    -0.32     0.53 1.00     1610     1368
 ## 
 ## Draws were sampled using sample(hmc). For each parameter, Bulk_ESS
 ## and Tail_ESS are effective sample size measures, and Rhat is the potential
