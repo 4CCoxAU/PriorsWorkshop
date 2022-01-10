@@ -6,6 +6,16 @@ https://youtu.be/yUs4LB_9KWw
 
 https://youtu.be/A1osWXChYr8
 
+After watching the videos we recommend you download the Markdown file and go through it in Rstudio:
+
+* https://github.com/4CCoxAU/PriorsWorkshop/blob/08ea1968db8114690b04e839502ea5909300a62f/03-part2.Rmd
+
+Here the data (same data as the previous markdown)
+
+* https://github.com/4CCoxAU/PriorsWorkshop/blob/08ea1968db8114690b04e839502ea5909300a62f/vowel_space_area_data.csv
+
+The content of the markdown is reproduced below.
+
 ## Hands-on Exercises
 
 ### Prior Specification
@@ -19,7 +29,13 @@ get_prior(Articulation_f3,
           family = gaussian)
 ```
 
-The output of the above function tells us that we now have three sources of variation in the model: i) the usual standard deviation of the residuals (i.e., 'sigma'), ii) the standard deviation of the population of by-subject varying intercepts (i.e., 'Intercept'), and ii) the standard deviation of the population of by-subject varying slopes (i.e., 'RegisterIDS'). The latter two sources of variation provide one of the most essential features of multi-level models: partial pooling, as we discussed in the lecture.
+The output of the above function tells us that we now have three sources of variation in the model: 
+
+* i) the usual standard deviation of the residuals (i.e., 'sigma'), 
+* ii) the standard deviation of the population of by-subject varying intercepts (i.e., 'Intercept'), and 
+* iii) the standard deviation of the population of by-subject varying slopes (i.e., 'RegisterIDS'). 
+
+The latter two sources of variation provide one of the most essential features of multi-level models: partial pooling, as we discussed in the lecture.
 
 We are also told that we need to specify a prior for the correlation between the varying intercepts and the varying slopes (i.e. class = 'cor'). This correlation captures the fact that we cannot assume the intercept and slope to be entirely independent. For example, caregivers who naturally produce a small vowel space in ADS can expand their vowel space when using IDS to a greater extent and may therefore show stronger effects.
 
@@ -43,7 +59,8 @@ Articulation_m3_prior <-
     save_pars = save_pars(all = TRUE),
     family = gaussian,
     prior = Articulation_p3,
-    #file = "Articulation_m3_prior",
+    file = "Articulation_m3_prior",
+    refit = "on_change",
     sample_prior = "only",
     iter = 5000, 
     warmup = 1000,
@@ -68,7 +85,8 @@ Articulation_m3 <-
     save_pars = save_pars(all = TRUE),
     family = gaussian,
     prior = Articulation_p3,
-    #file = "Articulation_m3",
+    file = "Articulation_m3",
+    refit = "on_change",
     sample_prior = T,
     iter = 5000, 
     warmup = 1000,
@@ -398,7 +416,8 @@ Articulation_student_m3 <-
     save_pars = save_pars(all = TRUE),
     family = student,
     prior = student_priors,
-    #file = "Articulation_student_m3",
+    file = "Articulation_student_m3",
+    refit = "on_change",
     sample_prior = T,
     iter = 10000, 
     warmup = 1000,

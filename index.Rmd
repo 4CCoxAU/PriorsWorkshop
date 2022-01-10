@@ -21,6 +21,8 @@ Here you can find the video lectures and exercises for our 2022 workshop on Baye
 
 The lectures are recordings of a workshop given on January 6th-7th 2022 to the Embodied Computation Group and the Body, Pain & Perception Lab at Aarhus University.
 
+The materials change every time we teach the workshop as we keep learning, so *any feedback is very welcome*. If you notice mistakes, imprecisions, or have suggestions for improvement, add an issue to github (https://github.com/4CCoxAU/PriorsWorkshop) or send us a mail :-)
+
 The code relies on R, Rstudio, Brms and Stan. 
 
 The instructors are:
@@ -41,6 +43,8 @@ After an introduction to the rationale behind this workshop, the video lectures 
 
 For each section, you will find a video lecture (building on the previous sections) and a step-by-step commented script showing how to implement the conceptual steps from the lecture in R/brms/Stan.
 
+We strongly recommend you watch a video, download the markdown (and data) and go through the code, fitting the models, and answering the questions, instead of just quickly browsing the webpage with the code and output.
+
  
 ## Preparation
 Here is what you will need for this workshop:
@@ -55,6 +59,8 @@ Without these packages working, you will not be able to tackle the following pra
 
 Once your computer is ready, you should also get your brain ready. This workshop focuses on how to do Bayesian data analysis and does not go into the details of Bayes' theorem. If you are not familiar with the theorem or need a quick refresh, we strongly recommend you give this 15 min video a watch before the workshop. This should make talk of priors and posteriors much easier to parse.  https://www.youtube.com/watch?v=HZGCoVF3YvM
 
+
+Before starting with the full-on content on Bayesian Data analysis, we recommend you also watch the following introductory videos to the workshop.
 
 ## Introductory Video
 This first video provides an introduction to the course instructors and outlines the structure of the workshop:

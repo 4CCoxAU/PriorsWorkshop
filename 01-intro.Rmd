@@ -4,6 +4,16 @@
 
 https://youtu.be/j1yxeRqJ0es
 
+After watching the video we recommend you download the Markdown file and go through it in Rstudio:
+
+* https://github.com/4CCoxAU/PriorsWorkshop/blob/08ea1968db8114690b04e839502ea5909300a62f/01-intro.Rmd
+
+Here the data
+
+* https://github.com/4CCoxAU/PriorsWorkshop/blob/08ea1968db8114690b04e839502ea5909300a62f/vowel_space_area_data.csv
+
+The content of the markdown is reproduced below.
+
 ## Hands-on Exercises
 
 Let's start by loading the required packages and data:
@@ -48,12 +58,12 @@ Our research question concerns the hyperarticulation hypothesis of infant-direct
     
 The dataset we will analyse here consists of the following information:
 
-- i)   Subject (i.e. unique participant pseudonym),
-- ii)  Register (i.e. the speech style used - adult-directed speech (ADS) vs. infant-directed speech (IDS)),
-- iii) ArticulationS (i.e. the standardized dependent variable),
-- iv)  ChildSex (i.e. male vs. female), 
-- v)   ChildAge (i.e. from 11 m to 24 m), 
-- vi)  First_child (whether this is the caregiver's first child).
+* i)   Subject (i.e. unique participant pseudonym),
+* ii)  Register (i.e. the speech style used - adult-directed speech (ADS) vs. infant-directed speech (IDS)),
+* iii) ArticulationS (i.e. the standardized dependent variable),
+* iv)  ChildSex (i.e. male vs. female), 
+* v)   ChildAge (i.e. from 11 m to 24 m), 
+* vi)  First_child (whether this is the caregiver's first child).
 
 Note that, as detailed in the video, ArticulationS is a standardized variable, that is, we centered it (so that the mean is 0) and divided it by the standard deviation (so that the standard deviation is 1). Standardizing the outcome variable often (but not always!) makes setting priors easier, since we know much about which standardized effect sizes we should expect.
 
