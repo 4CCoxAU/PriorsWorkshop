@@ -1,0 +1,494 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>Chapter 5 Acknowledging previous findings: Informed priors | Workshop on Bayesian Inference: Priors and workflow</title>
+  <meta name="description" content="This site provides the materials for a workshop on Bayesian data analysis, with a focus on a rigorous workflow and the definition of priors." />
+  <meta name="generator" content="bookdown 0.24 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="Chapter 5 Acknowledging previous findings: Informed priors | Workshop on Bayesian Inference: Priors and workflow" />
+  <meta property="og:type" content="book" />
+  
+  
+  <meta property="og:description" content="This site provides the materials for a workshop on Bayesian data analysis, with a focus on a rigorous workflow and the definition of priors." />
+  <meta name="github-repo" content="rstudio/bookdown-demo" />
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Chapter 5 Acknowledging previous findings: Informed priors | Workshop on Bayesian Inference: Priors and workflow" />
+  
+  <meta name="twitter:description" content="This site provides the materials for a workshop on Bayesian data analysis, with a focus on a rigorous workflow and the definition of priors." />
+  
+
+<meta name="author" content="Riccardo Fusaroli &amp; Chris Cox" />
+
+
+<meta name="date" content="2022-01-10" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="acknowledging-repeated-measures-multi-level-model.html"/>
+<link rel="next" href="recommendations.html"/>
+<script src="libs/header-attrs-2.11/header-attrs.js"></script>
+<script src="libs/jquery-3.5.1/jquery-3.5.1.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+<link href="libs/anchor-sections-1.0.1/anchor-sections.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.0.1/anchor-sections.js"></script>
+
+
+<style type="text/css">
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">Workshop on Bayesian Priors</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> Introduction</a>
+<ul>
+<li class="chapter" data-level="1.1" data-path="index.html"><a href="index.html#structure-of-this-workshop"><i class="fa fa-check"></i><b>1.1</b> Structure of this Workshop</a></li>
+<li class="chapter" data-level="1.2" data-path="index.html"><a href="index.html#preparation"><i class="fa fa-check"></i><b>1.2</b> Preparation</a></li>
+<li class="chapter" data-level="1.3" data-path="index.html"><a href="index.html#introductory-video"><i class="fa fa-check"></i><b>1.3</b> Introductory Video</a></li>
+<li class="chapter" data-level="1.4" data-path="index.html"><a href="index.html#video-on-bayesian-inference"><i class="fa fa-check"></i><b>1.4</b> Video on Bayesian inference</a></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="modeling-your-outcome-intercepts-only-model.html"><a href="modeling-your-outcome-intercepts-only-model.html"><i class="fa fa-check"></i><b>2</b> Modeling your outcome: Intercepts-only Model</a>
+<ul>
+<li class="chapter" data-level="2.1" data-path="modeling-your-outcome-intercepts-only-model.html"><a href="modeling-your-outcome-intercepts-only-model.html#video-on-intercepts-only-model"><i class="fa fa-check"></i><b>2.1</b> Video on Intercepts-Only Model</a></li>
+<li class="chapter" data-level="2.2" data-path="modeling-your-outcome-intercepts-only-model.html"><a href="modeling-your-outcome-intercepts-only-model.html#hands-on-exercises"><i class="fa fa-check"></i><b>2.2</b> Hands-on Exercises</a>
+<ul>
+<li class="chapter" data-level="2.2.1" data-path="modeling-your-outcome-intercepts-only-model.html"><a href="modeling-your-outcome-intercepts-only-model.html#introduction-to-the-data"><i class="fa fa-check"></i><b>2.2.1</b> Introduction to the data</a></li>
+<li class="chapter" data-level="2.2.2" data-path="modeling-your-outcome-intercepts-only-model.html"><a href="modeling-your-outcome-intercepts-only-model.html#weakly-informative-priors"><i class="fa fa-check"></i><b>2.2.2</b> Weakly Informative Priors</a></li>
+<li class="chapter" data-level="2.2.3" data-path="modeling-your-outcome-intercepts-only-model.html"><a href="modeling-your-outcome-intercepts-only-model.html#more-informative-priors"><i class="fa fa-check"></i><b>2.2.3</b> More Informative Priors</a></li>
+<li class="chapter" data-level="2.2.4" data-path="modeling-your-outcome-intercepts-only-model.html"><a href="modeling-your-outcome-intercepts-only-model.html#intercepts-only-model"><i class="fa fa-check"></i><b>2.2.4</b> Intercepts-Only Model</a></li>
+<li class="chapter" data-level="2.2.5" data-path="modeling-your-outcome-intercepts-only-model.html"><a href="modeling-your-outcome-intercepts-only-model.html#prior-posterior-update-plots"><i class="fa fa-check"></i><b>2.2.5</b> Prior-Posterior Update Plots</a></li>
+<li class="chapter" data-level="2.2.6" data-path="modeling-your-outcome-intercepts-only-model.html"><a href="modeling-your-outcome-intercepts-only-model.html#interpreting-model-output"><i class="fa fa-check"></i><b>2.2.6</b> Interpreting Model Output</a></li>
+<li class="chapter" data-level="2.2.7" data-path="modeling-your-outcome-intercepts-only-model.html"><a href="modeling-your-outcome-intercepts-only-model.html#bonus-question"><i class="fa fa-check"></i><b>2.2.7</b> Bonus Question</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="introducing-a-predictor-simple-linear-regression.html"><a href="introducing-a-predictor-simple-linear-regression.html"><i class="fa fa-check"></i><b>3</b> Introducing a predictor: Simple Linear Regression</a>
+<ul>
+<li class="chapter" data-level="3.1" data-path="introducing-a-predictor-simple-linear-regression.html"><a href="introducing-a-predictor-simple-linear-regression.html#video-on-simple-linear-regression"><i class="fa fa-check"></i><b>3.1</b> Video on Simple Linear Regression:</a></li>
+<li class="chapter" data-level="3.2" data-path="introducing-a-predictor-simple-linear-regression.html"><a href="introducing-a-predictor-simple-linear-regression.html#hands-on-exercises-1"><i class="fa fa-check"></i><b>3.2</b> Hands-on Exercises</a>
+<ul>
+<li class="chapter" data-level="3.2.1" data-path="introducing-a-predictor-simple-linear-regression.html"><a href="introducing-a-predictor-simple-linear-regression.html#prior-predictive-checks"><i class="fa fa-check"></i><b>3.2.1</b> Prior Predictive Checks</a></li>
+<li class="chapter" data-level="3.2.2" data-path="introducing-a-predictor-simple-linear-regression.html"><a href="introducing-a-predictor-simple-linear-regression.html#simple-regression-model"><i class="fa fa-check"></i><b>3.2.2</b> Simple Regression Model</a></li>
+<li class="chapter" data-level="3.2.3" data-path="introducing-a-predictor-simple-linear-regression.html"><a href="introducing-a-predictor-simple-linear-regression.html#prior-posterior-update-plots-1"><i class="fa fa-check"></i><b>3.2.3</b> Prior-Posterior Update Plots</a></li>
+<li class="chapter" data-level="3.2.4" data-path="introducing-a-predictor-simple-linear-regression.html"><a href="introducing-a-predictor-simple-linear-regression.html#evidence-ratio"><i class="fa fa-check"></i><b>3.2.4</b> Evidence Ratio</a></li>
+<li class="chapter" data-level="3.2.5" data-path="introducing-a-predictor-simple-linear-regression.html"><a href="introducing-a-predictor-simple-linear-regression.html#prior-sensitivity-check"><i class="fa fa-check"></i><b>3.2.5</b> Prior Sensitivity Check</a></li>
+<li class="chapter" data-level="3.2.6" data-path="introducing-a-predictor-simple-linear-regression.html"><a href="introducing-a-predictor-simple-linear-regression.html#bonus-content-on-heteroskedasticity"><i class="fa fa-check"></i><b>3.2.6</b> Bonus Content on Heteroskedasticity</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="acknowledging-repeated-measures-multi-level-model.html"><a href="acknowledging-repeated-measures-multi-level-model.html"><i class="fa fa-check"></i><b>4</b> Acknowledging repeated measures: Multi-level model</a>
+<ul>
+<li class="chapter" data-level="4.1" data-path="acknowledging-repeated-measures-multi-level-model.html"><a href="acknowledging-repeated-measures-multi-level-model.html#videos-on-multi-level-model"><i class="fa fa-check"></i><b>4.1</b> Videos on Multi-level model:</a></li>
+<li class="chapter" data-level="4.2" data-path="acknowledging-repeated-measures-multi-level-model.html"><a href="acknowledging-repeated-measures-multi-level-model.html#hands-on-exercises-2"><i class="fa fa-check"></i><b>4.2</b> Hands-on Exercises</a>
+<ul>
+<li class="chapter" data-level="4.2.1" data-path="acknowledging-repeated-measures-multi-level-model.html"><a href="acknowledging-repeated-measures-multi-level-model.html#prior-specification"><i class="fa fa-check"></i><b>4.2.1</b> Prior Specification</a></li>
+<li class="chapter" data-level="4.2.2" data-path="acknowledging-repeated-measures-multi-level-model.html"><a href="acknowledging-repeated-measures-multi-level-model.html#multi-level-model"><i class="fa fa-check"></i><b>4.2.2</b> Multi-Level Model</a></li>
+<li class="chapter" data-level="4.2.3" data-path="acknowledging-repeated-measures-multi-level-model.html"><a href="acknowledging-repeated-measures-multi-level-model.html#prior-posterior-update-plots-2"><i class="fa fa-check"></i><b>4.2.3</b> Prior-Posterior Update Plots</a></li>
+<li class="chapter" data-level="4.2.4" data-path="acknowledging-repeated-measures-multi-level-model.html"><a href="acknowledging-repeated-measures-multi-level-model.html#hypothesis-testing"><i class="fa fa-check"></i><b>4.2.4</b> Hypothesis Testing</a></li>
+<li class="chapter" data-level="4.2.5" data-path="acknowledging-repeated-measures-multi-level-model.html"><a href="acknowledging-repeated-measures-multi-level-model.html#prior-sensitivity-check-1"><i class="fa fa-check"></i><b>4.2.5</b> Prior Sensitivity Check</a></li>
+<li class="chapter" data-level="4.2.6" data-path="acknowledging-repeated-measures-multi-level-model.html"><a href="acknowledging-repeated-measures-multi-level-model.html#partial-pooling"><i class="fa fa-check"></i><b>4.2.6</b> Partial Pooling</a></li>
+<li class="chapter" data-level="4.2.7" data-path="acknowledging-repeated-measures-multi-level-model.html"><a href="acknowledging-repeated-measures-multi-level-model.html#student-t-model"><i class="fa fa-check"></i><b>4.2.7</b> Student t model</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="acknowledging-previous-findings-informed-priors.html"><a href="acknowledging-previous-findings-informed-priors.html"><i class="fa fa-check"></i><b>5</b> Acknowledging previous findings: Informed priors</a>
+<ul>
+<li class="chapter" data-level="5.1" data-path="acknowledging-previous-findings-informed-priors.html"><a href="acknowledging-previous-findings-informed-priors.html#video-on-informed-priors"><i class="fa fa-check"></i><b>5.1</b> Video on Informed priors:</a></li>
+<li class="chapter" data-level="5.2" data-path="acknowledging-previous-findings-informed-priors.html"><a href="acknowledging-previous-findings-informed-priors.html#hands-on-exercises-3"><i class="fa fa-check"></i><b>5.2</b> Hands-on Exercises</a>
+<ul>
+<li class="chapter" data-level="5.2.1" data-path="acknowledging-previous-findings-informed-priors.html"><a href="acknowledging-previous-findings-informed-priors.html#how-to-encode-information-in-priors"><i class="fa fa-check"></i><b>5.2.1</b> How to Encode Information in Priors</a></li>
+<li class="chapter" data-level="5.2.2" data-path="acknowledging-previous-findings-informed-priors.html"><a href="acknowledging-previous-findings-informed-priors.html#prior-posterior-updates-plot"><i class="fa fa-check"></i><b>5.2.2</b> Prior-Posterior Updates Plot</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="6" data-path="recommendations.html"><a href="recommendations.html"><i class="fa fa-check"></i><b>6</b> Recommendations</a>
+<ul>
+<li class="chapter" data-level="6.1" data-path="recommendations.html"><a href="recommendations.html#where-to-go-for-further-study"><i class="fa fa-check"></i><b>6.1</b> Where to go for further study</a></li>
+<li class="chapter" data-level="6.2" data-path="recommendations.html"><a href="recommendations.html#feedback-on-the-course"><i class="fa fa-check"></i><b>6.2</b> Feedback on the course</a></li>
+</ul></li>
+<li class="divider"></li>
+<li><a href="https://4ccoxau.github.io/PriorsWorkshop/" target="blank"> </a></li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Workshop on Bayesian Inference: Priors and workflow</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="acknowledging-previous-findings-informed-priors" class="section level1" number="5">
+<h1><span class="header-section-number">Chapter 5</span> Acknowledging previous findings: Informed priors</h1>
+<div id="video-on-informed-priors" class="section level2" number="5.1">
+<h2><span class="header-section-number">5.1</span> Video on Informed priors:</h2>
+<p><a href="https://youtu.be/zBEiugiqbd4" class="uri">https://youtu.be/zBEiugiqbd4</a></p>
+<p>After watching the videos we recommend you download the Markdown file and go through it in Rstudio:</p>
+<p><a href="data:text/x-markdown;base64,IyBBY2tub3dsZWRnaW5nIHByZXZpb3VzIGZpbmRpbmdzOiBJbmZvcm1lZCBwcmlvcnMKCiMjIFZpZGVvIG9uIEluZm9ybWVkIHByaW9yczoKCmh0dHBzOi8veW91dHUuYmUvekJFaXVnaXFiZDQKCkFmdGVyIHdhdGNoaW5nIHRoZSB2aWRlb3Mgd2UgcmVjb21tZW5kIHlvdSBkb3dubG9hZCB0aGUgTWFya2Rvd24gZmlsZSBhbmQgZ28gdGhyb3VnaCBpdCBpbiBSc3R1ZGlvOgoKYGBge3IsIGVjaG89RkFMU0V9CnhmdW46OmVtYmVkX2ZpbGUoJzA0LXBhcnQzLlJtZCcpCmBgYAoKVGhlIGRhdGEgYXJlIGF2YWlsYWJsZSBoZXJlIChzYW1lIGRhdGEgYXMgdGhlIHByZXZpb3VzIG1hcmtkb3duKToKCmBgYHtyLCBlY2hvPUZBTFNFfQp4ZnVuOjplbWJlZF9maWxlKCd2b3dlbF9zcGFjZV9hcmVhX2RhdGEuY3N2JykKYGBgCgpUaGUgY29udGVudCBvZiB0aGUgbWFya2Rvd24gaXMgcmVwcm9kdWNlZCBiZWxvdy4KCiMjIEhhbmRzLW9uIEV4ZXJjaXNlcwoKIyMjIEhvdyB0byBFbmNvZGUgSW5mb3JtYXRpb24gaW4gUHJpb3JzCkluIHRoaXMgcGFydCwgd2UnbGwgaGF2ZSBhIGNsb3NlciBsb29rIGF0IGhvdyB0byBlbmNvZGUgaW5mb3JtYXRpb24gZnJvbSBwcmV2aW91cyBzdHVkaWVzIHdpdGhpbiB0aGUgcHJpb3Igc3BlY2lmaWNhdGlvbnMgb2Ygb3VyIG1vZGVscy4gTGV0J3Mgc3RhcnQgd2l0aCB0aGUgbWV0YS1hbmFseXRpYyBwcmlvciAoaS5lLiwgTWVhbiBFUzogMC42MiwgU0UgPSAwLjEzKSBhbmQgYWRkIGl0IHRvIG91ciBwcmlvciBzcGVjaWZpY2F0aW9ucyBmb3IgdGhlIG11bHRpLWxldmVsIG1vZGVsLiBXZSBkbyB0aGlzIGJ5IHNwZWNpZnlpbmcgdGhlIHByaW9yIGZvciB0aGUgc2xvcGUgYXMgbm9ybWFsKDAuNjIsIDAuMTMpLCBhcyBpbiB0aGUgY29kZSBibG9jayBiZWxvdzoKCmBgYHtyLCByZXN1bHRzPSJoaWRlIiwgbWVzc2FnZT1GQUxTRSwgd2FybmluZz1GQUxTRX0KQXJ0aWN1bGF0aW9uX2YzIDwtIGJmKEFydGljdWxhdGlvblMgfiAxICsgUmVnaXN0ZXIgKyAoMStSZWdpc3RlcnxTdWJqZWN0KSkKbWV0YV9hbmFseXRpY19wcmlvciA8LSBjKAogIHByaW9yKG5vcm1hbCgwLCAxKSwgY2xhc3MgPSBJbnRlcmNlcHQpLAogIHByaW9yKG5vcm1hbCgwLCAxKSwgY2xhc3MgPSBzZCwgY29lZiA9IEludGVyY2VwdCwgZ3JvdXAgPSBTdWJqZWN0KSwKICBwcmlvcihub3JtYWwoMC42MiwgMC4xMyksIGNsYXNzID0gYiksCiAgcHJpb3Iobm9ybWFsKDAsIDEpLCBjbGFzcyA9IHNkLCBjb2VmID0gUmVnaXN0ZXJJRFMsIGdyb3VwID0gU3ViamVjdCksCiAgcHJpb3Iobm9ybWFsKDEsIDAuNSksIGNsYXNzID0gc2lnbWEpLAogIHByaW9yKGxraigyKSwgY2xhc3MgPSBjb3IpKQpBcnRpY3VsYXRpb25fTUFwcmlvcl9tMyA8LSAKICBicm0oCiAgICBBcnRpY3VsYXRpb25fZjMsCiAgICBkYXRhID0gZCwKICAgIHNhdmVfcGFycyA9IHNhdmVfcGFycyhhbGwgPSBUUlVFKSwKICAgIGZhbWlseSA9IGdhdXNzaWFuLAogICAgcHJpb3IgPSBtZXRhX2FuYWx5dGljX3ByaW9yLAogICAgZmlsZSA9ICJBcnRpY3VsYXRpb25fTUFwcmlvcl9tMyIsCiAgICAjcmVmaXQgPSAib25fY2hhbmdlIiwKICAgIHNhbXBsZV9wcmlvciA9IFQsCiAgICBpdGVyID0gMTAwMDAsIAogICAgd2FybXVwID0gMTAwMCwKICAgIGNvcmVzID0gMiwKICAgIGNoYWlucyA9IDIsCiAgICBiYWNrZW5kID0gImNtZHN0YW5yIiwKICAgIHRocmVhZHMgPSB0aHJlYWRpbmcoMiksCiAgICBjb250cm9sID0gbGlzdCgKICAgICAgYWRhcHRfZGVsdGEgPSAwLjk5OSwKICAgICAgbWF4X3RyZWVkZXB0aCA9IDIwKSkKYGBgCgpgYGB7ciwgd2FybmluZz1GQUxTRX0KcHBfY2hlY2soQXJ0aWN1bGF0aW9uX01BcHJpb3JfbTMsIG5kcmF3cyA9IDUwKQpwbG90KGNvbmRpdGlvbmFsX2VmZmVjdHMoQXJ0aWN1bGF0aW9uX01BcHJpb3JfbTMpLCBwb2ludHMgPSBUKQpzdW1tYXJ5KEFydGljdWxhdGlvbl9NQXByaW9yX20zKQpgYGAKClE4OiBIb3cgZG9lcyB0aGUgc2xvcGUgZXN0aW1hdGUgZm9yIHRoaXMgbW9kZWwgd2l0aCB0aGUgbWV0YS1hbmFseXRpYyBwcmlvciBjb21wYXJlIHRvIHRoYXQgd2l0aCB0aGUgc2tlcHRpY2FsIHByaW9yIChpLmUuLCBBcnRpY3VsYXRpb25fbTMpPwoKX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fCgoKTGV0J3MgdHJ5IHRvIGRvIHRoZSBzYW1lIGFuYWx5c2lzIGZvciB0aGUgRGFuaXNoIHByaW9yIChpLmUuLCBNZWFuIEVTOiAtMC4xLCBTRSA9IDAuMDQpOgoKYGBge3IsIHJlc3VsdHM9ImhpZGUiLCBtZXNzYWdlPUZBTFNFfQpkYW5pc2hfcHJpb3IgPC0gYygKICBwcmlvcihub3JtYWwoMCwgMSksIGNsYXNzID0gSW50ZXJjZXB0KSwKICBwcmlvcihub3JtYWwoMCwgMSksIGNsYXNzID0gc2QsIGNvZWYgPSBJbnRlcmNlcHQsIGdyb3VwID0gU3ViamVjdCksCiAgcHJpb3Iobm9ybWFsKC0wLjEsIDAuMDQpLCBjbGFzcyA9IGIpLAogIHByaW9yKG5vcm1hbCgwLCAxKSwgY2xhc3MgPSBzZCwgY29lZiA9IFJlZ2lzdGVySURTLCBncm91cCA9IFN1YmplY3QpLAogIHByaW9yKG5vcm1hbCgxLCAwLjUpLCBjbGFzcyA9IHNpZ21hKSwKICBwcmlvcihsa2ooMiksIGNsYXNzID0gY29yKSkKQXJ0aWN1bGF0aW9uX0RhbmlzaHByaW9yX20zIDwtIAogIGJybSgKICAgIEFydGljdWxhdGlvbl9mMywKICAgIGRhdGEgPSBkLAogICAgc2F2ZV9wYXJzID0gc2F2ZV9wYXJzKGFsbCA9IFRSVUUpLAogICAgZmFtaWx5ID0gZ2F1c3NpYW4sCiAgICBwcmlvciA9IGRhbmlzaF9wcmlvciwKICAgIGZpbGUgPSAiQXJ0aWN1bGF0aW9uX0RhbmlzaHByaW9yX20zIiwKICAgICNyZWZpdCA9ICJvbl9jaGFuZ2UiLAogICAgc2FtcGxlX3ByaW9yID0gVCwKICAgIGl0ZXIgPSAxMDAwMCwgCiAgICB3YXJtdXAgPSAxMDAwLAogICAgY29yZXMgPSAyLAogICAgY2hhaW5zID0gMiwKICAgIGJhY2tlbmQgPSAiY21kc3RhbnIiLAogICAgdGhyZWFkcyA9IHRocmVhZGluZygyKSwKICAgIGNvbnRyb2wgPSBsaXN0KAogICAgICBhZGFwdF9kZWx0YSA9IDAuOTk5LAogICAgICBtYXhfdHJlZWRlcHRoID0gMjApKQpgYGAKCmBgYHtyfQpwcF9jaGVjayhBcnRpY3VsYXRpb25fRGFuaXNocHJpb3JfbTMsIG5kcmF3cyA9IDUwKQpwbG90KGNvbmRpdGlvbmFsX2VmZmVjdHMoQXJ0aWN1bGF0aW9uX0RhbmlzaHByaW9yX20zKSwgcG9pbnRzID0gVCkKc3VtbWFyeShBcnRpY3VsYXRpb25fRGFuaXNocHJpb3JfbTMpCmBgYAoKUTk6IEhvdyBkb2VzIHRoZSBzbG9wZSBlc3RpbWF0ZSBmb3IgdGhpcyBtb2RlbCB3aXRoIHRoZSBEYW5pc2ggcHJpb3IgY29tcGFyZSB0byB0aGF0IHdpdGggdGhlIHNrZXB0aWNhbCBwcmlvciAoaS5lLiwgQXJ0aWN1bGF0aW9uX20zKT8KCl9fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fXwoKIyMjIFByaW9yLVBvc3RlcmlvciBVcGRhdGVzIFBsb3QKCkxldCdzIHJ1biB0aGUgZm9sbG93aW5nIGNvZGUgdG8gZXh0cmFjdCBhbmQgdmlzdWFsaXNlIHRoZSBwcmlvciBhbmQgcG9zdGVyaW9yIGRpc3RyaWJ1dGlvbnMgZnJvbSB0aGUgZGlmZmVyZW50IG1vZGVsczoKCmBgYHtyLCB3YXJuaW5nPUZBTFNFfQpkYW5pc2hfcHJpb3JfcG9zdGVyaW9yIDwtIGFzX2RyYXdzX2RmKEFydGljdWxhdGlvbl9EYW5pc2hwcmlvcl9tMykgJT4lCiAgbXV0YXRlKHByaW9ycyA9ICJEYW5pc2giKSAlPiUKICBzZWxlY3QocHJpb3JfYiwgYl9SZWdpc3RlcklEUywgcHJpb3JzKQogIAptYV9wcmlvcl9wb3N0ZXJpb3IgPC0gYXNfZHJhd3NfZGYoQXJ0aWN1bGF0aW9uX01BcHJpb3JfbTMpICU+JQogIG11dGF0ZShwcmlvcnMgPSAiTUEgZXN0aW1hdGVzIikgJT4lCiAgc2VsZWN0KHByaW9yX2IsIGJfUmVnaXN0ZXJJRFMsIHByaW9ycykKICAKc2tlcHRpY2FsX3ByaW9yX3Bvc3RlcmlvciA8LSBhc19kcmF3c19kZihBcnRpY3VsYXRpb25fbTMpICU+JQogIG11dGF0ZShwcmlvcnMgPSAiU2tlcHRpY2FsIGVzdGltYXRlcyIpICU+JQogIHNlbGVjdChwcmlvcl9iLCBiX1JlZ2lzdGVySURTLCBwcmlvcnMpClBvc3RlcmlvciA8LSByYmluZChkYW5pc2hfcHJpb3JfcG9zdGVyaW9yLCBtYV9wcmlvcl9wb3N0ZXJpb3IsIHNrZXB0aWNhbF9wcmlvcl9wb3N0ZXJpb3IpCnBsb3QxIDwtIGdncGxvdChQb3N0ZXJpb3IpICsgCiAgdGhlbWVfY2xhc3NpYygpICsKICBnZ3RpdGxlKCJQcmlvcnMiKSArCiAgZ2VvbV9kZW5zaXR5KGFlcyh4ID0gcHJpb3JfYiwgZmlsbCA9IHByaW9ycyksIGFscGhhID0gMC43KSArCiAgeGxpbShjKC0xLjUsIDEuNSkpICsKICBnZW9tX3ZsaW5lKHhpbnRlcmNlcHQgPSAwLjAsIGxpbmV0eXBlID0gMykgKwogIHNjYWxlX2ZpbGxfbWFudWFsKG5hbWUgPSAiUHJpb3IiLAogICAgICAgICAgICAgICAgICBsYWJlbHMgPSBjKCdNZXRhLWFuYWx5dGljJywgIkRhbmlzaCIsICJTa2VwdGljYWwiKSwKICAgICAgICAgICAgICAgICAgdmFsdWVzPWMoIiNGQzRFMDciLCAic3RlZWxibHVlIiwgIiMyMjhCMjIiKSkgKwogIHRoZW1lKHBsb3QudGl0bGUgPSBlbGVtZW50X3RleHQoaGp1c3QgPSAwLjUsIHNpemU9MTUpLAogICAgICAgIGF4aXMudGlja3MueSA9IGVsZW1lbnRfYmxhbmsoKSwKICAgICAgICBheGlzLnRleHQueSA9IGVsZW1lbnRfYmxhbmsoKSwKICAgICAgICBheGlzLnRpdGxlLnk9ZWxlbWVudF9ibGFuaygpLAogICAgICAgIGF4aXMubGluZS54ID0gZWxlbWVudF9saW5lKHNpemU9MC4xKSwKICAgICAgICBheGlzLmxpbmUueSA9IGVsZW1lbnRfbGluZShzaXplPTAuMCksCiAgICAgICAgYXhpcy50ZXh0LnggPSBlbGVtZW50X2JsYW5rKCksCiAgICAgICAgYXhpcy50aXRsZS54PWVsZW1lbnRfYmxhbmsoKSwKICAgICAgICBsZWdlbmQucG9zaXRpb24gPSAibm9uZSIpCnBsb3QyIDwtIGdncGxvdChQb3N0ZXJpb3IpICsgCiAgdGhlbWVfY2xhc3NpYygpICsKICB4bGltKGMoLTEuNSwgMS41KSkgKwogIGdlb21fZGVuc2l0eShhZXMoeCA9IGJfUmVnaXN0ZXJJRFMsIGZpbGwgPSBwcmlvcnMpLCBhbHBoYSA9IDAuNykgKwogIHhsYWIoJ0VmZmVjdCBTaXplJykgKwogIGdndGl0bGUoZXhwcmVzc2lvbihwYXN0ZSgiUG9zdGVyaW9ycyIpKSkgKwogIGdlb21fdmxpbmUoeGludGVyY2VwdCA9IDAuMCwgbGluZXR5cGUgPSAzKSArCiAgc2NhbGVfZmlsbF9tYW51YWwobmFtZSA9ICJQcmlvcnM6IiwKICAgICAgICAgICAgICAgICAgbGFiZWxzID0gYygnRGFuaXNoJywgJ01ldGEtYW5hbHl0aWMnLCAiU2tlcHRpY2FsIiksCiAgICAgICAgICAgICAgICAgIHZhbHVlcz1jKCIjRkM0RTA3IiwgInN0ZWVsYmx1ZSIsICIjMjI4QjIyIikpICsKICBzY2FsZV9jb2xvcl9tYW51YWwodmFsdWVzPWMoIiNGQzRFMDciLCIjMjI4QjIyIiwgInN0ZWVsYmx1ZSIpKSArIAogIHRoZW1lKHBsb3QudGl0bGUgPSBlbGVtZW50X3RleHQoaGp1c3QgPSAwLjUsIHNpemU9MTUpLAogICAgICAgIGF4aXMudGlja3MueSA9IGVsZW1lbnRfYmxhbmsoKSwKICAgICAgICBheGlzLnRleHQueSA9IGVsZW1lbnRfYmxhbmsoKSwKICAgICAgICBheGlzLnRpdGxlLnk9ZWxlbWVudF9ibGFuaygpLAogICAgICAgIGF4aXMubGluZSA9IGVsZW1lbnRfbGluZShzaXplPTApLAogICAgICAgIGxlZ2VuZC5wb3NpdGlvbiA9ICJib3R0b20iKQpwcmlvcnNfcG9zdGVyaW9yc19wbG90IDwtIHBsb3RfZ3JpZChwbG90MSwgcGxvdDIsIG5jb2w9MSkKcHJpb3JzX3Bvc3RlcmlvcnNfcGxvdApgYGAKCgpRMTA6IFdoeSBkb2VzIHRoZSBtb2RlbCB3aXRoIHRoZSBEYW5pc2ggc3R1ZHkgcHJpb3Igbm90IHNoaWZ0IGFzIG11Y2ggYXMgdGhvc2Ugd2l0aCB0aGUgc2tlcHRpY2FsIGFuZCBtZXRhLWFuYWx5dGljIHByaW9ycz8KCkFuc3dlcjoKCgpfX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KCgpRMTE6IFdoYXQgZG9lcyB0aGlzIHRlbGwgdXMgYWJvdXQgdGhlIG5hdHVyZSBvZiBldmlkZW5jZSBhY2N1bXVsYXRpb24gaW4gQmF5ZXNpYW4gbW9kZWxzPwoKQW5zd2VyOgoKCl9fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fXwo=" download="04-part3.Rmd">Download 04-part3.Rmd</a></p>
+<p>The data are available here (same data as the previous markdown):</p>
+<p><a href="data:text/csv;base64,IiIsIlN1YmplY3QiLCJSZWdpc3RlciIsIkFydGljdWxhdGlvblMiLCJDaGlsZFNleCIsIkNoaWxkQWdlIiwiRmlyc3RfY2hpbGQiCiIxIiwiQUYiLCJBRFMiLDAuNzYwMTU0NjM2Njg1OTU4LCJtIiwyMCwiTm8iCiIyIiwiQU4iLCJBRFMiLC0xLjI4OTU2NzkxNzg5NDMsIm0iLDIyLCJZZXMiCiIzIiwiQ0wiLCJBRFMiLC0wLjg1OTE0ODM5NDQzNTIyOSwiZiIsMTYsIk5vIgoiNCIsIkRNIiwiQURTIiwtMC44MTQ3ODg3OTQ0NTc5MDYsIm0iLDEyLCJObyIKIjUiLCJJQSIsIkFEUyIsMC43OTc3OTYxMDY4NDU4OTEsImYiLDIzLCJObyIKIjYiLCJKQSIsIkFEUyIsMS4yMDM4MzY1MzcxMDQ0NCwibSIsMjQsIlllcyIKIjciLCJKRSIsIkFEUyIsLTAuOTg4ODk3OTI1OTYxODY4LCJmIiwyMSwiWWVzIgoiOCIsIktBIiwiQURTIiwwLjMwNzYxNTQyNTU4ODI5OCwibSIsMTQsIk5vIgoiOSIsIktWIiwiQURTIiwtMS4xNDMyNzYzNjAyMjEwOCwibSIsMTYsIlllcyIKIjEwIiwiTEsiLCJBRFMiLDAuNjA1NzYxNDcyODg3NDQ3LCJtIiwxNiwiWWVzIgoiMTEiLCJMTSIsIkFEUyIsLTAuMTMzOTQzMDM4MzY4NzE2LCJtIiwxMiwiWWVzIgoiMTIiLCJMViIsIkFEUyIsLTEuMDQzODExODMwNjYyMjIsIm0iLDE2LCJZZXMiCiIxMyIsIk1BIiwiQURTIiwxLjg2MDk5NTgzODEyNTYyLCJmIiwyMywiTm8iCiIxNCIsIk1FIiwiQURTIiwtMC4xNjc0MjgwOTI4ODQyNTYsIm0iLDEyLCJZZXMiCiIxNSIsIk1QUyIsIkFEUyIsLTAuNTMxODQzNDkyNjE2OTk4LCJmIiwxNCwiTm8iCiIxNiIsIk1TIiwiQURTIiwtMC4xMDMzNDY5MTI1OTMwMDIsImYiLDIzLCJZZXMiCiIxNyIsIk1WIiwiQURTIiwtMC41NjEyMjg3OTAxODg4MjIsIm0iLDE2LCJZZXMiCiIxOCIsIlBWIiwiQURTIiwxLjYxNjA0MDc1MTgzNjY3LCJtIiwxMSwiWWVzIgoiMTkiLCJSViIsIkFEUyIsLTEuMDEzMDgyNzA0OTc4NzYsImYiLDExLCJObyIKIjIwIiwiU0EiLCJBRFMiLC0wLjAzODc3MTU0Mjg2NTA0NjQsImYiLDE1LCJObyIKIjIxIiwiU0FGIiwiQURTIiwwLjc5ODcwNTU4OTAyNjIwOSwibSIsMTksIk5vIgoiMjIiLCJTQyIsIkFEUyIsLTAuMTA5MjE5ODM3NDAyMzEzLCJmIiwxOSwiTm8iCiIyMyIsIlRMIiwiQURTIiwwLjU0MjQyMzQ4MTczNTgyLCJtIiwxMSwiTm8iCiIyNCIsIlRNIiwiQURTIiwwLjMwNTAyNTc5NTY5NDE2OCwiZiIsMjQsIlllcyIKIjI1IiwiQUYiLCJJRFMiLDIuMDY1Mzg2NzMzNzkyMTMsIm0iLDIwLCJObyIKIjI2IiwiQU4iLCJJRFMiLC0yLjIyMzYyMTI0MDg3NTgsIm0iLDIyLCJZZXMiCiIyNyIsIkNMIiwiSURTIiwtMC40MTgyMDg1MzI4MDg4MTQsImYiLDE2LCJObyIKIjI4IiwiRE0iLCJJRFMiLC0wLjU5OTE0MzEwMTg2NzQ2NCwibSIsMTIsIk5vIgoiMjkiLCJJQSIsIklEUyIsLTAuMzAzOTU3NTA2MzY5ODY4LCJmIiwyMywiTm8iCiIzMCIsIkpBIiwiSURTIiwtMi4yMzQwNTkyNzM0ODMxMSwibSIsMjQsIlllcyIKIjMxIiwiSkUiLCJJRFMiLC0wLjk5MTU0NDc5NjMxODQyMywiZiIsMjEsIlllcyIKIjMyIiwiS0EiLCJJRFMiLC0wLjkxNDYxOTk4MTg5MzEyOCwibSIsMTQsIk5vIgoiMzMiLCJLViIsIklEUyIsLTEuNTUxODc3ODA4MjMxMjcsIm0iLDE2LCJZZXMiCiIzNCIsIkxLIiwiSURTIiwtMS40MzYwMzM5NTc2MjE4MiwibSIsMTYsIlllcyIKIjM1IiwiTE0iLCJJRFMiLC0wLjAyMDk5MzI5MDc5MTExMywibSIsMTIsIlllcyIKIjM2IiwiTFYiLCJJRFMiLC0wLjM2MTUxNzM4NzcwNzg5OCwibSIsMTYsIlllcyIKIjM3IiwiTUEiLCJJRFMiLDAuMzI4MjQwMzY1MjU4ODY1LCJmIiwyMywiTm8iCiIzOCIsIk1FIiwiSURTIiwtMS4xMzA1NDY2NDA3NTE0OSwibSIsMTIsIlllcyIKIjM5IiwiTVBTIiwiSURTIiwtMS4wNzg5MTk5MDgyOTg0MywiZiIsMTQsIk5vIgoiNDAiLCJNUyIsIklEUyIsLTAuODc4Mzk4NTMxOTQ2NjExLCJmIiwyMywiWWVzIgoiNDEiLCJNViIsIklEUyIsMC40MzAyMzE0NTM5ODQ4MDIsIm0iLDE2LCJZZXMiCiI0MiIsIlBWIiwiSURTIiwwLjU4NTQ5NDQ1OTU0NDM2NywibSIsMTEsIlllcyIKIjQzIiwiUlYiLCJJRFMiLC0wLjE5NzIyMzA3MTc3MTkwMSwiZiIsMTEsIk5vIgoiNDQiLCJTQSIsIklEUyIsLTEuOTMzMTYyNzMwMzkwOTcsImYiLDE1LCJObyIKIjQ1IiwiU0FGIiwiSURTIiwtMC4yMTA2MTIxOTY2MjI0NzcsIm0iLDE5LCJObyIKIjQ2IiwiU0MiLCJJRFMiLC0wLjM2ODM4NTE4MzQ5MTI4OSwiZiIsMTksIk5vIgoiNDciLCJUTCIsIklEUyIsLTIuMDA0ODAzOTI0MDg1MjcsIm0iLDExLCJObyIKIjQ4IiwiVE0iLCJJRFMiLC0xLjE0MDI3MzQ3NjY3MjQ3LCJmIiwyNCwiWWVzIgo=" download="vowel_space_area_data.csv">Download vowel_space_area_data.csv</a></p>
+<p>The content of the markdown is reproduced below.</p>
+</div>
+<div id="hands-on-exercises-3" class="section level2" number="5.2">
+<h2><span class="header-section-number">5.2</span> Hands-on Exercises</h2>
+<div id="how-to-encode-information-in-priors" class="section level3" number="5.2.1">
+<h3><span class="header-section-number">5.2.1</span> How to Encode Information in Priors</h3>
+<p>In this part, we’ll have a closer look at how to encode information from previous studies within the prior specifications of our models. Let’s start with the meta-analytic prior (i.e., Mean ES: 0.62, SE = 0.13) and add it to our prior specifications for the multi-level model. We do this by specifying the prior for the slope as normal(0.62, 0.13), as in the code block below:</p>
+<div class="sourceCode" id="cb84"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb84-1"><a href="acknowledging-previous-findings-informed-priors.html#cb84-1" aria-hidden="true" tabindex="-1"></a>Articulation_f3 <span class="ot">&lt;-</span> <span class="fu">bf</span>(ArticulationS <span class="sc">~</span> <span class="dv">1</span> <span class="sc">+</span> Register <span class="sc">+</span> (<span class="dv">1</span><span class="sc">+</span>Register<span class="sc">|</span>Subject))</span>
+<span id="cb84-2"><a href="acknowledging-previous-findings-informed-priors.html#cb84-2" aria-hidden="true" tabindex="-1"></a>meta_analytic_prior <span class="ot">&lt;-</span> <span class="fu">c</span>(</span>
+<span id="cb84-3"><a href="acknowledging-previous-findings-informed-priors.html#cb84-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">prior</span>(<span class="fu">normal</span>(<span class="dv">0</span>, <span class="dv">1</span>), <span class="at">class =</span> Intercept),</span>
+<span id="cb84-4"><a href="acknowledging-previous-findings-informed-priors.html#cb84-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">prior</span>(<span class="fu">normal</span>(<span class="dv">0</span>, <span class="dv">1</span>), <span class="at">class =</span> sd, <span class="at">coef =</span> Intercept, <span class="at">group =</span> Subject),</span>
+<span id="cb84-5"><a href="acknowledging-previous-findings-informed-priors.html#cb84-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">prior</span>(<span class="fu">normal</span>(<span class="fl">0.62</span>, <span class="fl">0.13</span>), <span class="at">class =</span> b),</span>
+<span id="cb84-6"><a href="acknowledging-previous-findings-informed-priors.html#cb84-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">prior</span>(<span class="fu">normal</span>(<span class="dv">0</span>, <span class="dv">1</span>), <span class="at">class =</span> sd, <span class="at">coef =</span> RegisterIDS, <span class="at">group =</span> Subject),</span>
+<span id="cb84-7"><a href="acknowledging-previous-findings-informed-priors.html#cb84-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">prior</span>(<span class="fu">normal</span>(<span class="dv">1</span>, <span class="fl">0.5</span>), <span class="at">class =</span> sigma),</span>
+<span id="cb84-8"><a href="acknowledging-previous-findings-informed-priors.html#cb84-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">prior</span>(<span class="fu">lkj</span>(<span class="dv">2</span>), <span class="at">class =</span> cor))</span>
+<span id="cb84-9"><a href="acknowledging-previous-findings-informed-priors.html#cb84-9" aria-hidden="true" tabindex="-1"></a>Articulation_MAprior_m3 <span class="ot">&lt;-</span> </span>
+<span id="cb84-10"><a href="acknowledging-previous-findings-informed-priors.html#cb84-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">brm</span>(</span>
+<span id="cb84-11"><a href="acknowledging-previous-findings-informed-priors.html#cb84-11" aria-hidden="true" tabindex="-1"></a>    Articulation_f3,</span>
+<span id="cb84-12"><a href="acknowledging-previous-findings-informed-priors.html#cb84-12" aria-hidden="true" tabindex="-1"></a>    <span class="at">data =</span> d,</span>
+<span id="cb84-13"><a href="acknowledging-previous-findings-informed-priors.html#cb84-13" aria-hidden="true" tabindex="-1"></a>    <span class="at">save_pars =</span> <span class="fu">save_pars</span>(<span class="at">all =</span> <span class="cn">TRUE</span>),</span>
+<span id="cb84-14"><a href="acknowledging-previous-findings-informed-priors.html#cb84-14" aria-hidden="true" tabindex="-1"></a>    <span class="at">family =</span> gaussian,</span>
+<span id="cb84-15"><a href="acknowledging-previous-findings-informed-priors.html#cb84-15" aria-hidden="true" tabindex="-1"></a>    <span class="at">prior =</span> meta_analytic_prior,</span>
+<span id="cb84-16"><a href="acknowledging-previous-findings-informed-priors.html#cb84-16" aria-hidden="true" tabindex="-1"></a>    <span class="at">file =</span> <span class="st">&quot;Articulation_MAprior_m3&quot;</span>,</span>
+<span id="cb84-17"><a href="acknowledging-previous-findings-informed-priors.html#cb84-17" aria-hidden="true" tabindex="-1"></a>    <span class="co">#refit = &quot;on_change&quot;,</span></span>
+<span id="cb84-18"><a href="acknowledging-previous-findings-informed-priors.html#cb84-18" aria-hidden="true" tabindex="-1"></a>    <span class="at">sample_prior =</span> T,</span>
+<span id="cb84-19"><a href="acknowledging-previous-findings-informed-priors.html#cb84-19" aria-hidden="true" tabindex="-1"></a>    <span class="at">iter =</span> <span class="dv">10000</span>, </span>
+<span id="cb84-20"><a href="acknowledging-previous-findings-informed-priors.html#cb84-20" aria-hidden="true" tabindex="-1"></a>    <span class="at">warmup =</span> <span class="dv">1000</span>,</span>
+<span id="cb84-21"><a href="acknowledging-previous-findings-informed-priors.html#cb84-21" aria-hidden="true" tabindex="-1"></a>    <span class="at">cores =</span> <span class="dv">2</span>,</span>
+<span id="cb84-22"><a href="acknowledging-previous-findings-informed-priors.html#cb84-22" aria-hidden="true" tabindex="-1"></a>    <span class="at">chains =</span> <span class="dv">2</span>,</span>
+<span id="cb84-23"><a href="acknowledging-previous-findings-informed-priors.html#cb84-23" aria-hidden="true" tabindex="-1"></a>    <span class="at">backend =</span> <span class="st">&quot;cmdstanr&quot;</span>,</span>
+<span id="cb84-24"><a href="acknowledging-previous-findings-informed-priors.html#cb84-24" aria-hidden="true" tabindex="-1"></a>    <span class="at">threads =</span> <span class="fu">threading</span>(<span class="dv">2</span>),</span>
+<span id="cb84-25"><a href="acknowledging-previous-findings-informed-priors.html#cb84-25" aria-hidden="true" tabindex="-1"></a>    <span class="at">control =</span> <span class="fu">list</span>(</span>
+<span id="cb84-26"><a href="acknowledging-previous-findings-informed-priors.html#cb84-26" aria-hidden="true" tabindex="-1"></a>      <span class="at">adapt_delta =</span> <span class="fl">0.999</span>,</span>
+<span id="cb84-27"><a href="acknowledging-previous-findings-informed-priors.html#cb84-27" aria-hidden="true" tabindex="-1"></a>      <span class="at">max_treedepth =</span> <span class="dv">20</span>))</span></code></pre></div>
+<div class="sourceCode" id="cb85"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb85-1"><a href="acknowledging-previous-findings-informed-priors.html#cb85-1" aria-hidden="true" tabindex="-1"></a><span class="fu">pp_check</span>(Articulation_MAprior_m3, <span class="at">ndraws =</span> <span class="dv">50</span>)</span></code></pre></div>
+<p><img src="_main_files/figure-html/unnamed-chunk-54-1.png" width="672" /></p>
+<div class="sourceCode" id="cb86"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb86-1"><a href="acknowledging-previous-findings-informed-priors.html#cb86-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(<span class="fu">conditional_effects</span>(Articulation_MAprior_m3), <span class="at">points =</span> T)</span></code></pre></div>
+<p><img src="_main_files/figure-html/unnamed-chunk-54-2.png" width="672" /></p>
+<div class="sourceCode" id="cb87"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb87-1"><a href="acknowledging-previous-findings-informed-priors.html#cb87-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(Articulation_MAprior_m3)</span></code></pre></div>
+<pre><code>##  Family: gaussian 
+##   Links: mu = identity; sigma = identity 
+## Formula: ArticulationS ~ 1 + Register + (1 + Register | Subject) 
+##    Data: d (Number of observations: 48) 
+##   Draws: 2 chains, each with iter = 9000; warmup = 0; thin = 1;
+##          total post-warmup draws = 18000
+## 
+## Group-Level Effects: 
+## ~Subject (Number of levels: 24) 
+##                            Estimate Est.Error l-95% CI u-95% CI Rhat Bulk_ESS
+## sd(Intercept)                  0.32      0.23     0.01     0.83 1.00     4266
+## sd(RegisterIDS)                0.61      0.39     0.03     1.44 1.00     2773
+## cor(Intercept,RegisterIDS)    -0.10      0.44    -0.83     0.76 1.00     8236
+##                            Tail_ESS
+## sd(Intercept)                  5832
+## sd(RegisterIDS)                5124
+## cor(Intercept,RegisterIDS)    10732
+## 
+## Population-Level Effects: 
+##             Estimate Est.Error l-95% CI u-95% CI Rhat Bulk_ESS Tail_ESS
+## Intercept      -0.47      0.20    -0.86    -0.07 1.00     9519     8968
+## RegisterIDS     0.44      0.13     0.19     0.68 1.00    27746    13052
+## 
+## Family Specific Parameters: 
+##       Estimate Est.Error l-95% CI u-95% CI Rhat Bulk_ESS Tail_ESS
+## sigma     1.00      0.16     0.68     1.31 1.00     3285     2884
+## 
+## Draws were sampled using sample(hmc). For each parameter, Bulk_ESS
+## and Tail_ESS are effective sample size measures, and Rhat is the potential
+## scale reduction factor on split chains (at convergence, Rhat = 1).</code></pre>
+<p>Q8: How does the slope estimate for this model with the meta-analytic prior compare to that with the skeptical prior (i.e., Articulation_m3)?</p>
+<hr />
+<p>Let’s try to do the same analysis for the Danish prior (i.e., Mean ES: -0.1, SE = 0.04):</p>
+<div class="sourceCode" id="cb89"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb89-1"><a href="acknowledging-previous-findings-informed-priors.html#cb89-1" aria-hidden="true" tabindex="-1"></a>danish_prior <span class="ot">&lt;-</span> <span class="fu">c</span>(</span>
+<span id="cb89-2"><a href="acknowledging-previous-findings-informed-priors.html#cb89-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">prior</span>(<span class="fu">normal</span>(<span class="dv">0</span>, <span class="dv">1</span>), <span class="at">class =</span> Intercept),</span>
+<span id="cb89-3"><a href="acknowledging-previous-findings-informed-priors.html#cb89-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">prior</span>(<span class="fu">normal</span>(<span class="dv">0</span>, <span class="dv">1</span>), <span class="at">class =</span> sd, <span class="at">coef =</span> Intercept, <span class="at">group =</span> Subject),</span>
+<span id="cb89-4"><a href="acknowledging-previous-findings-informed-priors.html#cb89-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">prior</span>(<span class="fu">normal</span>(<span class="sc">-</span><span class="fl">0.1</span>, <span class="fl">0.04</span>), <span class="at">class =</span> b),</span>
+<span id="cb89-5"><a href="acknowledging-previous-findings-informed-priors.html#cb89-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">prior</span>(<span class="fu">normal</span>(<span class="dv">0</span>, <span class="dv">1</span>), <span class="at">class =</span> sd, <span class="at">coef =</span> RegisterIDS, <span class="at">group =</span> Subject),</span>
+<span id="cb89-6"><a href="acknowledging-previous-findings-informed-priors.html#cb89-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">prior</span>(<span class="fu">normal</span>(<span class="dv">1</span>, <span class="fl">0.5</span>), <span class="at">class =</span> sigma),</span>
+<span id="cb89-7"><a href="acknowledging-previous-findings-informed-priors.html#cb89-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">prior</span>(<span class="fu">lkj</span>(<span class="dv">2</span>), <span class="at">class =</span> cor))</span>
+<span id="cb89-8"><a href="acknowledging-previous-findings-informed-priors.html#cb89-8" aria-hidden="true" tabindex="-1"></a>Articulation_Danishprior_m3 <span class="ot">&lt;-</span> </span>
+<span id="cb89-9"><a href="acknowledging-previous-findings-informed-priors.html#cb89-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">brm</span>(</span>
+<span id="cb89-10"><a href="acknowledging-previous-findings-informed-priors.html#cb89-10" aria-hidden="true" tabindex="-1"></a>    Articulation_f3,</span>
+<span id="cb89-11"><a href="acknowledging-previous-findings-informed-priors.html#cb89-11" aria-hidden="true" tabindex="-1"></a>    <span class="at">data =</span> d,</span>
+<span id="cb89-12"><a href="acknowledging-previous-findings-informed-priors.html#cb89-12" aria-hidden="true" tabindex="-1"></a>    <span class="at">save_pars =</span> <span class="fu">save_pars</span>(<span class="at">all =</span> <span class="cn">TRUE</span>),</span>
+<span id="cb89-13"><a href="acknowledging-previous-findings-informed-priors.html#cb89-13" aria-hidden="true" tabindex="-1"></a>    <span class="at">family =</span> gaussian,</span>
+<span id="cb89-14"><a href="acknowledging-previous-findings-informed-priors.html#cb89-14" aria-hidden="true" tabindex="-1"></a>    <span class="at">prior =</span> danish_prior,</span>
+<span id="cb89-15"><a href="acknowledging-previous-findings-informed-priors.html#cb89-15" aria-hidden="true" tabindex="-1"></a>    <span class="at">file =</span> <span class="st">&quot;Articulation_Danishprior_m3&quot;</span>,</span>
+<span id="cb89-16"><a href="acknowledging-previous-findings-informed-priors.html#cb89-16" aria-hidden="true" tabindex="-1"></a>    <span class="co">#refit = &quot;on_change&quot;,</span></span>
+<span id="cb89-17"><a href="acknowledging-previous-findings-informed-priors.html#cb89-17" aria-hidden="true" tabindex="-1"></a>    <span class="at">sample_prior =</span> T,</span>
+<span id="cb89-18"><a href="acknowledging-previous-findings-informed-priors.html#cb89-18" aria-hidden="true" tabindex="-1"></a>    <span class="at">iter =</span> <span class="dv">10000</span>, </span>
+<span id="cb89-19"><a href="acknowledging-previous-findings-informed-priors.html#cb89-19" aria-hidden="true" tabindex="-1"></a>    <span class="at">warmup =</span> <span class="dv">1000</span>,</span>
+<span id="cb89-20"><a href="acknowledging-previous-findings-informed-priors.html#cb89-20" aria-hidden="true" tabindex="-1"></a>    <span class="at">cores =</span> <span class="dv">2</span>,</span>
+<span id="cb89-21"><a href="acknowledging-previous-findings-informed-priors.html#cb89-21" aria-hidden="true" tabindex="-1"></a>    <span class="at">chains =</span> <span class="dv">2</span>,</span>
+<span id="cb89-22"><a href="acknowledging-previous-findings-informed-priors.html#cb89-22" aria-hidden="true" tabindex="-1"></a>    <span class="at">backend =</span> <span class="st">&quot;cmdstanr&quot;</span>,</span>
+<span id="cb89-23"><a href="acknowledging-previous-findings-informed-priors.html#cb89-23" aria-hidden="true" tabindex="-1"></a>    <span class="at">threads =</span> <span class="fu">threading</span>(<span class="dv">2</span>),</span>
+<span id="cb89-24"><a href="acknowledging-previous-findings-informed-priors.html#cb89-24" aria-hidden="true" tabindex="-1"></a>    <span class="at">control =</span> <span class="fu">list</span>(</span>
+<span id="cb89-25"><a href="acknowledging-previous-findings-informed-priors.html#cb89-25" aria-hidden="true" tabindex="-1"></a>      <span class="at">adapt_delta =</span> <span class="fl">0.999</span>,</span>
+<span id="cb89-26"><a href="acknowledging-previous-findings-informed-priors.html#cb89-26" aria-hidden="true" tabindex="-1"></a>      <span class="at">max_treedepth =</span> <span class="dv">20</span>))</span></code></pre></div>
+<div class="sourceCode" id="cb90"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb90-1"><a href="acknowledging-previous-findings-informed-priors.html#cb90-1" aria-hidden="true" tabindex="-1"></a><span class="fu">pp_check</span>(Articulation_Danishprior_m3, <span class="at">ndraws =</span> <span class="dv">50</span>)</span></code></pre></div>
+<p><img src="_main_files/figure-html/unnamed-chunk-56-1.png" width="672" /></p>
+<div class="sourceCode" id="cb91"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb91-1"><a href="acknowledging-previous-findings-informed-priors.html#cb91-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(<span class="fu">conditional_effects</span>(Articulation_Danishprior_m3), <span class="at">points =</span> T)</span></code></pre></div>
+<p><img src="_main_files/figure-html/unnamed-chunk-56-2.png" width="672" /></p>
+<div class="sourceCode" id="cb92"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb92-1"><a href="acknowledging-previous-findings-informed-priors.html#cb92-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(Articulation_Danishprior_m3)</span></code></pre></div>
+<pre><code>## Warning: There were 1 divergent transitions after warmup. Increasing adapt_delta
+## above may help. See http://mc-stan.org/misc/warnings.html#divergent-transitions-
+## after-warmup</code></pre>
+<pre><code>##  Family: gaussian 
+##   Links: mu = identity; sigma = identity 
+## Formula: ArticulationS ~ 1 + Register + (1 + Register | Subject) 
+##    Data: d (Number of observations: 48) 
+##   Draws: 2 chains, each with iter = 9000; warmup = 0; thin = 1;
+##          total post-warmup draws = 18000
+## 
+## Group-Level Effects: 
+## ~Subject (Number of levels: 24) 
+##                            Estimate Est.Error l-95% CI u-95% CI Rhat Bulk_ESS
+## sd(Intercept)                  0.38      0.23     0.02     0.87 1.00     2955
+## sd(RegisterIDS)                0.48      0.32     0.02     1.16 1.00     2860
+## cor(Intercept,RegisterIDS)    -0.05      0.43    -0.80     0.78 1.00     8928
+##                            Tail_ESS
+## sd(Intercept)                  4976
+## sd(RegisterIDS)                3263
+## cor(Intercept,RegisterIDS)    12390
+## 
+## Population-Level Effects: 
+##             Estimate Est.Error l-95% CI u-95% CI Rhat Bulk_ESS Tail_ESS
+## Intercept      -0.24      0.16    -0.56     0.08 1.00    13835    12919
+## RegisterIDS    -0.11      0.04    -0.19    -0.04 1.00    24869    12407
+## 
+## Family Specific Parameters: 
+##       Estimate Est.Error l-95% CI u-95% CI Rhat Bulk_ESS Tail_ESS
+## sigma     0.88      0.15     0.56     1.16 1.00     2840     1698
+## 
+## Draws were sampled using sample(hmc). For each parameter, Bulk_ESS
+## and Tail_ESS are effective sample size measures, and Rhat is the potential
+## scale reduction factor on split chains (at convergence, Rhat = 1).</code></pre>
+<p>Q9: How does the slope estimate for this model with the Danish prior compare to that with the skeptical prior (i.e., Articulation_m3)?</p>
+<hr />
+</div>
+<div id="prior-posterior-updates-plot" class="section level3" number="5.2.2">
+<h3><span class="header-section-number">5.2.2</span> Prior-Posterior Updates Plot</h3>
+<p>Let’s run the following code to extract and visualise the prior and posterior distributions from the different models:</p>
+<div class="sourceCode" id="cb95"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb95-1"><a href="acknowledging-previous-findings-informed-priors.html#cb95-1" aria-hidden="true" tabindex="-1"></a>danish_prior_posterior <span class="ot">&lt;-</span> <span class="fu">as_draws_df</span>(Articulation_Danishprior_m3) <span class="sc">%&gt;%</span></span>
+<span id="cb95-2"><a href="acknowledging-previous-findings-informed-priors.html#cb95-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">priors =</span> <span class="st">&quot;Danish&quot;</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb95-3"><a href="acknowledging-previous-findings-informed-priors.html#cb95-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(prior_b, b_RegisterIDS, priors)</span>
+<span id="cb95-4"><a href="acknowledging-previous-findings-informed-priors.html#cb95-4" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb95-5"><a href="acknowledging-previous-findings-informed-priors.html#cb95-5" aria-hidden="true" tabindex="-1"></a>ma_prior_posterior <span class="ot">&lt;-</span> <span class="fu">as_draws_df</span>(Articulation_MAprior_m3) <span class="sc">%&gt;%</span></span>
+<span id="cb95-6"><a href="acknowledging-previous-findings-informed-priors.html#cb95-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">priors =</span> <span class="st">&quot;MA estimates&quot;</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb95-7"><a href="acknowledging-previous-findings-informed-priors.html#cb95-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(prior_b, b_RegisterIDS, priors)</span>
+<span id="cb95-8"><a href="acknowledging-previous-findings-informed-priors.html#cb95-8" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb95-9"><a href="acknowledging-previous-findings-informed-priors.html#cb95-9" aria-hidden="true" tabindex="-1"></a>skeptical_prior_posterior <span class="ot">&lt;-</span> <span class="fu">as_draws_df</span>(Articulation_m3) <span class="sc">%&gt;%</span></span>
+<span id="cb95-10"><a href="acknowledging-previous-findings-informed-priors.html#cb95-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">priors =</span> <span class="st">&quot;Skeptical estimates&quot;</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb95-11"><a href="acknowledging-previous-findings-informed-priors.html#cb95-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(prior_b, b_RegisterIDS, priors)</span>
+<span id="cb95-12"><a href="acknowledging-previous-findings-informed-priors.html#cb95-12" aria-hidden="true" tabindex="-1"></a>Posterior <span class="ot">&lt;-</span> <span class="fu">rbind</span>(danish_prior_posterior, ma_prior_posterior, skeptical_prior_posterior)</span>
+<span id="cb95-13"><a href="acknowledging-previous-findings-informed-priors.html#cb95-13" aria-hidden="true" tabindex="-1"></a>plot1 <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(Posterior) <span class="sc">+</span> </span>
+<span id="cb95-14"><a href="acknowledging-previous-findings-informed-priors.html#cb95-14" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_classic</span>() <span class="sc">+</span></span>
+<span id="cb95-15"><a href="acknowledging-previous-findings-informed-priors.html#cb95-15" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggtitle</span>(<span class="st">&quot;Priors&quot;</span>) <span class="sc">+</span></span>
+<span id="cb95-16"><a href="acknowledging-previous-findings-informed-priors.html#cb95-16" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_density</span>(<span class="fu">aes</span>(<span class="at">x =</span> prior_b, <span class="at">fill =</span> priors), <span class="at">alpha =</span> <span class="fl">0.7</span>) <span class="sc">+</span></span>
+<span id="cb95-17"><a href="acknowledging-previous-findings-informed-priors.html#cb95-17" aria-hidden="true" tabindex="-1"></a>  <span class="fu">xlim</span>(<span class="fu">c</span>(<span class="sc">-</span><span class="fl">1.5</span>, <span class="fl">1.5</span>)) <span class="sc">+</span></span>
+<span id="cb95-18"><a href="acknowledging-previous-findings-informed-priors.html#cb95-18" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_vline</span>(<span class="at">xintercept =</span> <span class="fl">0.0</span>, <span class="at">linetype =</span> <span class="dv">3</span>) <span class="sc">+</span></span>
+<span id="cb95-19"><a href="acknowledging-previous-findings-informed-priors.html#cb95-19" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_fill_manual</span>(<span class="at">name =</span> <span class="st">&quot;Prior&quot;</span>,</span>
+<span id="cb95-20"><a href="acknowledging-previous-findings-informed-priors.html#cb95-20" aria-hidden="true" tabindex="-1"></a>                  <span class="at">labels =</span> <span class="fu">c</span>(<span class="st">&#39;Meta-analytic&#39;</span>, <span class="st">&quot;Danish&quot;</span>, <span class="st">&quot;Skeptical&quot;</span>),</span>
+<span id="cb95-21"><a href="acknowledging-previous-findings-informed-priors.html#cb95-21" aria-hidden="true" tabindex="-1"></a>                  <span class="at">values=</span><span class="fu">c</span>(<span class="st">&quot;#FC4E07&quot;</span>, <span class="st">&quot;steelblue&quot;</span>, <span class="st">&quot;#228B22&quot;</span>)) <span class="sc">+</span></span>
+<span id="cb95-22"><a href="acknowledging-previous-findings-informed-priors.html#cb95-22" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">plot.title =</span> <span class="fu">element_text</span>(<span class="at">hjust =</span> <span class="fl">0.5</span>, <span class="at">size=</span><span class="dv">15</span>),</span>
+<span id="cb95-23"><a href="acknowledging-previous-findings-informed-priors.html#cb95-23" aria-hidden="true" tabindex="-1"></a>        <span class="at">axis.ticks.y =</span> <span class="fu">element_blank</span>(),</span>
+<span id="cb95-24"><a href="acknowledging-previous-findings-informed-priors.html#cb95-24" aria-hidden="true" tabindex="-1"></a>        <span class="at">axis.text.y =</span> <span class="fu">element_blank</span>(),</span>
+<span id="cb95-25"><a href="acknowledging-previous-findings-informed-priors.html#cb95-25" aria-hidden="true" tabindex="-1"></a>        <span class="at">axis.title.y=</span><span class="fu">element_blank</span>(),</span>
+<span id="cb95-26"><a href="acknowledging-previous-findings-informed-priors.html#cb95-26" aria-hidden="true" tabindex="-1"></a>        <span class="at">axis.line.x =</span> <span class="fu">element_line</span>(<span class="at">size=</span><span class="fl">0.1</span>),</span>
+<span id="cb95-27"><a href="acknowledging-previous-findings-informed-priors.html#cb95-27" aria-hidden="true" tabindex="-1"></a>        <span class="at">axis.line.y =</span> <span class="fu">element_line</span>(<span class="at">size=</span><span class="fl">0.0</span>),</span>
+<span id="cb95-28"><a href="acknowledging-previous-findings-informed-priors.html#cb95-28" aria-hidden="true" tabindex="-1"></a>        <span class="at">axis.text.x =</span> <span class="fu">element_blank</span>(),</span>
+<span id="cb95-29"><a href="acknowledging-previous-findings-informed-priors.html#cb95-29" aria-hidden="true" tabindex="-1"></a>        <span class="at">axis.title.x=</span><span class="fu">element_blank</span>(),</span>
+<span id="cb95-30"><a href="acknowledging-previous-findings-informed-priors.html#cb95-30" aria-hidden="true" tabindex="-1"></a>        <span class="at">legend.position =</span> <span class="st">&quot;none&quot;</span>)</span>
+<span id="cb95-31"><a href="acknowledging-previous-findings-informed-priors.html#cb95-31" aria-hidden="true" tabindex="-1"></a>plot2 <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(Posterior) <span class="sc">+</span> </span>
+<span id="cb95-32"><a href="acknowledging-previous-findings-informed-priors.html#cb95-32" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_classic</span>() <span class="sc">+</span></span>
+<span id="cb95-33"><a href="acknowledging-previous-findings-informed-priors.html#cb95-33" aria-hidden="true" tabindex="-1"></a>  <span class="fu">xlim</span>(<span class="fu">c</span>(<span class="sc">-</span><span class="fl">1.5</span>, <span class="fl">1.5</span>)) <span class="sc">+</span></span>
+<span id="cb95-34"><a href="acknowledging-previous-findings-informed-priors.html#cb95-34" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_density</span>(<span class="fu">aes</span>(<span class="at">x =</span> b_RegisterIDS, <span class="at">fill =</span> priors), <span class="at">alpha =</span> <span class="fl">0.7</span>) <span class="sc">+</span></span>
+<span id="cb95-35"><a href="acknowledging-previous-findings-informed-priors.html#cb95-35" aria-hidden="true" tabindex="-1"></a>  <span class="fu">xlab</span>(<span class="st">&#39;Effect Size&#39;</span>) <span class="sc">+</span></span>
+<span id="cb95-36"><a href="acknowledging-previous-findings-informed-priors.html#cb95-36" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggtitle</span>(<span class="fu">expression</span>(<span class="fu">paste</span>(<span class="st">&quot;Posteriors&quot;</span>))) <span class="sc">+</span></span>
+<span id="cb95-37"><a href="acknowledging-previous-findings-informed-priors.html#cb95-37" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_vline</span>(<span class="at">xintercept =</span> <span class="fl">0.0</span>, <span class="at">linetype =</span> <span class="dv">3</span>) <span class="sc">+</span></span>
+<span id="cb95-38"><a href="acknowledging-previous-findings-informed-priors.html#cb95-38" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_fill_manual</span>(<span class="at">name =</span> <span class="st">&quot;Priors:&quot;</span>,</span>
+<span id="cb95-39"><a href="acknowledging-previous-findings-informed-priors.html#cb95-39" aria-hidden="true" tabindex="-1"></a>                  <span class="at">labels =</span> <span class="fu">c</span>(<span class="st">&#39;Danish&#39;</span>, <span class="st">&#39;Meta-analytic&#39;</span>, <span class="st">&quot;Skeptical&quot;</span>),</span>
+<span id="cb95-40"><a href="acknowledging-previous-findings-informed-priors.html#cb95-40" aria-hidden="true" tabindex="-1"></a>                  <span class="at">values=</span><span class="fu">c</span>(<span class="st">&quot;#FC4E07&quot;</span>, <span class="st">&quot;steelblue&quot;</span>, <span class="st">&quot;#228B22&quot;</span>)) <span class="sc">+</span></span>
+<span id="cb95-41"><a href="acknowledging-previous-findings-informed-priors.html#cb95-41" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_color_manual</span>(<span class="at">values=</span><span class="fu">c</span>(<span class="st">&quot;#FC4E07&quot;</span>,<span class="st">&quot;#228B22&quot;</span>, <span class="st">&quot;steelblue&quot;</span>)) <span class="sc">+</span> </span>
+<span id="cb95-42"><a href="acknowledging-previous-findings-informed-priors.html#cb95-42" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">plot.title =</span> <span class="fu">element_text</span>(<span class="at">hjust =</span> <span class="fl">0.5</span>, <span class="at">size=</span><span class="dv">15</span>),</span>
+<span id="cb95-43"><a href="acknowledging-previous-findings-informed-priors.html#cb95-43" aria-hidden="true" tabindex="-1"></a>        <span class="at">axis.ticks.y =</span> <span class="fu">element_blank</span>(),</span>
+<span id="cb95-44"><a href="acknowledging-previous-findings-informed-priors.html#cb95-44" aria-hidden="true" tabindex="-1"></a>        <span class="at">axis.text.y =</span> <span class="fu">element_blank</span>(),</span>
+<span id="cb95-45"><a href="acknowledging-previous-findings-informed-priors.html#cb95-45" aria-hidden="true" tabindex="-1"></a>        <span class="at">axis.title.y=</span><span class="fu">element_blank</span>(),</span>
+<span id="cb95-46"><a href="acknowledging-previous-findings-informed-priors.html#cb95-46" aria-hidden="true" tabindex="-1"></a>        <span class="at">axis.line =</span> <span class="fu">element_line</span>(<span class="at">size=</span><span class="dv">0</span>),</span>
+<span id="cb95-47"><a href="acknowledging-previous-findings-informed-priors.html#cb95-47" aria-hidden="true" tabindex="-1"></a>        <span class="at">legend.position =</span> <span class="st">&quot;bottom&quot;</span>)</span>
+<span id="cb95-48"><a href="acknowledging-previous-findings-informed-priors.html#cb95-48" aria-hidden="true" tabindex="-1"></a>priors_posteriors_plot <span class="ot">&lt;-</span> <span class="fu">plot_grid</span>(plot1, plot2, <span class="at">ncol=</span><span class="dv">1</span>)</span>
+<span id="cb95-49"><a href="acknowledging-previous-findings-informed-priors.html#cb95-49" aria-hidden="true" tabindex="-1"></a>priors_posteriors_plot</span></code></pre></div>
+<p><img src="_main_files/figure-html/unnamed-chunk-57-1.png" width="672" /></p>
+<p>Q10: Why does the model with the Danish study prior not shift as much as those with the skeptical and meta-analytic priors?</p>
+<p>Answer:</p>
+<hr />
+<p>Q11: What does this tell us about the nature of evidence accumulation in Bayesian models?</p>
+<p>Answer:</p>
+<hr />
+
+</div>
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="acknowledging-repeated-measures-multi-level-model.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="recommendations.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"whatsapp": false,
+"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": "https://github.com/USERNAME/REPO/edit/BRANCH/04-part3.Rmd",
+"text": "Edit"
+},
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": null,
+"text": null
+},
+"download": ["_main.pdf", "_main.epub"],
+"search": {
+"engine": "fuse",
+"options": null
+},
+"toc": {
+"collapse": "subsection"
+}
+});
+});
+</script>
+
+</body>
+
+</html>

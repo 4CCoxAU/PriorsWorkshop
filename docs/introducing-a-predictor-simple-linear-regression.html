@@ -1,0 +1,591 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>Chapter 3 Introducing a predictor: Simple Linear Regression | Workshop on Bayesian Inference: Priors and workflow</title>
+  <meta name="description" content="This site provides the materials for a workshop on Bayesian data analysis, with a focus on a rigorous workflow and the definition of priors." />
+  <meta name="generator" content="bookdown 0.24 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="Chapter 3 Introducing a predictor: Simple Linear Regression | Workshop on Bayesian Inference: Priors and workflow" />
+  <meta property="og:type" content="book" />
+  
+  
+  <meta property="og:description" content="This site provides the materials for a workshop on Bayesian data analysis, with a focus on a rigorous workflow and the definition of priors." />
+  <meta name="github-repo" content="rstudio/bookdown-demo" />
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Chapter 3 Introducing a predictor: Simple Linear Regression | Workshop on Bayesian Inference: Priors and workflow" />
+  
+  <meta name="twitter:description" content="This site provides the materials for a workshop on Bayesian data analysis, with a focus on a rigorous workflow and the definition of priors." />
+  
+
+<meta name="author" content="Riccardo Fusaroli &amp; Chris Cox" />
+
+
+<meta name="date" content="2022-01-10" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="modeling-your-outcome-intercepts-only-model.html"/>
+<link rel="next" href="acknowledging-repeated-measures-multi-level-model.html"/>
+<script src="libs/header-attrs-2.11/header-attrs.js"></script>
+<script src="libs/jquery-3.5.1/jquery-3.5.1.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+<link href="libs/anchor-sections-1.0.1/anchor-sections.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.0.1/anchor-sections.js"></script>
+
+
+<style type="text/css">
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">Workshop on Bayesian Priors</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> Introduction</a>
+<ul>
+<li class="chapter" data-level="1.1" data-path="index.html"><a href="index.html#structure-of-this-workshop"><i class="fa fa-check"></i><b>1.1</b> Structure of this Workshop</a></li>
+<li class="chapter" data-level="1.2" data-path="index.html"><a href="index.html#preparation"><i class="fa fa-check"></i><b>1.2</b> Preparation</a></li>
+<li class="chapter" data-level="1.3" data-path="index.html"><a href="index.html#introductory-video"><i class="fa fa-check"></i><b>1.3</b> Introductory Video</a></li>
+<li class="chapter" data-level="1.4" data-path="index.html"><a href="index.html#video-on-bayesian-inference"><i class="fa fa-check"></i><b>1.4</b> Video on Bayesian inference</a></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="modeling-your-outcome-intercepts-only-model.html"><a href="modeling-your-outcome-intercepts-only-model.html"><i class="fa fa-check"></i><b>2</b> Modeling your outcome: Intercepts-only Model</a>
+<ul>
+<li class="chapter" data-level="2.1" data-path="modeling-your-outcome-intercepts-only-model.html"><a href="modeling-your-outcome-intercepts-only-model.html#video-on-intercepts-only-model"><i class="fa fa-check"></i><b>2.1</b> Video on Intercepts-Only Model</a></li>
+<li class="chapter" data-level="2.2" data-path="modeling-your-outcome-intercepts-only-model.html"><a href="modeling-your-outcome-intercepts-only-model.html#hands-on-exercises"><i class="fa fa-check"></i><b>2.2</b> Hands-on Exercises</a>
+<ul>
+<li class="chapter" data-level="2.2.1" data-path="modeling-your-outcome-intercepts-only-model.html"><a href="modeling-your-outcome-intercepts-only-model.html#introduction-to-the-data"><i class="fa fa-check"></i><b>2.2.1</b> Introduction to the data</a></li>
+<li class="chapter" data-level="2.2.2" data-path="modeling-your-outcome-intercepts-only-model.html"><a href="modeling-your-outcome-intercepts-only-model.html#weakly-informative-priors"><i class="fa fa-check"></i><b>2.2.2</b> Weakly Informative Priors</a></li>
+<li class="chapter" data-level="2.2.3" data-path="modeling-your-outcome-intercepts-only-model.html"><a href="modeling-your-outcome-intercepts-only-model.html#more-informative-priors"><i class="fa fa-check"></i><b>2.2.3</b> More Informative Priors</a></li>
+<li class="chapter" data-level="2.2.4" data-path="modeling-your-outcome-intercepts-only-model.html"><a href="modeling-your-outcome-intercepts-only-model.html#intercepts-only-model"><i class="fa fa-check"></i><b>2.2.4</b> Intercepts-Only Model</a></li>
+<li class="chapter" data-level="2.2.5" data-path="modeling-your-outcome-intercepts-only-model.html"><a href="modeling-your-outcome-intercepts-only-model.html#prior-posterior-update-plots"><i class="fa fa-check"></i><b>2.2.5</b> Prior-Posterior Update Plots</a></li>
+<li class="chapter" data-level="2.2.6" data-path="modeling-your-outcome-intercepts-only-model.html"><a href="modeling-your-outcome-intercepts-only-model.html#interpreting-model-output"><i class="fa fa-check"></i><b>2.2.6</b> Interpreting Model Output</a></li>
+<li class="chapter" data-level="2.2.7" data-path="modeling-your-outcome-intercepts-only-model.html"><a href="modeling-your-outcome-intercepts-only-model.html#bonus-question"><i class="fa fa-check"></i><b>2.2.7</b> Bonus Question</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="introducing-a-predictor-simple-linear-regression.html"><a href="introducing-a-predictor-simple-linear-regression.html"><i class="fa fa-check"></i><b>3</b> Introducing a predictor: Simple Linear Regression</a>
+<ul>
+<li class="chapter" data-level="3.1" data-path="introducing-a-predictor-simple-linear-regression.html"><a href="introducing-a-predictor-simple-linear-regression.html#video-on-simple-linear-regression"><i class="fa fa-check"></i><b>3.1</b> Video on Simple Linear Regression:</a></li>
+<li class="chapter" data-level="3.2" data-path="introducing-a-predictor-simple-linear-regression.html"><a href="introducing-a-predictor-simple-linear-regression.html#hands-on-exercises-1"><i class="fa fa-check"></i><b>3.2</b> Hands-on Exercises</a>
+<ul>
+<li class="chapter" data-level="3.2.1" data-path="introducing-a-predictor-simple-linear-regression.html"><a href="introducing-a-predictor-simple-linear-regression.html#prior-predictive-checks"><i class="fa fa-check"></i><b>3.2.1</b> Prior Predictive Checks</a></li>
+<li class="chapter" data-level="3.2.2" data-path="introducing-a-predictor-simple-linear-regression.html"><a href="introducing-a-predictor-simple-linear-regression.html#simple-regression-model"><i class="fa fa-check"></i><b>3.2.2</b> Simple Regression Model</a></li>
+<li class="chapter" data-level="3.2.3" data-path="introducing-a-predictor-simple-linear-regression.html"><a href="introducing-a-predictor-simple-linear-regression.html#prior-posterior-update-plots-1"><i class="fa fa-check"></i><b>3.2.3</b> Prior-Posterior Update Plots</a></li>
+<li class="chapter" data-level="3.2.4" data-path="introducing-a-predictor-simple-linear-regression.html"><a href="introducing-a-predictor-simple-linear-regression.html#evidence-ratio"><i class="fa fa-check"></i><b>3.2.4</b> Evidence Ratio</a></li>
+<li class="chapter" data-level="3.2.5" data-path="introducing-a-predictor-simple-linear-regression.html"><a href="introducing-a-predictor-simple-linear-regression.html#prior-sensitivity-check"><i class="fa fa-check"></i><b>3.2.5</b> Prior Sensitivity Check</a></li>
+<li class="chapter" data-level="3.2.6" data-path="introducing-a-predictor-simple-linear-regression.html"><a href="introducing-a-predictor-simple-linear-regression.html#bonus-content-on-heteroskedasticity"><i class="fa fa-check"></i><b>3.2.6</b> Bonus Content on Heteroskedasticity</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="acknowledging-repeated-measures-multi-level-model.html"><a href="acknowledging-repeated-measures-multi-level-model.html"><i class="fa fa-check"></i><b>4</b> Acknowledging repeated measures: Multi-level model</a>
+<ul>
+<li class="chapter" data-level="4.1" data-path="acknowledging-repeated-measures-multi-level-model.html"><a href="acknowledging-repeated-measures-multi-level-model.html#videos-on-multi-level-model"><i class="fa fa-check"></i><b>4.1</b> Videos on Multi-level model:</a></li>
+<li class="chapter" data-level="4.2" data-path="acknowledging-repeated-measures-multi-level-model.html"><a href="acknowledging-repeated-measures-multi-level-model.html#hands-on-exercises-2"><i class="fa fa-check"></i><b>4.2</b> Hands-on Exercises</a>
+<ul>
+<li class="chapter" data-level="4.2.1" data-path="acknowledging-repeated-measures-multi-level-model.html"><a href="acknowledging-repeated-measures-multi-level-model.html#prior-specification"><i class="fa fa-check"></i><b>4.2.1</b> Prior Specification</a></li>
+<li class="chapter" data-level="4.2.2" data-path="acknowledging-repeated-measures-multi-level-model.html"><a href="acknowledging-repeated-measures-multi-level-model.html#multi-level-model"><i class="fa fa-check"></i><b>4.2.2</b> Multi-Level Model</a></li>
+<li class="chapter" data-level="4.2.3" data-path="acknowledging-repeated-measures-multi-level-model.html"><a href="acknowledging-repeated-measures-multi-level-model.html#prior-posterior-update-plots-2"><i class="fa fa-check"></i><b>4.2.3</b> Prior-Posterior Update Plots</a></li>
+<li class="chapter" data-level="4.2.4" data-path="acknowledging-repeated-measures-multi-level-model.html"><a href="acknowledging-repeated-measures-multi-level-model.html#hypothesis-testing"><i class="fa fa-check"></i><b>4.2.4</b> Hypothesis Testing</a></li>
+<li class="chapter" data-level="4.2.5" data-path="acknowledging-repeated-measures-multi-level-model.html"><a href="acknowledging-repeated-measures-multi-level-model.html#prior-sensitivity-check-1"><i class="fa fa-check"></i><b>4.2.5</b> Prior Sensitivity Check</a></li>
+<li class="chapter" data-level="4.2.6" data-path="acknowledging-repeated-measures-multi-level-model.html"><a href="acknowledging-repeated-measures-multi-level-model.html#partial-pooling"><i class="fa fa-check"></i><b>4.2.6</b> Partial Pooling</a></li>
+<li class="chapter" data-level="4.2.7" data-path="acknowledging-repeated-measures-multi-level-model.html"><a href="acknowledging-repeated-measures-multi-level-model.html#student-t-model"><i class="fa fa-check"></i><b>4.2.7</b> Student t model</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="acknowledging-previous-findings-informed-priors.html"><a href="acknowledging-previous-findings-informed-priors.html"><i class="fa fa-check"></i><b>5</b> Acknowledging previous findings: Informed priors</a>
+<ul>
+<li class="chapter" data-level="5.1" data-path="acknowledging-previous-findings-informed-priors.html"><a href="acknowledging-previous-findings-informed-priors.html#video-on-informed-priors"><i class="fa fa-check"></i><b>5.1</b> Video on Informed priors:</a></li>
+<li class="chapter" data-level="5.2" data-path="acknowledging-previous-findings-informed-priors.html"><a href="acknowledging-previous-findings-informed-priors.html#hands-on-exercises-3"><i class="fa fa-check"></i><b>5.2</b> Hands-on Exercises</a>
+<ul>
+<li class="chapter" data-level="5.2.1" data-path="acknowledging-previous-findings-informed-priors.html"><a href="acknowledging-previous-findings-informed-priors.html#how-to-encode-information-in-priors"><i class="fa fa-check"></i><b>5.2.1</b> How to Encode Information in Priors</a></li>
+<li class="chapter" data-level="5.2.2" data-path="acknowledging-previous-findings-informed-priors.html"><a href="acknowledging-previous-findings-informed-priors.html#prior-posterior-updates-plot"><i class="fa fa-check"></i><b>5.2.2</b> Prior-Posterior Updates Plot</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="6" data-path="recommendations.html"><a href="recommendations.html"><i class="fa fa-check"></i><b>6</b> Recommendations</a>
+<ul>
+<li class="chapter" data-level="6.1" data-path="recommendations.html"><a href="recommendations.html#where-to-go-for-further-study"><i class="fa fa-check"></i><b>6.1</b> Where to go for further study</a></li>
+<li class="chapter" data-level="6.2" data-path="recommendations.html"><a href="recommendations.html#feedback-on-the-course"><i class="fa fa-check"></i><b>6.2</b> Feedback on the course</a></li>
+</ul></li>
+<li class="divider"></li>
+<li><a href="https://4ccoxau.github.io/PriorsWorkshop/" target="blank"> </a></li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Workshop on Bayesian Inference: Priors and workflow</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="introducing-a-predictor-simple-linear-regression" class="section level1" number="3">
+<h1><span class="header-section-number">Chapter 3</span> Introducing a predictor: Simple Linear Regression</h1>
+<div id="video-on-simple-linear-regression" class="section level2" number="3.1">
+<h2><span class="header-section-number">3.1</span> Video on Simple Linear Regression:</h2>
+<p><a href="https://youtu.be/7tGixoOdW5U" class="uri">https://youtu.be/7tGixoOdW5U</a></p>
+<p>After watching the video we recommend you download the Markdown file and go through it in Rstudio:</p>
+<p><a href="data:text/x-markdown;base64,IyBJbnRyb2R1Y2luZyBhIHByZWRpY3RvcjogU2ltcGxlIExpbmVhciBSZWdyZXNzaW9uCgojIyBWaWRlbyBvbiBTaW1wbGUgTGluZWFyIFJlZ3Jlc3Npb246CgpodHRwczovL3lvdXR1LmJlLzd0R2l4b09kVzVVCgpBZnRlciB3YXRjaGluZyB0aGUgdmlkZW8gd2UgcmVjb21tZW5kIHlvdSBkb3dubG9hZCB0aGUgTWFya2Rvd24gZmlsZSBhbmQgZ28gdGhyb3VnaCBpdCBpbiBSc3R1ZGlvOgoKYGBge3IsIGVjaG89RkFMU0V9CnhmdW46OmVtYmVkX2ZpbGUoJzAyLXBhcnQxLlJtZCcpCmBgYAoKVGhlIGRhdGEgYXJlIGF2YWlsYWJsZSBoZXJlIChzYW1lIGRhdGEgYXMgdGhlIHByZXZpb3VzIG1hcmtkb3duKToKCmBgYHtyLCBlY2hvPUZBTFNFfQp4ZnVuOjplbWJlZF9maWxlKCd2b3dlbF9zcGFjZV9hcmVhX2RhdGEuY3N2JykKYGBgCgpUaGUgY29udGVudCBvZiB0aGUgbWFya2Rvd24gaXMgcmVwcm9kdWNlZCBiZWxvdy4KCiMjIEhhbmRzLW9uIEV4ZXJjaXNlcwoKIyMjIFByaW9yIFByZWRpY3RpdmUgQ2hlY2tzCgpMZXQncyBzdGFydCBvZmYgYnkgYnVpbGRpbmcgYSBtb2RlbCB0aGF0IGluY2x1ZGVzIHRoZSBjb25zdGFudCBlZmZlY3Qgb2YgUmVnaXN0ZXIgYnkgdXNpbmcgdGhlIGJmKCkgZnVuY3Rpb246CgpgYGB7cn0KQXJ0aWN1bGF0aW9uX2YyIDwtIGJmKEFydGljdWxhdGlvblMgfiAxICsgUmVnaXN0ZXIpCmBgYAoKTGV0J3Mgc2VlIHdoaWNoIHByaW9ycyB3ZSBuZWVkIHRvIHNwZWNpZnkgZm9yIHRoaXMgbW9kZWwgYnkgdXNpbmcgdGhlIHNhbWUgZ2V0X3ByaW9yKCkgZnVuY3Rpb24gYXMgaW4gUGFydCBJOgoKYGBge3J9CmdldF9wcmlvcihBcnRpY3VsYXRpb25fZjIsCiAgICAgICAgICBkYXRhID0gZCwgCiAgICAgICAgICBmYW1pbHkgPSBnYXVzc2lhbikKYGBgCgpUaGUgb3V0cHV0IGxldHMgdXMga25vdyB0aGF0IHdlIG5lZWQgdG8gc3BlY2lmeSBwcmlvcnMgZm9yIHRoZSBJbnRlcmNlcHQsIHNsb3BlIChpLmUuIGIpLCBhbmQgcmVzaWR1YWwgdmFyaWF0aW9uIChpLmUuIHNpZ21hKS4gTGV0J3MgdXNlIHRoZSBwcmlvcnMgd2UgZGlzY3Vzc2VkIGluIHRoZSBsZWN0dXJlOgoKYGBge3J9CkFydGljdWxhdGlvbl9wMiA8LSBjKAogIHByaW9yKG5vcm1hbCgwLCAxKSwgY2xhc3MgPSBJbnRlcmNlcHQpLAogIHByaW9yKG5vcm1hbCgwLCAwLjMpLCBjbGFzcyA9IGIpLAogIHByaW9yKG5vcm1hbCgxLCAwLjUpLCBjbGFzcyA9IHNpZ21hKSkKYGBgCgpTaW1pbGFyIHRvIGJlZm9yZSwgbGV0J3MgcGVyZm9ybSBhIHByaW9yIHByZWRpY3RpdmUgY2hlY2sgdG8gbWFrZSBzdXJlIHRoYXQgb3VyIHByaW9yIGV4cGVjdGF0aW9ucyBnZW5lcmF0ZSByZWxldmFudCB2YWx1ZXM6CgpgYGB7ciwgcmVzdWx0cz0iaGlkZSIsIG1lc3NhZ2U9RkFMU0V9CkFydGljdWxhdGlvbl9tMl9wcmlvciA8LQogIGJybSgKICAgIEFydGljdWxhdGlvbl9mMiwKICAgIGRhdGEgPSBkLAogICAgc2F2ZV9wYXJzID0gc2F2ZV9wYXJzKGFsbCA9IFRSVUUpLAogICAgZmFtaWx5ID0gZ2F1c3NpYW4sCiAgICBwcmlvciA9IEFydGljdWxhdGlvbl9wMiwKICAgIGZpbGUgPSAiQXJ0aWN1bGF0aW9uX20yX3ByaW9yIiwKICAgICNyZWZpdCA9ICJvbl9jaGFuZ2UiLAogICAgc2FtcGxlX3ByaW9yID0gIm9ubHkiLAogICAgaXRlciA9IDUwMDAsIAogICAgd2FybXVwID0gMTAwMCwKICAgIGNvcmVzID0gMiwKICAgIGNoYWlucyA9IDIsCiAgICBiYWNrZW5kID0gImNtZHN0YW5yIiwKICAgIHRocmVhZHMgPSB0aHJlYWRpbmcoMiksCiAgICBjb250cm9sID0gbGlzdCgKICAgICAgYWRhcHRfZGVsdGEgPSAwLjk5LAogICAgICBtYXhfdHJlZWRlcHRoID0gMTUgKSkKYGBgCgpMZXQncyBydW4gdGhlIHBwX2NoZWNrKCkgZnVuY3Rpb24gYSBjb3VwbGUgb2YgdGltZXMgdG8gY2hlY2sgdGhlIHByaW9yIHByZWRpY3Rpb25zOgoKYGBge3J9CnBwX2NoZWNrKEFydGljdWxhdGlvbl9tMl9wcmlvciwgbmRyYXdzID0gMTAwKQpgYGAKCiMjIyBTaW1wbGUgUmVncmVzc2lvbiBNb2RlbApHcmVhdCEgVGhlIHNhbXBsZXMgZnJvbSBvdXIgcHJpb3JzIGFwcGVhciB0byBiZSB3aXRoaW4gdGhlIG9yZGVyIG9mIG1hZ25pdHVkZSB0aGF0IHdlIGV4cGVjdC4gTGV0J3MgcnVuIHRoZSBtb2RlbCB3aXRoIHRoZXNlIHByaW9ycyBvbiB0aGUgYWN0dWFsIGRhdGE6CgpgYGB7ciwgcmVzdWx0cz0iaGlkZSIsIG1lc3NhZ2U9RkFMU0V9CkFydGljdWxhdGlvbl9tMiA8LQogIGJybSgKICAgIEFydGljdWxhdGlvbl9mMiwKICAgIGRhdGEgPSBkLAogICAgc2F2ZV9wYXJzID0gc2F2ZV9wYXJzKGFsbCA9IFRSVUUpLAogICAgZmFtaWx5ID0gZ2F1c3NpYW4sCiAgICBwcmlvciA9IEFydGljdWxhdGlvbl9wMiwKICAgIGZpbGUgPSAiQXJ0aWN1bGF0aW9uX20yIiwKICAgICNyZWZpdCA9ICJvbl9jaGFuZ2UiLAogICAgc2FtcGxlX3ByaW9yID0gVCwKICAgIGl0ZXIgPSA1MDAwLCAKICAgIHdhcm11cCA9IDEwMDAsCiAgICBjb3JlcyA9IDIsCiAgICBjaGFpbnMgPSAyLAogICAgYmFja2VuZCA9ICJjbWRzdGFuciIsCiAgICB0aHJlYWRzID0gdGhyZWFkaW5nKDIpLAogICAgY29udHJvbCA9IGxpc3QoCiAgICAgIGFkYXB0X2RlbHRhID0gMC45OSwKICAgICAgbWF4X3RyZWVkZXB0aCA9IDE1ICkpCmBgYAoKTGV0J3MgbWFrZSBzdXJlIHRoYXQgdGhlIG1vZGVsIGhhcyBjYXB0dXJlZCB0aGUgZGF0YSBieSBydW5uaW5nIHRoZSBwcF9jaGVjaygpIGZ1bmN0aW9uIGEgY291cGxlIG9mIHRpbWVzOgoKYGBge3J9CnBwX2NoZWNrKEFydGljdWxhdGlvbl9tMiwgbmRyYXdzID0gMTAwKQpgYGAKClRoZXNlIHBsb3RzIGluZGljYXRlIHRoYXQgdGhhdCB0aGUgcG9zdGVyaW9yIHByZWRpY3Rpb25zIGZyb20gb3VyIG1vZGVsIGFyZSBjb21wYXJhYmxlIHRvIHRoZSBvYnNlcnZlZCBkYXRhLiBQZXJmZWN0ISBOb3cgdGhhdCBvdXIgbW9kZWwgaW5jbHVkZXMgdGhlIGNvbnN0YW50IGVmZmVjdCBvZiBSZWdpc3Rlciwgd2UgY2FuIGNyZWF0ZSBhIHBsb3QgdG8gZXhwbG9yZSBob3cgUmVnaXN0ZXIgY2hhbmdlcyB0aGUgZGVwZW5kZW50IHZhcmlhYmxlIChpLmUuIEFydGljdWxhdGlvblMpLiBXZSBkbyB0aGlzIHdpdGggdGhlIGNvbmRpdGlvbmFsX2VmZmVjdHMoKSBmdW5jdGlvbjoKCmBgYHtyfQojIE1vZGVsIGluZmVyZW5jZSAocG9wdWxhdGlvbiBlc3RpbWF0ZSkKcGxvdChjb25kaXRpb25hbF9lZmZlY3RzKEFydGljdWxhdGlvbl9tMikpCgojIE1vZGVsIGluZmVyZW5jZSAocG9wdWxhdGlvbiBlc3RpbWF0ZSkgcGx1cyBhY3R1YWwgZGF0YQpwbG90KGNvbmRpdGlvbmFsX2VmZmVjdHMoQXJ0aWN1bGF0aW9uX20yKSwgcG9pbnRzID0gVCkKCiMgTW9kZWwgcHJlZGljdGlvbnMgKHBvcHVsYXRpb24gZXN0aW1hdGUgKyBzaWdtYSkKcGxvdChjb25kaXRpb25hbF9lZmZlY3RzKEFydGljdWxhdGlvbl9tMiwgc3BhZ2hldHRpID0gVCwgbWV0aG9kID0gInByZWRpY3QiKSwgcG9pbnRzID0gVCkKYGBgCgpRMy41OiBob3cgZG8gdGhlIHBsb3RzIHVzaW5nIHRoZSAibWV0aG9kPSJwcmVkaWN0IiIgZGlmZmVyIGZyb20gdGhlIGZpcnN0IHR3bz8KCkFuc3dlcjoKCgpfX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KCiMjIyBQcmlvci1Qb3N0ZXJpb3IgVXBkYXRlIFBsb3RzCkxldCdzIGhhdmUgYSBsb29rIGF0IHRoZSBwcmlvci1wb3N0ZXJpb3IgdXBkYXRlIHBsb3RzIGZvciB0aGlzIG1vZGVsOiAKCmBgYHtyfQojU2FtcGxlIHRoZSBwYXJhbWV0ZXJzIG9mIGludGVyZXN0OgpQb3N0ZXJpb3JfbTIgPC0gYXNfZHJhd3NfZGYoQXJ0aWN1bGF0aW9uX20yKQoKI1Bsb3QgdGhlIHByaW9yLXBvc3RlcmlvciB1cGRhdGUgcGxvdCBmb3IgdGhlIGludGVyY2VwdDoKZ2dwbG90KFBvc3Rlcmlvcl9tMikgKwogIGdlb21fZGVuc2l0eShhZXMocHJpb3JfSW50ZXJjZXB0KSwgZmlsbD0ic3RlZWxibHVlIiwgY29sb3I9ImJsYWNrIixhbHBoYT0wLjYpICsKICBnZW9tX2RlbnNpdHkoYWVzKGJfSW50ZXJjZXB0KSwgZmlsbD0iI0ZDNEUwNyIsIGNvbG9yPSJibGFjayIsYWxwaGE9MC42KSArIAogIHhsYWIoJ0ludGVyY2VwdCcpICsKICB0aGVtZV9jbGFzc2ljKCkKCiNQbG90IHRoZSBwcmlvci1wb3N0ZXJpb3IgdXBkYXRlIHBsb3QgZm9yIGI6CmdncGxvdChQb3N0ZXJpb3JfbTIpICsKICBnZW9tX2RlbnNpdHkoYWVzKHByaW9yX2IpLCBmaWxsPSJzdGVlbGJsdWUiLCBjb2xvcj0iYmxhY2siLGFscGhhPTAuNikgKwogIGdlb21fZGVuc2l0eShhZXMoYl9SZWdpc3RlcklEUyksIGZpbGw9IiNGQzRFMDciLCBjb2xvcj0iYmxhY2siLGFscGhhPTAuNikgKyAKICB4bGFiKCdiJykgKwogIHRoZW1lX2NsYXNzaWMoKQoKI1Bsb3QgdGhlIHByaW9yLXBvc3RlcmlvciB1cGRhdGUgcGxvdCBmb3Igc2lnbWE6CmdncGxvdChQb3N0ZXJpb3JfbTIpICsKICBnZW9tX2RlbnNpdHkoYWVzKHByaW9yX3NpZ21hKSwgZmlsbD0ic3RlZWxibHVlIiwgY29sb3I9ImJsYWNrIixhbHBoYT0wLjYpICsKICBnZW9tX2RlbnNpdHkoYWVzKHNpZ21hKSwgZmlsbD0iI0ZDNEUwNyIsIGNvbG9yPSJibGFjayIsYWxwaGE9MC42KSArIAogIHhsYWIoJ1NpZ21hJykgKwogIHRoZW1lX2NsYXNzaWMoKQpgYGAKCkxldCdzIHRyeSB0byByZWFkIHRoZSBtb2RlbCBvdXRwdXQgYW5kIGludGVycHJldCB0aGUgZmluZGluZ3M6CgpgYGB7cn0Kc3VtbWFyeShBcnRpY3VsYXRpb25fbTIpCmBgYAoKUTQ6IFdoYXQgZG9lcyB0aGlzIG1vZGVsIHN1Z2dlc3QgYWJvdXQgdGhlIGh5cGVyYXJ0aWN1bGF0aW9uIGh5cG90aGVzaXMgaW4gRGFuaXNoPwoKQW5zd2VyOgoKCgpfX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KCiMjIyBFdmlkZW5jZSBSYXRpbwpMZXQncyB0ZXN0IG91ciBoeXBvdGhlc2lzIHRoYXQgY2FyZWdpdmVycycgdm93ZWwgc3BhY2VzIGFyZSBzbWFsbGVyIGluIElEUyBieSBjYWxjdWxhdGluZyB0aGUgZXZpZGVuY2UgcmF0aW8sIGFzIGRpc2N1c3NlZCBpbiB0aGUgbGVjdHVyZSwgdXNpbmcgdGhlIGh5cG90aGVzaXMoKSBmdW5jdGlvbjoKCmBgYHtyfQpoeXBvdGhlc2lzKEFydGljdWxhdGlvbl9tMiwgIlJlZ2lzdGVySURTIDwgMCIpCmBgYAoKIyMjIFByaW9yIFNlbnNpdGl2aXR5IENoZWNrClRoZSBldmlkZW5jZSByYXRpbyBvZiB0aGUgYWJvdmUgY29uc3RhbnQtZWZmZWN0IG1vZGVsIGFwcGVhcnMgdG8gcHJvdmlkZSBxdWl0ZSBzdHJvbmcgZXZpZGVuY2UgaW4gZmF2b3VyIG9mIG91ciBoeXBvdGhlc2lzLiBJZiB5b3UncmUgYSB3b3JyaWVyIGxpa2UgdXMsIGhvd2V2ZXIsIHlvdSdsbCBzdGFydCB0byBzZWNvbmQtZ3Vlc3MgdGhpcyByZXN1bHQgYW5kIHRoaW5rIHNvbWV0aGluZyBsaWtlIHRoZSBmb2xsb3dpbmc6IGhvdyBjYW4gd2UgY2hlY2sgdGhlIGV4dGVudCB0byB3aGljaCBvdXIgc3BlY2lmaWNhdGlvbiBvZiBwcmlvcnMgaGFzIGluZmx1ZW5jZWQgdGhlIGVzdGltYXRlcz8KClRoZSBhbnN3ZXIgaXMgdG8gY29uZHVjdCBhIHByaW9yIHJvYnVzdG5lc3MgY2hlY2s7IHRoYXQgaXMsIHdlIGNhbiBsb29wIHRocm91Z2ggMTUgcHJpb3JzIHdpdGggMTUgZGlmZmVyZW50IHN0YW5kYXJkIGRldmlhdGlvbnMgYW5kIG9ic2VydmUgdGhlIGVmZmVjdCBpdCBoYXMgb24gb3VyIHBvc3RlcmlvciBlc3RpbWF0ZS4gV2UnbGwgZG8gdGhpcyBpbiBhIGZvciBsb29wIHRvIG1ha2UgaXQgZWFzeSB0byBzZWUgd2hhdCdzIGdvaW5nIG9uOgoKCmBgYHtyLCByZXN1bHRzPSJoaWRlIiwgbWVzc2FnZT1GQUxTRX0KIyBUaGUgcHJpb3JzIGZvciB0aGUgYWJvdmUgbW9kZWwsIHJlcGVhdGVkIGhlcmU6CkFydGljdWxhdGlvbl9wMiA8LSBjKAogIHByaW9yKG5vcm1hbCgwLCAxKSwgY2xhc3MgPSBJbnRlcmNlcHQpLAogIHByaW9yKG5vcm1hbCgwLCAwLjMpLCBjbGFzcyA9IGIpLAogIHByaW9yKG5vcm1hbCgxLCAwLjUpLCBjbGFzcyA9IHNpZ21hKSkKIyBjb25zdHJ1Y3QgYSBzZXF1ZW5jZSBvZiBzZHMgdG8gbG9vcCB0aHJvdWdoIGZvciB0aGUgc2xvcGUgcHJpb3I6CnByaVNEIDwtIHNlcSgwLjEsIDEuNSwgbGVuZ3RoLm91dCA9IDE1KQpwcmlvcnNOIDwtIEFydGljdWxhdGlvbl9wMgojY3JlYXRlIGVtcHR5IHZhcmlhYmxlcyB0byBzdG9yZSBvdXRwdXQgb2YgdGhlIGxvb3A6CnBvc3RfcHJlZCA8LSBjKCkKcG9zdF9wcmVkX2xjaSA8LSBjKCkKcG9zdF9wcmVkX3VjaSA8LSBjKCkKCmZvciAoaSBpbiAxOmxlbmd0aChwcmlTRCkpIHsKICBwcmlvcnNOWzIsXSA8LSBzZXRfcHJpb3IocGFzdGUwKCJub3JtYWwoMCwgIiwgcHJpU0RbaV0sIikiKSwgY2xhc3MgPSAiYiIpCiAgbW9kZWxfZm9yX2xvb3AgPC0gYnJtKEFydGljdWxhdGlvbl9mMiwKICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIGRhdGEgICA9IGQsIAogICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgZmFtaWx5ID0gZ2F1c3NpYW4sIAogICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgcHJpb3IgID0gcHJpb3JzTiwgCiAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICBzYW1wbGVfcHJpb3IgPSBULAogICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgd2FybXVwID0gMTAwMCwgCiAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICBpdGVyICAgPSA1MDAwLCAKICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIGNvcmVzICA9IDIsCiAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICBjaGFpbnMgPSAyLAogICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgYmFja2VuZCA9ICJjbWRzdGFuciIsCiAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICB0aHJlYWRzID0gdGhyZWFkaW5nKDIpLAogICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgc2F2ZV9wYXJzID0gc2F2ZV9wYXJzKGFsbCA9IFRSVUUpLAogICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgY29udHJvbCA9IGxpc3QoYWRhcHRfZGVsdGEgICA9IDAuOTksIAogICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgbWF4X3RyZWVkZXB0aCA9IDE1KSkKICAKICBwb3N0X3ByZWRzIDwtIHNwcmVhZF9kcmF3cyhtb2RlbF9mb3JfbG9vcCwgYl9SZWdpc3RlcklEUykKICBwb3N0X3ByZWRbaV0gPC0gbWVkaWFuKHBvc3RfcHJlZHMkYl9SZWdpc3RlcklEUykKICBwb3N0X3ByZWRfbGNpW2ldIDwtIHF1YW50aWxlKHBvc3RfcHJlZHMkYl9SZWdpc3RlcklEUywgcHJvYiA9IDAuMDI1KQogIHBvc3RfcHJlZF91Y2lbaV0gPC0gcXVhbnRpbGUocG9zdF9wcmVkcyRiX1JlZ2lzdGVySURTLCBwcm9iID0gMC45NzUpCn0KCm1vZGVsc19kYXRhIDwtIHRpYmJsZShwcmlTRCwgcG9zdF9wcmVkLCBwb3N0X3ByZWRfbGNpLCBwb3N0X3ByZWRfdWNpKQpnZ3Bsb3QoZGF0YT1tb2RlbHNfZGF0YSwgYWVzKHg9cHJpU0QsIHk9cG9zdF9wcmVkKSkgKwogIGdlb21fcG9pbnQoc2l6ZSA9IDMpICsKICBnZW9tX3BvaW50cmFuZ2UoeW1pbiA9IHBvc3RfcHJlZF9sY2ksIHltYXggPSBwb3N0X3ByZWRfdWNpKSArCiAgeWxpbSgtMS4zLCAwLjMpICsKICBsYWJzKHg9IlN0YW5kYXJkIERldmlhdGlvbiBvZiBTbG9wZSBQcmlvciIsIAogICAgICAgeT0iUG9zdGVyaW9yIEVzdGltYXRlIGZvciBzbG9wZSIsIAogICAgICAgdGl0bGU9IlNlbnNpdGl2aXR5IGFuYWx5c2lzIGZvciBjb25zdGFudC1lZmZlY3QgbW9kZWwiKSArCiAgdGhlbWVfYncoKSArCiAgdGhlbWUocGxvdC50aXRsZSA9IGVsZW1lbnRfdGV4dChoanVzdCA9IDAuNSwgc2l6ZSA9IDE1KSwKICAgICAgICBheGlzLnRpdGxlLnggPSBlbGVtZW50X3RleHQoc2l6ZSA9IDEzKSwKICAgICAgICBheGlzLnRleHQueSA9IGVsZW1lbnRfdGV4dChzaXplID0gMTIpLAogICAgICAgIGF4aXMudGV4dC54ID0gZWxlbWVudF90ZXh0KHNpemUgPSAxMiksCiAgICAgICAgYXhpcy50aXRsZS55ID0gZWxlbWVudF90ZXh0KHNpemUgPSAxMykpCmBgYAoKIyMjIEJvbnVzIENvbnRlbnQgb24gSGV0ZXJvc2tlZGFzdGljaXR5CgpOb3cgdGhhdCB3ZSd2ZSBjYWxtZWQgb3VyIHdvcnJpZXMgYWJvdXQgdGhlIGluZmx1ZW5jZSBvZiBvdXIgcHJpb3JzLCB3ZSBjYW4gZmVlbCBzbGlnaHRseSBtb3JlIGNvbmZpZGVudCBpbiBvdXIgcmVzdWx0cy4gQnV0IHdoYXQgaWYgd2UncmUgYWxzbyB3b3JyaWVkIGFib3V0IHRoZSBpbmZsdWVuY2Ugb2YgaGV0ZXJvc2tlZGFzdGljaXR5IChiZXlvbmQgaG93IHRvIHByb25vdW5jZSBpdCk/IERvbid0IHdvcnJ5IC0gd2UgY2FuIHNpbXBseSBtb2RlbCB0aGUgdmFyaWFuY2UgaW4gdGhlIHR3byBncm91cHMgYW5kIGNoZWNrIHdoZXRoZXIgaXQgY2hhbmdlcyB0aGUgcmVzdWx0cyAoYW5kIGJldHRlciBkZXNjcmliZXMgdGhlIGRhdGEpLgoKYGBge3IsIHJlc3VsdHM9ImhpZGUiLCBtZXNzYWdlPUZBTFNFfQpib251c19tb2RlbCA8LSBiZihBcnRpY3VsYXRpb25TIH4gMSArIFJlZ2lzdGVyLCBzaWdtYSB+IDEgKyBSZWdpc3RlcikKCmdldF9wcmlvcihib251c19tb2RlbCwgCiAgICAgICAgICBkYXRhID0gZCwgCiAgICAgICAgICBmYW1pbHkgPSBnYXVzc2lhbikKYm9udXNfcHJpb3JzIDwtIGMoCiAgcHJpb3Iobm9ybWFsKDAsIDEpLCBjbGFzcyA9IEludGVyY2VwdCksCiAgcHJpb3Iobm9ybWFsKDAsIDAuMyksIGNsYXNzID0gYiksCiAgcHJpb3Iobm9ybWFsKDEsIDAuNSksIGNsYXNzID0gSW50ZXJjZXB0LCBkcGFyPXNpZ21hKSwKICBwcmlvcihub3JtYWwoMCwgMSksIGNsYXNzID0gYiwgZHBhcj1zaWdtYSkKICApCgpib251c19tb2RlbF9wcmlvciA8LQogIGJybSgKICAgIGJvbnVzX21vZGVsLAogICAgZGF0YSA9IGQsCiAgICBzYXZlX3BhcnMgPSBzYXZlX3BhcnMoYWxsID0gVFJVRSksCiAgICBmYW1pbHkgPSBnYXVzc2lhbiwKICAgIHByaW9yID0gYm9udXNfcHJpb3JzLAogICAgZmlsZSA9ICJib251c19tb2RlbF9wcmlvciIsCiAgICAjcmVmaXQgPSAib25fY2hhbmdlIiwKICAgIHNhbXBsZV9wcmlvciA9ICJvbmx5IiwKICAgIGl0ZXIgPSAyMDAwLAogICAgY29yZXMgPSAyLAogICAgY2hhaW5zID0gMiwKICAgIGJhY2tlbmQgPSAiY21kc3RhbnIiLAogICAgdGhyZWFkcyA9IHRocmVhZGluZygyKSwKICAgIGNvbnRyb2wgPSBsaXN0KAogICAgICBhZGFwdF9kZWx0YSA9IDAuOTksCiAgICAgIG1heF90cmVlZGVwdGggPSAxNSApKQoKCnBwX2NoZWNrKGJvbnVzX21vZGVsX3ByaW9yLCBuZHJhd3M9NTApCgpib251c19tb2RlbF9tIDwtCiAgYnJtKAogICAgYm9udXNfbW9kZWwsCiAgICBkYXRhID0gZCwKICAgIHNhdmVfcGFycyA9IHNhdmVfcGFycyhhbGwgPSBUUlVFKSwKICAgIGZhbWlseSA9IGdhdXNzaWFuLAogICAgcHJpb3IgPSBib251c19wcmlvcnMsCiAgICBmaWxlID0gImJvbnVzX21vZGVsX20iLAogICAgI3JlZml0ID0gIm9uX2NoYW5nZSIsCiAgICBzYW1wbGVfcHJpb3IgPSBULAogICAgaXRlciA9IDIwMDAsIAogICAgY29yZXMgPSAyLAogICAgY2hhaW5zID0gMiwKICAgIGJhY2tlbmQgPSAiY21kc3RhbnIiLAogICAgdGhyZWFkcyA9IHRocmVhZGluZygyKSwKICAgIGNvbnRyb2wgPSBsaXN0KAogICAgICBhZGFwdF9kZWx0YSA9IDAuOTksCiAgICAgIG1heF90cmVlZGVwdGggPSAxNSApKQpwcF9jaGVjayhib251c19tb2RlbF9tLCBuZHJhd3M9NTApCnBsb3QoY29uZGl0aW9uYWxfZWZmZWN0cyhib251c19tb2RlbF9tKSwgcG9pbnRzID0gVCkKCiNsZXQncyBjb21wYXJlIHRoaXMgdG8gdGhlIG90aGVyIG1vZGVsOgpwbG90KGNvbmRpdGlvbmFsX2VmZmVjdHMoQXJ0aWN1bGF0aW9uX20yKSwgcG9pbnRzID0gVCkKYGBgCgpgYGB7cn0Kc3VtbWFyeShib251c19tb2RlbF9tKQpgYGAKCk5vdGU6IHdlIGhhdmUgbm90IGNoZWNrZWQgb3VyIHByaW9ycyBoZXJlLiBUaGF0J3MgYW4gZXhlcmNpc2UgZm9yIHlvdSEK" download="02-part1.Rmd">Download 02-part1.Rmd</a></p>
+<p>The data are available here (same data as the previous markdown):</p>
+<p><a href="data:text/csv;base64,IiIsIlN1YmplY3QiLCJSZWdpc3RlciIsIkFydGljdWxhdGlvblMiLCJDaGlsZFNleCIsIkNoaWxkQWdlIiwiRmlyc3RfY2hpbGQiCiIxIiwiQUYiLCJBRFMiLDAuNzYwMTU0NjM2Njg1OTU4LCJtIiwyMCwiTm8iCiIyIiwiQU4iLCJBRFMiLC0xLjI4OTU2NzkxNzg5NDMsIm0iLDIyLCJZZXMiCiIzIiwiQ0wiLCJBRFMiLC0wLjg1OTE0ODM5NDQzNTIyOSwiZiIsMTYsIk5vIgoiNCIsIkRNIiwiQURTIiwtMC44MTQ3ODg3OTQ0NTc5MDYsIm0iLDEyLCJObyIKIjUiLCJJQSIsIkFEUyIsMC43OTc3OTYxMDY4NDU4OTEsImYiLDIzLCJObyIKIjYiLCJKQSIsIkFEUyIsMS4yMDM4MzY1MzcxMDQ0NCwibSIsMjQsIlllcyIKIjciLCJKRSIsIkFEUyIsLTAuOTg4ODk3OTI1OTYxODY4LCJmIiwyMSwiWWVzIgoiOCIsIktBIiwiQURTIiwwLjMwNzYxNTQyNTU4ODI5OCwibSIsMTQsIk5vIgoiOSIsIktWIiwiQURTIiwtMS4xNDMyNzYzNjAyMjEwOCwibSIsMTYsIlllcyIKIjEwIiwiTEsiLCJBRFMiLDAuNjA1NzYxNDcyODg3NDQ3LCJtIiwxNiwiWWVzIgoiMTEiLCJMTSIsIkFEUyIsLTAuMTMzOTQzMDM4MzY4NzE2LCJtIiwxMiwiWWVzIgoiMTIiLCJMViIsIkFEUyIsLTEuMDQzODExODMwNjYyMjIsIm0iLDE2LCJZZXMiCiIxMyIsIk1BIiwiQURTIiwxLjg2MDk5NTgzODEyNTYyLCJmIiwyMywiTm8iCiIxNCIsIk1FIiwiQURTIiwtMC4xNjc0MjgwOTI4ODQyNTYsIm0iLDEyLCJZZXMiCiIxNSIsIk1QUyIsIkFEUyIsLTAuNTMxODQzNDkyNjE2OTk4LCJmIiwxNCwiTm8iCiIxNiIsIk1TIiwiQURTIiwtMC4xMDMzNDY5MTI1OTMwMDIsImYiLDIzLCJZZXMiCiIxNyIsIk1WIiwiQURTIiwtMC41NjEyMjg3OTAxODg4MjIsIm0iLDE2LCJZZXMiCiIxOCIsIlBWIiwiQURTIiwxLjYxNjA0MDc1MTgzNjY3LCJtIiwxMSwiWWVzIgoiMTkiLCJSViIsIkFEUyIsLTEuMDEzMDgyNzA0OTc4NzYsImYiLDExLCJObyIKIjIwIiwiU0EiLCJBRFMiLC0wLjAzODc3MTU0Mjg2NTA0NjQsImYiLDE1LCJObyIKIjIxIiwiU0FGIiwiQURTIiwwLjc5ODcwNTU4OTAyNjIwOSwibSIsMTksIk5vIgoiMjIiLCJTQyIsIkFEUyIsLTAuMTA5MjE5ODM3NDAyMzEzLCJmIiwxOSwiTm8iCiIyMyIsIlRMIiwiQURTIiwwLjU0MjQyMzQ4MTczNTgyLCJtIiwxMSwiTm8iCiIyNCIsIlRNIiwiQURTIiwwLjMwNTAyNTc5NTY5NDE2OCwiZiIsMjQsIlllcyIKIjI1IiwiQUYiLCJJRFMiLDIuMDY1Mzg2NzMzNzkyMTMsIm0iLDIwLCJObyIKIjI2IiwiQU4iLCJJRFMiLC0yLjIyMzYyMTI0MDg3NTgsIm0iLDIyLCJZZXMiCiIyNyIsIkNMIiwiSURTIiwtMC40MTgyMDg1MzI4MDg4MTQsImYiLDE2LCJObyIKIjI4IiwiRE0iLCJJRFMiLC0wLjU5OTE0MzEwMTg2NzQ2NCwibSIsMTIsIk5vIgoiMjkiLCJJQSIsIklEUyIsLTAuMzAzOTU3NTA2MzY5ODY4LCJmIiwyMywiTm8iCiIzMCIsIkpBIiwiSURTIiwtMi4yMzQwNTkyNzM0ODMxMSwibSIsMjQsIlllcyIKIjMxIiwiSkUiLCJJRFMiLC0wLjk5MTU0NDc5NjMxODQyMywiZiIsMjEsIlllcyIKIjMyIiwiS0EiLCJJRFMiLC0wLjkxNDYxOTk4MTg5MzEyOCwibSIsMTQsIk5vIgoiMzMiLCJLViIsIklEUyIsLTEuNTUxODc3ODA4MjMxMjcsIm0iLDE2LCJZZXMiCiIzNCIsIkxLIiwiSURTIiwtMS40MzYwMzM5NTc2MjE4MiwibSIsMTYsIlllcyIKIjM1IiwiTE0iLCJJRFMiLC0wLjAyMDk5MzI5MDc5MTExMywibSIsMTIsIlllcyIKIjM2IiwiTFYiLCJJRFMiLC0wLjM2MTUxNzM4NzcwNzg5OCwibSIsMTYsIlllcyIKIjM3IiwiTUEiLCJJRFMiLDAuMzI4MjQwMzY1MjU4ODY1LCJmIiwyMywiTm8iCiIzOCIsIk1FIiwiSURTIiwtMS4xMzA1NDY2NDA3NTE0OSwibSIsMTIsIlllcyIKIjM5IiwiTVBTIiwiSURTIiwtMS4wNzg5MTk5MDgyOTg0MywiZiIsMTQsIk5vIgoiNDAiLCJNUyIsIklEUyIsLTAuODc4Mzk4NTMxOTQ2NjExLCJmIiwyMywiWWVzIgoiNDEiLCJNViIsIklEUyIsMC40MzAyMzE0NTM5ODQ4MDIsIm0iLDE2LCJZZXMiCiI0MiIsIlBWIiwiSURTIiwwLjU4NTQ5NDQ1OTU0NDM2NywibSIsMTEsIlllcyIKIjQzIiwiUlYiLCJJRFMiLC0wLjE5NzIyMzA3MTc3MTkwMSwiZiIsMTEsIk5vIgoiNDQiLCJTQSIsIklEUyIsLTEuOTMzMTYyNzMwMzkwOTcsImYiLDE1LCJObyIKIjQ1IiwiU0FGIiwiSURTIiwtMC4yMTA2MTIxOTY2MjI0NzcsIm0iLDE5LCJObyIKIjQ2IiwiU0MiLCJJRFMiLC0wLjM2ODM4NTE4MzQ5MTI4OSwiZiIsMTksIk5vIgoiNDciLCJUTCIsIklEUyIsLTIuMDA0ODAzOTI0MDg1MjcsIm0iLDExLCJObyIKIjQ4IiwiVE0iLCJJRFMiLC0xLjE0MDI3MzQ3NjY3MjQ3LCJmIiwyNCwiWWVzIgo=" download="vowel_space_area_data.csv">Download vowel_space_area_data.csv</a></p>
+<p>The content of the markdown is reproduced below.</p>
+</div>
+<div id="hands-on-exercises-1" class="section level2" number="3.2">
+<h2><span class="header-section-number">3.2</span> Hands-on Exercises</h2>
+<div id="prior-predictive-checks" class="section level3" number="3.2.1">
+<h3><span class="header-section-number">3.2.1</span> Prior Predictive Checks</h3>
+<p>Let’s start off by building a model that includes the constant effect of Register by using the bf() function:</p>
+<div class="sourceCode" id="cb22"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb22-1"><a href="introducing-a-predictor-simple-linear-regression.html#cb22-1" aria-hidden="true" tabindex="-1"></a>Articulation_f2 <span class="ot">&lt;-</span> <span class="fu">bf</span>(ArticulationS <span class="sc">~</span> <span class="dv">1</span> <span class="sc">+</span> Register)</span></code></pre></div>
+<p>Let’s see which priors we need to specify for this model by using the same get_prior() function as in Part I:</p>
+<div class="sourceCode" id="cb23"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb23-1"><a href="introducing-a-predictor-simple-linear-regression.html#cb23-1" aria-hidden="true" tabindex="-1"></a><span class="fu">get_prior</span>(Articulation_f2,</span>
+<span id="cb23-2"><a href="introducing-a-predictor-simple-linear-regression.html#cb23-2" aria-hidden="true" tabindex="-1"></a>          <span class="at">data =</span> d, </span>
+<span id="cb23-3"><a href="introducing-a-predictor-simple-linear-regression.html#cb23-3" aria-hidden="true" tabindex="-1"></a>          <span class="at">family =</span> gaussian)</span></code></pre></div>
+<pre><code>##                    prior     class        coef group resp dpar nlpar bound
+##                   (flat)         b                                        
+##                   (flat)         b RegisterIDS                            
+##  student_t(3, -0.4, 2.5) Intercept                                        
+##     student_t(3, 0, 2.5)     sigma                                        
+##        source
+##       default
+##  (vectorized)
+##       default
+##       default</code></pre>
+<p>The output lets us know that we need to specify priors for the Intercept, slope (i.e. b), and residual variation (i.e. sigma). Let’s use the priors we discussed in the lecture:</p>
+<div class="sourceCode" id="cb25"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb25-1"><a href="introducing-a-predictor-simple-linear-regression.html#cb25-1" aria-hidden="true" tabindex="-1"></a>Articulation_p2 <span class="ot">&lt;-</span> <span class="fu">c</span>(</span>
+<span id="cb25-2"><a href="introducing-a-predictor-simple-linear-regression.html#cb25-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">prior</span>(<span class="fu">normal</span>(<span class="dv">0</span>, <span class="dv">1</span>), <span class="at">class =</span> Intercept),</span>
+<span id="cb25-3"><a href="introducing-a-predictor-simple-linear-regression.html#cb25-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">prior</span>(<span class="fu">normal</span>(<span class="dv">0</span>, <span class="fl">0.3</span>), <span class="at">class =</span> b),</span>
+<span id="cb25-4"><a href="introducing-a-predictor-simple-linear-regression.html#cb25-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">prior</span>(<span class="fu">normal</span>(<span class="dv">1</span>, <span class="fl">0.5</span>), <span class="at">class =</span> sigma))</span></code></pre></div>
+<p>Similar to before, let’s perform a prior predictive check to make sure that our prior expectations generate relevant values:</p>
+<div class="sourceCode" id="cb26"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb26-1"><a href="introducing-a-predictor-simple-linear-regression.html#cb26-1" aria-hidden="true" tabindex="-1"></a>Articulation_m2_prior <span class="ot">&lt;-</span></span>
+<span id="cb26-2"><a href="introducing-a-predictor-simple-linear-regression.html#cb26-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">brm</span>(</span>
+<span id="cb26-3"><a href="introducing-a-predictor-simple-linear-regression.html#cb26-3" aria-hidden="true" tabindex="-1"></a>    Articulation_f2,</span>
+<span id="cb26-4"><a href="introducing-a-predictor-simple-linear-regression.html#cb26-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">data =</span> d,</span>
+<span id="cb26-5"><a href="introducing-a-predictor-simple-linear-regression.html#cb26-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">save_pars =</span> <span class="fu">save_pars</span>(<span class="at">all =</span> <span class="cn">TRUE</span>),</span>
+<span id="cb26-6"><a href="introducing-a-predictor-simple-linear-regression.html#cb26-6" aria-hidden="true" tabindex="-1"></a>    <span class="at">family =</span> gaussian,</span>
+<span id="cb26-7"><a href="introducing-a-predictor-simple-linear-regression.html#cb26-7" aria-hidden="true" tabindex="-1"></a>    <span class="at">prior =</span> Articulation_p2,</span>
+<span id="cb26-8"><a href="introducing-a-predictor-simple-linear-regression.html#cb26-8" aria-hidden="true" tabindex="-1"></a>    <span class="at">file =</span> <span class="st">&quot;Articulation_m2_prior&quot;</span>,</span>
+<span id="cb26-9"><a href="introducing-a-predictor-simple-linear-regression.html#cb26-9" aria-hidden="true" tabindex="-1"></a>    <span class="co">#refit = &quot;on_change&quot;,</span></span>
+<span id="cb26-10"><a href="introducing-a-predictor-simple-linear-regression.html#cb26-10" aria-hidden="true" tabindex="-1"></a>    <span class="at">sample_prior =</span> <span class="st">&quot;only&quot;</span>,</span>
+<span id="cb26-11"><a href="introducing-a-predictor-simple-linear-regression.html#cb26-11" aria-hidden="true" tabindex="-1"></a>    <span class="at">iter =</span> <span class="dv">5000</span>, </span>
+<span id="cb26-12"><a href="introducing-a-predictor-simple-linear-regression.html#cb26-12" aria-hidden="true" tabindex="-1"></a>    <span class="at">warmup =</span> <span class="dv">1000</span>,</span>
+<span id="cb26-13"><a href="introducing-a-predictor-simple-linear-regression.html#cb26-13" aria-hidden="true" tabindex="-1"></a>    <span class="at">cores =</span> <span class="dv">2</span>,</span>
+<span id="cb26-14"><a href="introducing-a-predictor-simple-linear-regression.html#cb26-14" aria-hidden="true" tabindex="-1"></a>    <span class="at">chains =</span> <span class="dv">2</span>,</span>
+<span id="cb26-15"><a href="introducing-a-predictor-simple-linear-regression.html#cb26-15" aria-hidden="true" tabindex="-1"></a>    <span class="at">backend =</span> <span class="st">&quot;cmdstanr&quot;</span>,</span>
+<span id="cb26-16"><a href="introducing-a-predictor-simple-linear-regression.html#cb26-16" aria-hidden="true" tabindex="-1"></a>    <span class="at">threads =</span> <span class="fu">threading</span>(<span class="dv">2</span>),</span>
+<span id="cb26-17"><a href="introducing-a-predictor-simple-linear-regression.html#cb26-17" aria-hidden="true" tabindex="-1"></a>    <span class="at">control =</span> <span class="fu">list</span>(</span>
+<span id="cb26-18"><a href="introducing-a-predictor-simple-linear-regression.html#cb26-18" aria-hidden="true" tabindex="-1"></a>      <span class="at">adapt_delta =</span> <span class="fl">0.99</span>,</span>
+<span id="cb26-19"><a href="introducing-a-predictor-simple-linear-regression.html#cb26-19" aria-hidden="true" tabindex="-1"></a>      <span class="at">max_treedepth =</span> <span class="dv">15</span> ))</span></code></pre></div>
+<p>Let’s run the pp_check() function a couple of times to check the prior predictions:</p>
+<div class="sourceCode" id="cb27"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb27-1"><a href="introducing-a-predictor-simple-linear-regression.html#cb27-1" aria-hidden="true" tabindex="-1"></a><span class="fu">pp_check</span>(Articulation_m2_prior, <span class="at">ndraws =</span> <span class="dv">100</span>)</span></code></pre></div>
+<p><img src="_main_files/figure-html/unnamed-chunk-23-1.png" width="672" /></p>
+</div>
+<div id="simple-regression-model" class="section level3" number="3.2.2">
+<h3><span class="header-section-number">3.2.2</span> Simple Regression Model</h3>
+<p>Great! The samples from our priors appear to be within the order of magnitude that we expect. Let’s run the model with these priors on the actual data:</p>
+<div class="sourceCode" id="cb28"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb28-1"><a href="introducing-a-predictor-simple-linear-regression.html#cb28-1" aria-hidden="true" tabindex="-1"></a>Articulation_m2 <span class="ot">&lt;-</span></span>
+<span id="cb28-2"><a href="introducing-a-predictor-simple-linear-regression.html#cb28-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">brm</span>(</span>
+<span id="cb28-3"><a href="introducing-a-predictor-simple-linear-regression.html#cb28-3" aria-hidden="true" tabindex="-1"></a>    Articulation_f2,</span>
+<span id="cb28-4"><a href="introducing-a-predictor-simple-linear-regression.html#cb28-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">data =</span> d,</span>
+<span id="cb28-5"><a href="introducing-a-predictor-simple-linear-regression.html#cb28-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">save_pars =</span> <span class="fu">save_pars</span>(<span class="at">all =</span> <span class="cn">TRUE</span>),</span>
+<span id="cb28-6"><a href="introducing-a-predictor-simple-linear-regression.html#cb28-6" aria-hidden="true" tabindex="-1"></a>    <span class="at">family =</span> gaussian,</span>
+<span id="cb28-7"><a href="introducing-a-predictor-simple-linear-regression.html#cb28-7" aria-hidden="true" tabindex="-1"></a>    <span class="at">prior =</span> Articulation_p2,</span>
+<span id="cb28-8"><a href="introducing-a-predictor-simple-linear-regression.html#cb28-8" aria-hidden="true" tabindex="-1"></a>    <span class="at">file =</span> <span class="st">&quot;Articulation_m2&quot;</span>,</span>
+<span id="cb28-9"><a href="introducing-a-predictor-simple-linear-regression.html#cb28-9" aria-hidden="true" tabindex="-1"></a>    <span class="co">#refit = &quot;on_change&quot;,</span></span>
+<span id="cb28-10"><a href="introducing-a-predictor-simple-linear-regression.html#cb28-10" aria-hidden="true" tabindex="-1"></a>    <span class="at">sample_prior =</span> T,</span>
+<span id="cb28-11"><a href="introducing-a-predictor-simple-linear-regression.html#cb28-11" aria-hidden="true" tabindex="-1"></a>    <span class="at">iter =</span> <span class="dv">5000</span>, </span>
+<span id="cb28-12"><a href="introducing-a-predictor-simple-linear-regression.html#cb28-12" aria-hidden="true" tabindex="-1"></a>    <span class="at">warmup =</span> <span class="dv">1000</span>,</span>
+<span id="cb28-13"><a href="introducing-a-predictor-simple-linear-regression.html#cb28-13" aria-hidden="true" tabindex="-1"></a>    <span class="at">cores =</span> <span class="dv">2</span>,</span>
+<span id="cb28-14"><a href="introducing-a-predictor-simple-linear-regression.html#cb28-14" aria-hidden="true" tabindex="-1"></a>    <span class="at">chains =</span> <span class="dv">2</span>,</span>
+<span id="cb28-15"><a href="introducing-a-predictor-simple-linear-regression.html#cb28-15" aria-hidden="true" tabindex="-1"></a>    <span class="at">backend =</span> <span class="st">&quot;cmdstanr&quot;</span>,</span>
+<span id="cb28-16"><a href="introducing-a-predictor-simple-linear-regression.html#cb28-16" aria-hidden="true" tabindex="-1"></a>    <span class="at">threads =</span> <span class="fu">threading</span>(<span class="dv">2</span>),</span>
+<span id="cb28-17"><a href="introducing-a-predictor-simple-linear-regression.html#cb28-17" aria-hidden="true" tabindex="-1"></a>    <span class="at">control =</span> <span class="fu">list</span>(</span>
+<span id="cb28-18"><a href="introducing-a-predictor-simple-linear-regression.html#cb28-18" aria-hidden="true" tabindex="-1"></a>      <span class="at">adapt_delta =</span> <span class="fl">0.99</span>,</span>
+<span id="cb28-19"><a href="introducing-a-predictor-simple-linear-regression.html#cb28-19" aria-hidden="true" tabindex="-1"></a>      <span class="at">max_treedepth =</span> <span class="dv">15</span> ))</span></code></pre></div>
+<p>Let’s make sure that the model has captured the data by running the pp_check() function a couple of times:</p>
+<div class="sourceCode" id="cb29"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb29-1"><a href="introducing-a-predictor-simple-linear-regression.html#cb29-1" aria-hidden="true" tabindex="-1"></a><span class="fu">pp_check</span>(Articulation_m2, <span class="at">ndraws =</span> <span class="dv">100</span>)</span></code></pre></div>
+<p><img src="_main_files/figure-html/unnamed-chunk-25-1.png" width="672" /></p>
+<p>These plots indicate that that the posterior predictions from our model are comparable to the observed data. Perfect! Now that our model includes the constant effect of Register, we can create a plot to explore how Register changes the dependent variable (i.e. ArticulationS). We do this with the conditional_effects() function:</p>
+<div class="sourceCode" id="cb30"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb30-1"><a href="introducing-a-predictor-simple-linear-regression.html#cb30-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Model inference (population estimate)</span></span>
+<span id="cb30-2"><a href="introducing-a-predictor-simple-linear-regression.html#cb30-2" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(<span class="fu">conditional_effects</span>(Articulation_m2))</span></code></pre></div>
+<p><img src="_main_files/figure-html/unnamed-chunk-26-1.png" width="672" /></p>
+<div class="sourceCode" id="cb31"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb31-1"><a href="introducing-a-predictor-simple-linear-regression.html#cb31-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Model inference (population estimate) plus actual data</span></span>
+<span id="cb31-2"><a href="introducing-a-predictor-simple-linear-regression.html#cb31-2" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(<span class="fu">conditional_effects</span>(Articulation_m2), <span class="at">points =</span> T)</span></code></pre></div>
+<p><img src="_main_files/figure-html/unnamed-chunk-26-2.png" width="672" /></p>
+<div class="sourceCode" id="cb32"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb32-1"><a href="introducing-a-predictor-simple-linear-regression.html#cb32-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Model predictions (population estimate + sigma)</span></span>
+<span id="cb32-2"><a href="introducing-a-predictor-simple-linear-regression.html#cb32-2" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(<span class="fu">conditional_effects</span>(Articulation_m2, <span class="at">spaghetti =</span> T, <span class="at">method =</span> <span class="st">&quot;predict&quot;</span>), <span class="at">points =</span> T)</span></code></pre></div>
+<p><img src="_main_files/figure-html/unnamed-chunk-26-3.png" width="672" /></p>
+<p>Q3.5: how do the plots using the “method=”predict"" differ from the first two?</p>
+<p>Answer:</p>
+<hr />
+</div>
+<div id="prior-posterior-update-plots-1" class="section level3" number="3.2.3">
+<h3><span class="header-section-number">3.2.3</span> Prior-Posterior Update Plots</h3>
+<p>Let’s have a look at the prior-posterior update plots for this model:</p>
+<div class="sourceCode" id="cb33"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb33-1"><a href="introducing-a-predictor-simple-linear-regression.html#cb33-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Sample the parameters of interest:</span></span>
+<span id="cb33-2"><a href="introducing-a-predictor-simple-linear-regression.html#cb33-2" aria-hidden="true" tabindex="-1"></a>Posterior_m2 <span class="ot">&lt;-</span> <span class="fu">as_draws_df</span>(Articulation_m2)</span>
+<span id="cb33-3"><a href="introducing-a-predictor-simple-linear-regression.html#cb33-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb33-4"><a href="introducing-a-predictor-simple-linear-regression.html#cb33-4" aria-hidden="true" tabindex="-1"></a><span class="co">#Plot the prior-posterior update plot for the intercept:</span></span>
+<span id="cb33-5"><a href="introducing-a-predictor-simple-linear-regression.html#cb33-5" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(Posterior_m2) <span class="sc">+</span></span>
+<span id="cb33-6"><a href="introducing-a-predictor-simple-linear-regression.html#cb33-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_density</span>(<span class="fu">aes</span>(prior_Intercept), <span class="at">fill=</span><span class="st">&quot;steelblue&quot;</span>, <span class="at">color=</span><span class="st">&quot;black&quot;</span>,<span class="at">alpha=</span><span class="fl">0.6</span>) <span class="sc">+</span></span>
+<span id="cb33-7"><a href="introducing-a-predictor-simple-linear-regression.html#cb33-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_density</span>(<span class="fu">aes</span>(b_Intercept), <span class="at">fill=</span><span class="st">&quot;#FC4E07&quot;</span>, <span class="at">color=</span><span class="st">&quot;black&quot;</span>,<span class="at">alpha=</span><span class="fl">0.6</span>) <span class="sc">+</span> </span>
+<span id="cb33-8"><a href="introducing-a-predictor-simple-linear-regression.html#cb33-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">xlab</span>(<span class="st">&#39;Intercept&#39;</span>) <span class="sc">+</span></span>
+<span id="cb33-9"><a href="introducing-a-predictor-simple-linear-regression.html#cb33-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_classic</span>()</span></code></pre></div>
+<p><img src="_main_files/figure-html/unnamed-chunk-27-1.png" width="672" /></p>
+<div class="sourceCode" id="cb34"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb34-1"><a href="introducing-a-predictor-simple-linear-regression.html#cb34-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Plot the prior-posterior update plot for b:</span></span>
+<span id="cb34-2"><a href="introducing-a-predictor-simple-linear-regression.html#cb34-2" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(Posterior_m2) <span class="sc">+</span></span>
+<span id="cb34-3"><a href="introducing-a-predictor-simple-linear-regression.html#cb34-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_density</span>(<span class="fu">aes</span>(prior_b), <span class="at">fill=</span><span class="st">&quot;steelblue&quot;</span>, <span class="at">color=</span><span class="st">&quot;black&quot;</span>,<span class="at">alpha=</span><span class="fl">0.6</span>) <span class="sc">+</span></span>
+<span id="cb34-4"><a href="introducing-a-predictor-simple-linear-regression.html#cb34-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_density</span>(<span class="fu">aes</span>(b_RegisterIDS), <span class="at">fill=</span><span class="st">&quot;#FC4E07&quot;</span>, <span class="at">color=</span><span class="st">&quot;black&quot;</span>,<span class="at">alpha=</span><span class="fl">0.6</span>) <span class="sc">+</span> </span>
+<span id="cb34-5"><a href="introducing-a-predictor-simple-linear-regression.html#cb34-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">xlab</span>(<span class="st">&#39;b&#39;</span>) <span class="sc">+</span></span>
+<span id="cb34-6"><a href="introducing-a-predictor-simple-linear-regression.html#cb34-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_classic</span>()</span></code></pre></div>
+<p><img src="_main_files/figure-html/unnamed-chunk-27-2.png" width="672" /></p>
+<div class="sourceCode" id="cb35"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb35-1"><a href="introducing-a-predictor-simple-linear-regression.html#cb35-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Plot the prior-posterior update plot for sigma:</span></span>
+<span id="cb35-2"><a href="introducing-a-predictor-simple-linear-regression.html#cb35-2" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(Posterior_m2) <span class="sc">+</span></span>
+<span id="cb35-3"><a href="introducing-a-predictor-simple-linear-regression.html#cb35-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_density</span>(<span class="fu">aes</span>(prior_sigma), <span class="at">fill=</span><span class="st">&quot;steelblue&quot;</span>, <span class="at">color=</span><span class="st">&quot;black&quot;</span>,<span class="at">alpha=</span><span class="fl">0.6</span>) <span class="sc">+</span></span>
+<span id="cb35-4"><a href="introducing-a-predictor-simple-linear-regression.html#cb35-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_density</span>(<span class="fu">aes</span>(sigma), <span class="at">fill=</span><span class="st">&quot;#FC4E07&quot;</span>, <span class="at">color=</span><span class="st">&quot;black&quot;</span>,<span class="at">alpha=</span><span class="fl">0.6</span>) <span class="sc">+</span> </span>
+<span id="cb35-5"><a href="introducing-a-predictor-simple-linear-regression.html#cb35-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">xlab</span>(<span class="st">&#39;Sigma&#39;</span>) <span class="sc">+</span></span>
+<span id="cb35-6"><a href="introducing-a-predictor-simple-linear-regression.html#cb35-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_classic</span>()</span></code></pre></div>
+<p><img src="_main_files/figure-html/unnamed-chunk-27-3.png" width="672" /></p>
+<p>Let’s try to read the model output and interpret the findings:</p>
+<div class="sourceCode" id="cb36"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb36-1"><a href="introducing-a-predictor-simple-linear-regression.html#cb36-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(Articulation_m2)</span></code></pre></div>
+<pre><code>##  Family: gaussian 
+##   Links: mu = identity; sigma = identity 
+## Formula: ArticulationS ~ 1 + Register 
+##    Data: d (Number of observations: 48) 
+##   Draws: 2 chains, each with iter = 4000; warmup = 0; thin = 1;
+##          total post-warmup draws = 8000
+## 
+## Population-Level Effects: 
+##             Estimate Est.Error l-95% CI u-95% CI Rhat Bulk_ESS Tail_ESS
+## Intercept      -0.16      0.17    -0.50     0.18 1.00     5470     4047
+## RegisterIDS    -0.36      0.21    -0.76     0.05 1.00     5301     5030
+## 
+## Family Specific Parameters: 
+##       Estimate Est.Error l-95% CI u-95% CI Rhat Bulk_ESS Tail_ESS
+## sigma     0.98      0.10     0.81     1.22 1.00     5126     4321
+## 
+## Draws were sampled using sample(hmc). For each parameter, Bulk_ESS
+## and Tail_ESS are effective sample size measures, and Rhat is the potential
+## scale reduction factor on split chains (at convergence, Rhat = 1).</code></pre>
+<p>Q4: What does this model suggest about the hyperarticulation hypothesis in Danish?</p>
+<p>Answer:</p>
+<hr />
+</div>
+<div id="evidence-ratio" class="section level3" number="3.2.4">
+<h3><span class="header-section-number">3.2.4</span> Evidence Ratio</h3>
+<p>Let’s test our hypothesis that caregivers’ vowel spaces are smaller in IDS by calculating the evidence ratio, as discussed in the lecture, using the hypothesis() function:</p>
+<div class="sourceCode" id="cb38"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb38-1"><a href="introducing-a-predictor-simple-linear-regression.html#cb38-1" aria-hidden="true" tabindex="-1"></a><span class="fu">hypothesis</span>(Articulation_m2, <span class="st">&quot;RegisterIDS &lt; 0&quot;</span>)</span></code></pre></div>
+<pre><code>## Hypothesis Tests for class b:
+##          Hypothesis Estimate Est.Error CI.Lower CI.Upper Evid.Ratio Post.Prob
+## 1 (RegisterIDS) &lt; 0    -0.36      0.21    -0.71    -0.02      24.08      0.96
+##   Star
+## 1    *
+## ---
+## &#39;CI&#39;: 90%-CI for one-sided and 95%-CI for two-sided hypotheses.
+## &#39;*&#39;: For one-sided hypotheses, the posterior probability exceeds 95%;
+## for two-sided hypotheses, the value tested against lies outside the 95%-CI.
+## Posterior probabilities of point hypotheses assume equal prior probabilities.</code></pre>
+</div>
+<div id="prior-sensitivity-check" class="section level3" number="3.2.5">
+<h3><span class="header-section-number">3.2.5</span> Prior Sensitivity Check</h3>
+<p>The evidence ratio of the above constant-effect model appears to provide quite strong evidence in favour of our hypothesis. If you’re a worrier like us, however, you’ll start to second-guess this result and think something like the following: how can we check the extent to which our specification of priors has influenced the estimates?</p>
+<p>The answer is to conduct a prior robustness check; that is, we can loop through 15 priors with 15 different standard deviations and observe the effect it has on our posterior estimate. We’ll do this in a for loop to make it easy to see what’s going on:</p>
+<div class="sourceCode" id="cb40"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb40-1"><a href="introducing-a-predictor-simple-linear-regression.html#cb40-1" aria-hidden="true" tabindex="-1"></a><span class="co"># The priors for the above model, repeated here:</span></span>
+<span id="cb40-2"><a href="introducing-a-predictor-simple-linear-regression.html#cb40-2" aria-hidden="true" tabindex="-1"></a>Articulation_p2 <span class="ot">&lt;-</span> <span class="fu">c</span>(</span>
+<span id="cb40-3"><a href="introducing-a-predictor-simple-linear-regression.html#cb40-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">prior</span>(<span class="fu">normal</span>(<span class="dv">0</span>, <span class="dv">1</span>), <span class="at">class =</span> Intercept),</span>
+<span id="cb40-4"><a href="introducing-a-predictor-simple-linear-regression.html#cb40-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">prior</span>(<span class="fu">normal</span>(<span class="dv">0</span>, <span class="fl">0.3</span>), <span class="at">class =</span> b),</span>
+<span id="cb40-5"><a href="introducing-a-predictor-simple-linear-regression.html#cb40-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">prior</span>(<span class="fu">normal</span>(<span class="dv">1</span>, <span class="fl">0.5</span>), <span class="at">class =</span> sigma))</span>
+<span id="cb40-6"><a href="introducing-a-predictor-simple-linear-regression.html#cb40-6" aria-hidden="true" tabindex="-1"></a><span class="co"># construct a sequence of sds to loop through for the slope prior:</span></span>
+<span id="cb40-7"><a href="introducing-a-predictor-simple-linear-regression.html#cb40-7" aria-hidden="true" tabindex="-1"></a>priSD <span class="ot">&lt;-</span> <span class="fu">seq</span>(<span class="fl">0.1</span>, <span class="fl">1.5</span>, <span class="at">length.out =</span> <span class="dv">15</span>)</span>
+<span id="cb40-8"><a href="introducing-a-predictor-simple-linear-regression.html#cb40-8" aria-hidden="true" tabindex="-1"></a>priorsN <span class="ot">&lt;-</span> Articulation_p2</span>
+<span id="cb40-9"><a href="introducing-a-predictor-simple-linear-regression.html#cb40-9" aria-hidden="true" tabindex="-1"></a><span class="co">#create empty variables to store output of the loop:</span></span>
+<span id="cb40-10"><a href="introducing-a-predictor-simple-linear-regression.html#cb40-10" aria-hidden="true" tabindex="-1"></a>post_pred <span class="ot">&lt;-</span> <span class="fu">c</span>()</span>
+<span id="cb40-11"><a href="introducing-a-predictor-simple-linear-regression.html#cb40-11" aria-hidden="true" tabindex="-1"></a>post_pred_lci <span class="ot">&lt;-</span> <span class="fu">c</span>()</span>
+<span id="cb40-12"><a href="introducing-a-predictor-simple-linear-regression.html#cb40-12" aria-hidden="true" tabindex="-1"></a>post_pred_uci <span class="ot">&lt;-</span> <span class="fu">c</span>()</span>
+<span id="cb40-13"><a href="introducing-a-predictor-simple-linear-regression.html#cb40-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb40-14"><a href="introducing-a-predictor-simple-linear-regression.html#cb40-14" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> (i <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span><span class="fu">length</span>(priSD)) {</span>
+<span id="cb40-15"><a href="introducing-a-predictor-simple-linear-regression.html#cb40-15" aria-hidden="true" tabindex="-1"></a>  priorsN[<span class="dv">2</span>,] <span class="ot">&lt;-</span> <span class="fu">set_prior</span>(<span class="fu">paste0</span>(<span class="st">&quot;normal(0, &quot;</span>, priSD[i],<span class="st">&quot;)&quot;</span>), <span class="at">class =</span> <span class="st">&quot;b&quot;</span>)</span>
+<span id="cb40-16"><a href="introducing-a-predictor-simple-linear-regression.html#cb40-16" aria-hidden="true" tabindex="-1"></a>  model_for_loop <span class="ot">&lt;-</span> <span class="fu">brm</span>(Articulation_f2,</span>
+<span id="cb40-17"><a href="introducing-a-predictor-simple-linear-regression.html#cb40-17" aria-hidden="true" tabindex="-1"></a>                                     <span class="at">data   =</span> d, </span>
+<span id="cb40-18"><a href="introducing-a-predictor-simple-linear-regression.html#cb40-18" aria-hidden="true" tabindex="-1"></a>                                     <span class="at">family =</span> gaussian, </span>
+<span id="cb40-19"><a href="introducing-a-predictor-simple-linear-regression.html#cb40-19" aria-hidden="true" tabindex="-1"></a>                                     <span class="at">prior  =</span> priorsN, </span>
+<span id="cb40-20"><a href="introducing-a-predictor-simple-linear-regression.html#cb40-20" aria-hidden="true" tabindex="-1"></a>                                     <span class="at">sample_prior =</span> T,</span>
+<span id="cb40-21"><a href="introducing-a-predictor-simple-linear-regression.html#cb40-21" aria-hidden="true" tabindex="-1"></a>                                     <span class="at">warmup =</span> <span class="dv">1000</span>, </span>
+<span id="cb40-22"><a href="introducing-a-predictor-simple-linear-regression.html#cb40-22" aria-hidden="true" tabindex="-1"></a>                                     <span class="at">iter   =</span> <span class="dv">5000</span>, </span>
+<span id="cb40-23"><a href="introducing-a-predictor-simple-linear-regression.html#cb40-23" aria-hidden="true" tabindex="-1"></a>                                     <span class="at">cores  =</span> <span class="dv">2</span>,</span>
+<span id="cb40-24"><a href="introducing-a-predictor-simple-linear-regression.html#cb40-24" aria-hidden="true" tabindex="-1"></a>                                     <span class="at">chains =</span> <span class="dv">2</span>,</span>
+<span id="cb40-25"><a href="introducing-a-predictor-simple-linear-regression.html#cb40-25" aria-hidden="true" tabindex="-1"></a>                                     <span class="at">backend =</span> <span class="st">&quot;cmdstanr&quot;</span>,</span>
+<span id="cb40-26"><a href="introducing-a-predictor-simple-linear-regression.html#cb40-26" aria-hidden="true" tabindex="-1"></a>                                     <span class="at">threads =</span> <span class="fu">threading</span>(<span class="dv">2</span>),</span>
+<span id="cb40-27"><a href="introducing-a-predictor-simple-linear-regression.html#cb40-27" aria-hidden="true" tabindex="-1"></a>                                     <span class="at">save_pars =</span> <span class="fu">save_pars</span>(<span class="at">all =</span> <span class="cn">TRUE</span>),</span>
+<span id="cb40-28"><a href="introducing-a-predictor-simple-linear-regression.html#cb40-28" aria-hidden="true" tabindex="-1"></a>                                     <span class="at">control =</span> <span class="fu">list</span>(<span class="at">adapt_delta   =</span> <span class="fl">0.99</span>, </span>
+<span id="cb40-29"><a href="introducing-a-predictor-simple-linear-regression.html#cb40-29" aria-hidden="true" tabindex="-1"></a>                                                    <span class="at">max_treedepth =</span> <span class="dv">15</span>))</span>
+<span id="cb40-30"><a href="introducing-a-predictor-simple-linear-regression.html#cb40-30" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb40-31"><a href="introducing-a-predictor-simple-linear-regression.html#cb40-31" aria-hidden="true" tabindex="-1"></a>  post_preds <span class="ot">&lt;-</span> <span class="fu">spread_draws</span>(model_for_loop, b_RegisterIDS)</span>
+<span id="cb40-32"><a href="introducing-a-predictor-simple-linear-regression.html#cb40-32" aria-hidden="true" tabindex="-1"></a>  post_pred[i] <span class="ot">&lt;-</span> <span class="fu">median</span>(post_preds<span class="sc">$</span>b_RegisterIDS)</span>
+<span id="cb40-33"><a href="introducing-a-predictor-simple-linear-regression.html#cb40-33" aria-hidden="true" tabindex="-1"></a>  post_pred_lci[i] <span class="ot">&lt;-</span> <span class="fu">quantile</span>(post_preds<span class="sc">$</span>b_RegisterIDS, <span class="at">prob =</span> <span class="fl">0.025</span>)</span>
+<span id="cb40-34"><a href="introducing-a-predictor-simple-linear-regression.html#cb40-34" aria-hidden="true" tabindex="-1"></a>  post_pred_uci[i] <span class="ot">&lt;-</span> <span class="fu">quantile</span>(post_preds<span class="sc">$</span>b_RegisterIDS, <span class="at">prob =</span> <span class="fl">0.975</span>)</span>
+<span id="cb40-35"><a href="introducing-a-predictor-simple-linear-regression.html#cb40-35" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb40-36"><a href="introducing-a-predictor-simple-linear-regression.html#cb40-36" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb40-37"><a href="introducing-a-predictor-simple-linear-regression.html#cb40-37" aria-hidden="true" tabindex="-1"></a>models_data <span class="ot">&lt;-</span> <span class="fu">tibble</span>(priSD, post_pred, post_pred_lci, post_pred_uci)</span>
+<span id="cb40-38"><a href="introducing-a-predictor-simple-linear-regression.html#cb40-38" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data=</span>models_data, <span class="fu">aes</span>(<span class="at">x=</span>priSD, <span class="at">y=</span>post_pred)) <span class="sc">+</span></span>
+<span id="cb40-39"><a href="introducing-a-predictor-simple-linear-regression.html#cb40-39" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">size =</span> <span class="dv">3</span>) <span class="sc">+</span></span>
+<span id="cb40-40"><a href="introducing-a-predictor-simple-linear-regression.html#cb40-40" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_pointrange</span>(<span class="at">ymin =</span> post_pred_lci, <span class="at">ymax =</span> post_pred_uci) <span class="sc">+</span></span>
+<span id="cb40-41"><a href="introducing-a-predictor-simple-linear-regression.html#cb40-41" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ylim</span>(<span class="sc">-</span><span class="fl">1.3</span>, <span class="fl">0.3</span>) <span class="sc">+</span></span>
+<span id="cb40-42"><a href="introducing-a-predictor-simple-linear-regression.html#cb40-42" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x=</span><span class="st">&quot;Standard Deviation of Slope Prior&quot;</span>, </span>
+<span id="cb40-43"><a href="introducing-a-predictor-simple-linear-regression.html#cb40-43" aria-hidden="true" tabindex="-1"></a>       <span class="at">y=</span><span class="st">&quot;Posterior Estimate for slope&quot;</span>, </span>
+<span id="cb40-44"><a href="introducing-a-predictor-simple-linear-regression.html#cb40-44" aria-hidden="true" tabindex="-1"></a>       <span class="at">title=</span><span class="st">&quot;Sensitivity analysis for constant-effect model&quot;</span>) <span class="sc">+</span></span>
+<span id="cb40-45"><a href="introducing-a-predictor-simple-linear-regression.html#cb40-45" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_bw</span>() <span class="sc">+</span></span>
+<span id="cb40-46"><a href="introducing-a-predictor-simple-linear-regression.html#cb40-46" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">plot.title =</span> <span class="fu">element_text</span>(<span class="at">hjust =</span> <span class="fl">0.5</span>, <span class="at">size =</span> <span class="dv">15</span>),</span>
+<span id="cb40-47"><a href="introducing-a-predictor-simple-linear-regression.html#cb40-47" aria-hidden="true" tabindex="-1"></a>        <span class="at">axis.title.x =</span> <span class="fu">element_text</span>(<span class="at">size =</span> <span class="dv">13</span>),</span>
+<span id="cb40-48"><a href="introducing-a-predictor-simple-linear-regression.html#cb40-48" aria-hidden="true" tabindex="-1"></a>        <span class="at">axis.text.y =</span> <span class="fu">element_text</span>(<span class="at">size =</span> <span class="dv">12</span>),</span>
+<span id="cb40-49"><a href="introducing-a-predictor-simple-linear-regression.html#cb40-49" aria-hidden="true" tabindex="-1"></a>        <span class="at">axis.text.x =</span> <span class="fu">element_text</span>(<span class="at">size =</span> <span class="dv">12</span>),</span>
+<span id="cb40-50"><a href="introducing-a-predictor-simple-linear-regression.html#cb40-50" aria-hidden="true" tabindex="-1"></a>        <span class="at">axis.title.y =</span> <span class="fu">element_text</span>(<span class="at">size =</span> <span class="dv">13</span>))</span></code></pre></div>
+<p><img src="_main_files/figure-html/unnamed-chunk-30-1.png" width="672" /></p>
+</div>
+<div id="bonus-content-on-heteroskedasticity" class="section level3" number="3.2.6">
+<h3><span class="header-section-number">3.2.6</span> Bonus Content on Heteroskedasticity</h3>
+<p>Now that we’ve calmed our worries about the influence of our priors, we can feel slightly more confident in our results. But what if we’re also worried about the influence of heteroskedasticity (beyond how to pronounce it)? Don’t worry - we can simply model the variance in the two groups and check whether it changes the results (and better describes the data).</p>
+<div class="sourceCode" id="cb41"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb41-1"><a href="introducing-a-predictor-simple-linear-regression.html#cb41-1" aria-hidden="true" tabindex="-1"></a>bonus_model <span class="ot">&lt;-</span> <span class="fu">bf</span>(ArticulationS <span class="sc">~</span> <span class="dv">1</span> <span class="sc">+</span> Register, sigma <span class="sc">~</span> <span class="dv">1</span> <span class="sc">+</span> Register)</span>
+<span id="cb41-2"><a href="introducing-a-predictor-simple-linear-regression.html#cb41-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb41-3"><a href="introducing-a-predictor-simple-linear-regression.html#cb41-3" aria-hidden="true" tabindex="-1"></a><span class="fu">get_prior</span>(bonus_model, </span>
+<span id="cb41-4"><a href="introducing-a-predictor-simple-linear-regression.html#cb41-4" aria-hidden="true" tabindex="-1"></a>          <span class="at">data =</span> d, </span>
+<span id="cb41-5"><a href="introducing-a-predictor-simple-linear-regression.html#cb41-5" aria-hidden="true" tabindex="-1"></a>          <span class="at">family =</span> gaussian)</span>
+<span id="cb41-6"><a href="introducing-a-predictor-simple-linear-regression.html#cb41-6" aria-hidden="true" tabindex="-1"></a>bonus_priors <span class="ot">&lt;-</span> <span class="fu">c</span>(</span>
+<span id="cb41-7"><a href="introducing-a-predictor-simple-linear-regression.html#cb41-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">prior</span>(<span class="fu">normal</span>(<span class="dv">0</span>, <span class="dv">1</span>), <span class="at">class =</span> Intercept),</span>
+<span id="cb41-8"><a href="introducing-a-predictor-simple-linear-regression.html#cb41-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">prior</span>(<span class="fu">normal</span>(<span class="dv">0</span>, <span class="fl">0.3</span>), <span class="at">class =</span> b),</span>
+<span id="cb41-9"><a href="introducing-a-predictor-simple-linear-regression.html#cb41-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">prior</span>(<span class="fu">normal</span>(<span class="dv">1</span>, <span class="fl">0.5</span>), <span class="at">class =</span> Intercept, <span class="at">dpar=</span>sigma),</span>
+<span id="cb41-10"><a href="introducing-a-predictor-simple-linear-regression.html#cb41-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">prior</span>(<span class="fu">normal</span>(<span class="dv">0</span>, <span class="dv">1</span>), <span class="at">class =</span> b, <span class="at">dpar=</span>sigma)</span>
+<span id="cb41-11"><a href="introducing-a-predictor-simple-linear-regression.html#cb41-11" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb41-12"><a href="introducing-a-predictor-simple-linear-regression.html#cb41-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb41-13"><a href="introducing-a-predictor-simple-linear-regression.html#cb41-13" aria-hidden="true" tabindex="-1"></a>bonus_model_prior <span class="ot">&lt;-</span></span>
+<span id="cb41-14"><a href="introducing-a-predictor-simple-linear-regression.html#cb41-14" aria-hidden="true" tabindex="-1"></a>  <span class="fu">brm</span>(</span>
+<span id="cb41-15"><a href="introducing-a-predictor-simple-linear-regression.html#cb41-15" aria-hidden="true" tabindex="-1"></a>    bonus_model,</span>
+<span id="cb41-16"><a href="introducing-a-predictor-simple-linear-regression.html#cb41-16" aria-hidden="true" tabindex="-1"></a>    <span class="at">data =</span> d,</span>
+<span id="cb41-17"><a href="introducing-a-predictor-simple-linear-regression.html#cb41-17" aria-hidden="true" tabindex="-1"></a>    <span class="at">save_pars =</span> <span class="fu">save_pars</span>(<span class="at">all =</span> <span class="cn">TRUE</span>),</span>
+<span id="cb41-18"><a href="introducing-a-predictor-simple-linear-regression.html#cb41-18" aria-hidden="true" tabindex="-1"></a>    <span class="at">family =</span> gaussian,</span>
+<span id="cb41-19"><a href="introducing-a-predictor-simple-linear-regression.html#cb41-19" aria-hidden="true" tabindex="-1"></a>    <span class="at">prior =</span> bonus_priors,</span>
+<span id="cb41-20"><a href="introducing-a-predictor-simple-linear-regression.html#cb41-20" aria-hidden="true" tabindex="-1"></a>    <span class="at">file =</span> <span class="st">&quot;bonus_model_prior&quot;</span>,</span>
+<span id="cb41-21"><a href="introducing-a-predictor-simple-linear-regression.html#cb41-21" aria-hidden="true" tabindex="-1"></a>    <span class="co">#refit = &quot;on_change&quot;,</span></span>
+<span id="cb41-22"><a href="introducing-a-predictor-simple-linear-regression.html#cb41-22" aria-hidden="true" tabindex="-1"></a>    <span class="at">sample_prior =</span> <span class="st">&quot;only&quot;</span>,</span>
+<span id="cb41-23"><a href="introducing-a-predictor-simple-linear-regression.html#cb41-23" aria-hidden="true" tabindex="-1"></a>    <span class="at">iter =</span> <span class="dv">2000</span>,</span>
+<span id="cb41-24"><a href="introducing-a-predictor-simple-linear-regression.html#cb41-24" aria-hidden="true" tabindex="-1"></a>    <span class="at">cores =</span> <span class="dv">2</span>,</span>
+<span id="cb41-25"><a href="introducing-a-predictor-simple-linear-regression.html#cb41-25" aria-hidden="true" tabindex="-1"></a>    <span class="at">chains =</span> <span class="dv">2</span>,</span>
+<span id="cb41-26"><a href="introducing-a-predictor-simple-linear-regression.html#cb41-26" aria-hidden="true" tabindex="-1"></a>    <span class="at">backend =</span> <span class="st">&quot;cmdstanr&quot;</span>,</span>
+<span id="cb41-27"><a href="introducing-a-predictor-simple-linear-regression.html#cb41-27" aria-hidden="true" tabindex="-1"></a>    <span class="at">threads =</span> <span class="fu">threading</span>(<span class="dv">2</span>),</span>
+<span id="cb41-28"><a href="introducing-a-predictor-simple-linear-regression.html#cb41-28" aria-hidden="true" tabindex="-1"></a>    <span class="at">control =</span> <span class="fu">list</span>(</span>
+<span id="cb41-29"><a href="introducing-a-predictor-simple-linear-regression.html#cb41-29" aria-hidden="true" tabindex="-1"></a>      <span class="at">adapt_delta =</span> <span class="fl">0.99</span>,</span>
+<span id="cb41-30"><a href="introducing-a-predictor-simple-linear-regression.html#cb41-30" aria-hidden="true" tabindex="-1"></a>      <span class="at">max_treedepth =</span> <span class="dv">15</span> ))</span>
+<span id="cb41-31"><a href="introducing-a-predictor-simple-linear-regression.html#cb41-31" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb41-32"><a href="introducing-a-predictor-simple-linear-regression.html#cb41-32" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb41-33"><a href="introducing-a-predictor-simple-linear-regression.html#cb41-33" aria-hidden="true" tabindex="-1"></a><span class="fu">pp_check</span>(bonus_model_prior, <span class="at">ndraws=</span><span class="dv">50</span>)</span></code></pre></div>
+<p><img src="_main_files/figure-html/unnamed-chunk-31-1.png" width="672" /></p>
+<div class="sourceCode" id="cb42"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb42-1"><a href="introducing-a-predictor-simple-linear-regression.html#cb42-1" aria-hidden="true" tabindex="-1"></a>bonus_model_m <span class="ot">&lt;-</span></span>
+<span id="cb42-2"><a href="introducing-a-predictor-simple-linear-regression.html#cb42-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">brm</span>(</span>
+<span id="cb42-3"><a href="introducing-a-predictor-simple-linear-regression.html#cb42-3" aria-hidden="true" tabindex="-1"></a>    bonus_model,</span>
+<span id="cb42-4"><a href="introducing-a-predictor-simple-linear-regression.html#cb42-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">data =</span> d,</span>
+<span id="cb42-5"><a href="introducing-a-predictor-simple-linear-regression.html#cb42-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">save_pars =</span> <span class="fu">save_pars</span>(<span class="at">all =</span> <span class="cn">TRUE</span>),</span>
+<span id="cb42-6"><a href="introducing-a-predictor-simple-linear-regression.html#cb42-6" aria-hidden="true" tabindex="-1"></a>    <span class="at">family =</span> gaussian,</span>
+<span id="cb42-7"><a href="introducing-a-predictor-simple-linear-regression.html#cb42-7" aria-hidden="true" tabindex="-1"></a>    <span class="at">prior =</span> bonus_priors,</span>
+<span id="cb42-8"><a href="introducing-a-predictor-simple-linear-regression.html#cb42-8" aria-hidden="true" tabindex="-1"></a>    <span class="at">file =</span> <span class="st">&quot;bonus_model_m&quot;</span>,</span>
+<span id="cb42-9"><a href="introducing-a-predictor-simple-linear-regression.html#cb42-9" aria-hidden="true" tabindex="-1"></a>    <span class="co">#refit = &quot;on_change&quot;,</span></span>
+<span id="cb42-10"><a href="introducing-a-predictor-simple-linear-regression.html#cb42-10" aria-hidden="true" tabindex="-1"></a>    <span class="at">sample_prior =</span> T,</span>
+<span id="cb42-11"><a href="introducing-a-predictor-simple-linear-regression.html#cb42-11" aria-hidden="true" tabindex="-1"></a>    <span class="at">iter =</span> <span class="dv">2000</span>, </span>
+<span id="cb42-12"><a href="introducing-a-predictor-simple-linear-regression.html#cb42-12" aria-hidden="true" tabindex="-1"></a>    <span class="at">cores =</span> <span class="dv">2</span>,</span>
+<span id="cb42-13"><a href="introducing-a-predictor-simple-linear-regression.html#cb42-13" aria-hidden="true" tabindex="-1"></a>    <span class="at">chains =</span> <span class="dv">2</span>,</span>
+<span id="cb42-14"><a href="introducing-a-predictor-simple-linear-regression.html#cb42-14" aria-hidden="true" tabindex="-1"></a>    <span class="at">backend =</span> <span class="st">&quot;cmdstanr&quot;</span>,</span>
+<span id="cb42-15"><a href="introducing-a-predictor-simple-linear-regression.html#cb42-15" aria-hidden="true" tabindex="-1"></a>    <span class="at">threads =</span> <span class="fu">threading</span>(<span class="dv">2</span>),</span>
+<span id="cb42-16"><a href="introducing-a-predictor-simple-linear-regression.html#cb42-16" aria-hidden="true" tabindex="-1"></a>    <span class="at">control =</span> <span class="fu">list</span>(</span>
+<span id="cb42-17"><a href="introducing-a-predictor-simple-linear-regression.html#cb42-17" aria-hidden="true" tabindex="-1"></a>      <span class="at">adapt_delta =</span> <span class="fl">0.99</span>,</span>
+<span id="cb42-18"><a href="introducing-a-predictor-simple-linear-regression.html#cb42-18" aria-hidden="true" tabindex="-1"></a>      <span class="at">max_treedepth =</span> <span class="dv">15</span> ))</span>
+<span id="cb42-19"><a href="introducing-a-predictor-simple-linear-regression.html#cb42-19" aria-hidden="true" tabindex="-1"></a><span class="fu">pp_check</span>(bonus_model_m, <span class="at">ndraws=</span><span class="dv">50</span>)</span></code></pre></div>
+<p><img src="_main_files/figure-html/unnamed-chunk-31-2.png" width="672" /></p>
+<div class="sourceCode" id="cb43"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb43-1"><a href="introducing-a-predictor-simple-linear-regression.html#cb43-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(<span class="fu">conditional_effects</span>(bonus_model_m), <span class="at">points =</span> T)</span></code></pre></div>
+<p><img src="_main_files/figure-html/unnamed-chunk-31-3.png" width="672" /></p>
+<div class="sourceCode" id="cb44"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb44-1"><a href="introducing-a-predictor-simple-linear-regression.html#cb44-1" aria-hidden="true" tabindex="-1"></a><span class="co">#let&#39;s compare this to the other model:</span></span>
+<span id="cb44-2"><a href="introducing-a-predictor-simple-linear-regression.html#cb44-2" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(<span class="fu">conditional_effects</span>(Articulation_m2), <span class="at">points =</span> T)</span></code></pre></div>
+<p><img src="_main_files/figure-html/unnamed-chunk-31-4.png" width="672" /></p>
+<div class="sourceCode" id="cb45"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb45-1"><a href="introducing-a-predictor-simple-linear-regression.html#cb45-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(bonus_model_m)</span></code></pre></div>
+<pre><code>##  Family: gaussian 
+##   Links: mu = identity; sigma = log 
+## Formula: ArticulationS ~ 1 + Register 
+##          sigma ~ 1 + Register
+##    Data: d (Number of observations: 48) 
+##   Draws: 2 chains, each with iter = 1000; warmup = 0; thin = 1;
+##          total post-warmup draws = 2000
+## 
+## Population-Level Effects: 
+##                   Estimate Est.Error l-95% CI u-95% CI Rhat Bulk_ESS Tail_ESS
+## Intercept            -0.14      0.17    -0.48     0.21 1.00     1616     1465
+## sigma_Intercept      -0.04      0.15    -0.32     0.29 1.00     1561     1028
+## RegisterIDS          -0.34      0.22    -0.77     0.09 1.00     1381     1359
+## sigma_RegisterIDS     0.12      0.22    -0.30     0.58 1.00     1254      886
+## 
+## Draws were sampled using sample(hmc). For each parameter, Bulk_ESS
+## and Tail_ESS are effective sample size measures, and Rhat is the potential
+## scale reduction factor on split chains (at convergence, Rhat = 1).</code></pre>
+<p>Note: we have not checked our priors here. That’s an exercise for you!</p>
+
+</div>
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="modeling-your-outcome-intercepts-only-model.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="acknowledging-repeated-measures-multi-level-model.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"whatsapp": false,
+"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": "https://github.com/USERNAME/REPO/edit/BRANCH/02-part1.Rmd",
+"text": "Edit"
+},
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": null,
+"text": null
+},
+"download": ["_main.pdf", "_main.epub"],
+"search": {
+"engine": "fuse",
+"options": null
+},
+"toc": {
+"collapse": "subsection"
+}
+});
+});
+</script>
+
+</body>
+
+</html>
