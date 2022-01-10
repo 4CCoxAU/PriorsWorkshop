@@ -2,8 +2,9 @@
 
 ## Where to go for further study
 1. We would highly recommend McElreath’s Statistical Rethinking book and online video lectures: (https://www.youtube.com/channel/UCNJK6_DZvcMqNSzQdEkzvzA)
-2. Potsdam Summer School on Statistical Methods for Linguistics and Psychology (https://vasishth.github.io/smlp2021/)
-3. Michael Betancourt has awesome materials (once you already master McElreath’s level) (https://betanalpha.github.io/writing/)
+2. Michael Betancourt has awesome materials (once you already master McElreath’s level) (https://betanalpha.github.io/writing/)
+3. Potsdam Summer School on Statistical Methods for Linguistics and Psychology - with a line on Bayesian Statistics (https://vasishth.github.io/smlp2021/)
+4. Nicenboim, Schad & Vasisht - An Introduction to Bayesian Data Analysis for Cognitive Science: https://vasishth.github.io/Bayes_CogSci/
 
 ## Feedback on the course
 
