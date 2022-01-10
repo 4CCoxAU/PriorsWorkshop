@@ -1,5 +1,5 @@
 --- 
-title: "Workshop on Bayesian Priors"
+title: "Workshop on Bayesian Inference: Priors and workflow"
 author: "Riccardo Fusaroli & Chris Cox"
 date: "`r Sys.Date()`"
 site: bookdown::bookdown_site
@@ -8,7 +8,7 @@ bibliography: [book.bib, packages.bib]
 # url: your book url like https://bookdown.org/yihui/bookdown
 # cover-image: path to the social sharing image like images/cover.jpg
 description: |
-  This site is a hub for the materials for our workshop on Bayesian data analysis and priors. 
+  This site provides the materials for a workshop on Bayesian data analysis, with a focus on a rigorous workflow and the definition of priors. 
   
 link-citations: yes
 github-repo: rstudio/bookdown-demo
@@ -17,21 +17,35 @@ github-repo: rstudio/bookdown-demo
 
 # Introduction
 
-This is a website that provides the lectures and code for our workshop on Bayesian data analysis and priors. The lectures are recordings of a workshop given on January 6th-7th 2022 to the Embodied Computation Group and the Body, Pain & Perception Lab at Aarhus University. 
+Here you can find the video lectures and exercises for our 2022 workshop on Bayesian inference. The workshop assumes a minimal statistical literacy (e.g. having used t-tests and correlations). The workshop is specifically aimed to Bayes-curious students and researchers worried about having to set priors and/or other supposedly subjective choices in Bayesian analyses. Accordingly the workshop focuses on setting up a rigorous Bayesian workflow for your analysis and provides much discussion of how to define and assess priors.
+
+The lectures are recordings of a workshop given on January 6th-7th 2022 to the Embodied Computation Group and the Body, Pain & Perception Lab at Aarhus University.
+
+The code relies on R, Rstudio, Brms and Stan. 
+
+The instructors are:
+
+- Christopher Cox is a Phd student at Aarhus University and University of York, researching how infants learn their first language, with a special interest in their active and interactive role in shaping their linguistic environment. While less visible in the videos, Chris prepared all the materials and website and should receive most of the kudos!
+
+- Riccardo Fusaroli (https://pure.au.dk/portal/da/fusaroli@cc.au.dk), an associate professor in Cognitive Science at Aarhus University, researching how social interactions work and fail, and trying to figure out how we can build better cumulative and self-critical scientific approaches.
+
 
 ## Structure of this Workshop
 
-This workshop introduces the Bayesian workflow and teaches you how to set priors in a step-by-step fashion. The course consists of four parts: 
+After an introduction to the rationale behind this workshop, the video lectures showcase and explain a step-by-step Bayesian workflow in setting up a concrete Bayesian analysis (of whether native speakers of Danish speak more or less clearly to their children compared to adults). The actual content of the course is organized in 4 separate sections:
 
--   1. Intercepts-only Model,
--   2. Simple Linear Regression,
--   3. Multi-level Model,
--   4. Informed Priors.
+-   1. Modeling your outcome: Intercepts-only Model;
+-   2. Introducing a predictor: Simple Linear Regression;
+-   3. Acknowledging repeated measures: Multi-level Modelling;
+-   4. Acknowledging previous findings: Comparative Assessment of Informed Priors.
+
+For each section, you will find a video lecture (building on the previous sections) and a step-by-step commented script showing how to implement the conceptual steps from the lecture in R/brms/Stan.
+
  
 ## Preparation
 Here is what you will need for this workshop:
 
-- up-to-date R (version 4 or above) and Rstudio (version 1.3 or above) installed and working. See here: https://happygitwithr.com/install-r-rstudio.html
+- up-to-date R (version 4 or above) and Rstudio (version 1.3 or above) installed and working. See here for a more detailed instruction on how to install R and Rstudio: https://happygitwithr.com/install-r-rstudio.html
 
 - the “brms” package installed: https://github.com/paul-buerkner/brms N.B. it's not always as simple as doing an install.packages("brms"), so do follow the linked guide!
 
@@ -39,7 +53,7 @@ Here is what you will need for this workshop:
 
 Without these packages working, you will not be able to tackle the following practical exercises, so do install them before you move to the next section and make sure there are no errors or worrying warnings.
 
-Before we start, we should also note that this workshop does not go into the details of Bayes' theorem. If you are not familiar with the theorem, we strongly recommend you give this 15 min video a watch before the workshop. This should make talk of priors and posteriors much easier to parse.  https://www.youtube.com/watch?v=HZGCoVF3YvM
+Once your computer is ready, you should also get your brain ready. This workshop focuses on how to do Bayesian data analysis and does not go into the details of Bayes' theorem. If you are not familiar with the theorem or need a quick refresh, we strongly recommend you give this 15 min video a watch before the workshop. This should make talk of priors and posteriors much easier to parse.  https://www.youtube.com/watch?v=HZGCoVF3YvM
 
 
 ## Introductory Video
@@ -48,6 +62,8 @@ This first video provides an introduction to the course instructors and outlines
 https://youtu.be/_7hlAJ6eWI4
 
 ## Video on Bayesian inference
-This second video starts with a soft introduction to the basic concepts of Bayesian inference and then provides an overview of the data analysed:
+This second video starts with a soft introduction to the basic concepts of Bayesian inference, tackles some common worries, and provides an overview of the data analysed throughout the course:
 
 https://youtu.be/SIgxZ-u1s3A
+
+

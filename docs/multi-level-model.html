@@ -4,27 +4,27 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>Chapter 4 Multi-level model | Workshop on Bayesian Priors</title>
-  <meta name="description" content="This site is a hub for the materials for our workshop on Bayesian data analysis and priors." />
-  <meta name="generator" content="bookdown 0.24 and GitBook 2.6.7" />
+  <title>Chapter 4 Multi-level model | Workshop on Bayesian Inference: Priors and workflow</title>
+  <meta name="description" content="This site provides the materials for a workshop on Bayesian data analysis, with a focus on a rigorous workflow and the definition of priors." />
+  <meta name="generator" content="bookdown 0.24.1 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="Chapter 4 Multi-level model | Workshop on Bayesian Priors" />
+  <meta property="og:title" content="Chapter 4 Multi-level model | Workshop on Bayesian Inference: Priors and workflow" />
   <meta property="og:type" content="book" />
   
   
-  <meta property="og:description" content="This site is a hub for the materials for our workshop on Bayesian data analysis and priors." />
+  <meta property="og:description" content="This site provides the materials for a workshop on Bayesian data analysis, with a focus on a rigorous workflow and the definition of priors." />
   <meta name="github-repo" content="rstudio/bookdown-demo" />
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="Chapter 4 Multi-level model | Workshop on Bayesian Priors" />
+  <meta name="twitter:title" content="Chapter 4 Multi-level model | Workshop on Bayesian Inference: Priors and workflow" />
   
-  <meta name="twitter:description" content="This site is a hub for the materials for our workshop on Bayesian data analysis and priors." />
+  <meta name="twitter:description" content="This site provides the materials for a workshop on Bayesian data analysis, with a focus on a rigorous workflow and the definition of priors." />
   
 
 <meta name="author" content="Riccardo Fusaroli &amp; Chris Cox" />
 
 
-<meta name="date" content="2022-01-09" />
+<meta name="date" content="2022-01-10" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -34,7 +34,7 @@
 <link rel="prev" href="simple-linear-regression.html"/>
 <link rel="next" href="informed-priors.html"/>
 <script src="libs/header-attrs-2.11/header-attrs.js"></script>
-<script src="libs/jquery-3.5.1/jquery-3.5.1.min.js"></script>
+<script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
@@ -59,6 +59,7 @@
 pre > code.sourceCode { white-space: pre; position: relative; }
 pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
 pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
 code.sourceCode > span { color: inherit; text-decoration: inherit; }
 pre.sourceCode { margin: 0; }
 @media screen {
@@ -210,7 +211,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
       <div class="body-inner">
         <div class="book-header" role="navigation">
           <h1>
-            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Workshop on Bayesian Priors</a>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Workshop on Bayesian Inference: Priors and workflow</a>
           </h1>
         </div>
 
@@ -322,28 +323,28 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ##   Links: mu = identity; sigma = identity 
 ## Formula: ArticulationS ~ 1 + Register + (1 + Register | Subject) 
 ##    Data: d (Number of observations: 48) 
-##   Draws: 2 chains, each with iter = 4000; warmup = 0; thin = 1;
+##   Draws: 2 chains, each with iter = 5000; warmup = 1000; thin = 1;
 ##          total post-warmup draws = 8000
 ## 
 ## Group-Level Effects: 
 ## ~Subject (Number of levels: 24) 
 ##                            Estimate Est.Error l-95% CI u-95% CI Rhat Bulk_ESS
-## sd(Intercept)                  0.41      0.23     0.03     0.87 1.00     1285
-## sd(RegisterIDS)                0.46      0.30     0.02     1.10 1.00     1155
-## cor(Intercept,RegisterIDS)    -0.04      0.42    -0.78     0.78 1.00     5555
+## sd(Intercept)                  0.41      0.23     0.03     0.88 1.00      919
+## sd(RegisterIDS)                0.44      0.29     0.02     1.08 1.00     1030
+## cor(Intercept,RegisterIDS)    -0.04      0.42    -0.78     0.78 1.00     4423
 ##                            Tail_ESS
-## sd(Intercept)                  2361
-## sd(RegisterIDS)                1919
-## cor(Intercept,RegisterIDS)     5002
+## sd(Intercept)                  1620
+## sd(RegisterIDS)                1054
+## cor(Intercept,RegisterIDS)     4888
 ## 
 ## Population-Level Effects: 
 ##             Estimate Est.Error l-95% CI u-95% CI Rhat Bulk_ESS Tail_ESS
-## Intercept      -0.12      0.18    -0.49     0.24 1.00     7829     5186
-## RegisterIDS    -0.39      0.21    -0.79     0.03 1.00    10424     5648
+## Intercept      -0.13      0.18    -0.49     0.22 1.00     6274     5666
+## RegisterIDS    -0.39      0.20    -0.78     0.01 1.00     7801     5960
 ## 
 ## Family Specific Parameters: 
 ##       Estimate Est.Error l-95% CI u-95% CI Rhat Bulk_ESS Tail_ESS
-## sigma     0.84      0.15     0.54     1.12 1.00      963      805
+## sigma     0.84      0.14     0.53     1.11 1.00      821      413
 ## 
 ## Draws were sampled using sample(hmc). For each parameter, Bulk_ESS
 ## and Tail_ESS are effective sample size measures, and Rhat is the potential
@@ -354,17 +355,17 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ##   Links: mu = identity; sigma = identity 
 ## Formula: ArticulationS ~ 1 + Register 
 ##    Data: d (Number of observations: 48) 
-##   Draws: 2 chains, each with iter = 4000; warmup = 0; thin = 1;
+##   Draws: 2 chains, each with iter = 5000; warmup = 1000; thin = 1;
 ##          total post-warmup draws = 8000
 ## 
 ## Population-Level Effects: 
 ##             Estimate Est.Error l-95% CI u-95% CI Rhat Bulk_ESS Tail_ESS
-## Intercept      -0.15      0.17    -0.50     0.19 1.00     5649     4488
-## RegisterIDS    -0.37      0.21    -0.76     0.04 1.00     5783     4640
+## Intercept      -0.15      0.17    -0.50     0.18 1.00     5897     4893
+## RegisterIDS    -0.37      0.21    -0.77     0.05 1.00     5676     4215
 ## 
 ## Family Specific Parameters: 
 ##       Estimate Est.Error l-95% CI u-95% CI Rhat Bulk_ESS Tail_ESS
-## sigma     0.98      0.10     0.80     1.21 1.00     5647     4631
+## sigma     0.98      0.10     0.81     1.22 1.00     4853     4615
 ## 
 ## Draws were sampled using sample(hmc). For each parameter, Bulk_ESS
 ## and Tail_ESS are effective sample size measures, and Rhat is the potential
@@ -423,7 +424,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb62-2"><a href="multi-level-model.html#cb62-2" aria-hidden="true" tabindex="-1"></a><span class="fu">hypothesis</span>(Articulation_m3, <span class="st">&quot;RegisterIDS &lt; 0&quot;</span>)</span></code></pre></div>
 <pre><code>## Hypothesis Tests for class b:
 ##          Hypothesis Estimate Est.Error CI.Lower CI.Upper Evid.Ratio Post.Prob
-## 1 (RegisterIDS) &lt; 0    -0.39      0.21    -0.73    -0.05       29.3      0.97
+## 1 (RegisterIDS) &lt; 0    -0.39       0.2    -0.71    -0.05       32.2      0.97
 ##   Star
 ## 1    *
 ## ---
@@ -435,54 +436,54 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb64-2"><a href="multi-level-model.html#cb64-2" aria-hidden="true" tabindex="-1"></a><span class="fu">hypothesis</span>(Articulation_m3, <span class="st">&quot;RegisterIDS &lt; 0&quot;</span>, <span class="at">group =</span> <span class="st">&quot;Subject&quot;</span>, <span class="at">scope=</span><span class="st">&quot;coef&quot;</span>)</span></code></pre></div>
 <pre><code>## Hypothesis Tests for class :
 ##    Group        Hypothesis Estimate Est.Error CI.Lower CI.Upper Evid.Ratio
-## 1     AF (RegisterIDS) &lt; 0     0.10      0.63    -0.73     1.28       1.07
-## 2     AN (RegisterIDS) &lt; 0    -0.68      0.52    -1.63     0.06      15.10
-## 3     CL (RegisterIDS) &lt; 0    -0.32      0.46    -1.01     0.49       3.86
-## 4     DM (RegisterIDS) &lt; 0    -0.36      0.44    -1.06     0.39       4.74
-## 5     IA (RegisterIDS) &lt; 0    -0.41      0.45    -1.18     0.32       5.35
-## 6     JA (RegisterIDS) &lt; 0    -0.87      0.66    -2.20    -0.06      27.47
-## 7     JE (RegisterIDS) &lt; 0    -0.43      0.46    -1.21     0.34       5.90
-## 8     KA (RegisterIDS) &lt; 0    -0.52      0.47    -1.36     0.20       8.21
-## 9     KV (RegisterIDS) &lt; 0    -0.55      0.47    -1.37     0.17       8.95
-## 10    LK (RegisterIDS) &lt; 0    -0.64      0.51    -1.60     0.08      13.39
-## 11    LM (RegisterIDS) &lt; 0    -0.29      0.47    -1.00     0.55       3.33
-## 12    LV (RegisterIDS) &lt; 0    -0.28      0.48    -0.99     0.58       3.36
-## 13    MA (RegisterIDS) &lt; 0    -0.36      0.50    -1.21     0.45       4.03
-## 14    ME (RegisterIDS) &lt; 0    -0.52      0.46    -1.34     0.18       9.03
-## 15   MPS (RegisterIDS) &lt; 0    -0.49      0.46    -1.27     0.22       7.40
-## 16    MS (RegisterIDS) &lt; 0    -0.48      0.44    -1.22     0.23       7.49
-## 17    MV (RegisterIDS) &lt; 0    -0.16      0.51    -0.85     0.78       2.23
-## 18    PV (RegisterIDS) &lt; 0    -0.29      0.50    -1.06     0.57       3.12
-## 19    RV (RegisterIDS) &lt; 0    -0.25      0.47    -0.94     0.61       2.94
-## 20    SA (RegisterIDS) &lt; 0    -0.71      0.53    -1.74     0.00      19.46
-## 21   SAF (RegisterIDS) &lt; 0    -0.40      0.45    -1.17     0.35       5.55
-## 22    SC (RegisterIDS) &lt; 0    -0.37      0.46    -1.09     0.40       4.49
-## 23    TL (RegisterIDS) &lt; 0    -0.77      0.58    -1.89     0.00      18.56
-## 24    TM (RegisterIDS) &lt; 0    -0.56      0.49    -1.45     0.15       9.97
+## 1     AF (RegisterIDS) &lt; 0     0.08      0.63    -0.71     1.31       1.15
+## 2     AN (RegisterIDS) &lt; 0    -0.66      0.51    -1.58     0.05      15.06
+## 3     CL (RegisterIDS) &lt; 0    -0.32      0.45    -1.03     0.46       3.90
+## 4     DM (RegisterIDS) &lt; 0    -0.36      0.44    -1.03     0.39       4.65
+## 5     IA (RegisterIDS) &lt; 0    -0.42      0.46    -1.18     0.30       5.87
+## 6     JA (RegisterIDS) &lt; 0    -0.84      0.65    -2.13    -0.04      24.81
+## 7     JE (RegisterIDS) &lt; 0    -0.43      0.47    -1.20     0.35       5.77
+## 8     KA (RegisterIDS) &lt; 0    -0.50      0.45    -1.30     0.18       8.65
+## 9     KV (RegisterIDS) &lt; 0    -0.53      0.47    -1.36     0.19       9.22
+## 10    LK (RegisterIDS) &lt; 0    -0.63      0.51    -1.60     0.07      13.71
+## 11    LM (RegisterIDS) &lt; 0    -0.28      0.45    -0.95     0.50       3.48
+## 12    LV (RegisterIDS) &lt; 0    -0.30      0.46    -0.99     0.52       3.66
+## 13    MA (RegisterIDS) &lt; 0    -0.36      0.50    -1.18     0.44       4.11
+## 14    ME (RegisterIDS) &lt; 0    -0.51      0.45    -1.29     0.18       8.93
+## 15   MPS (RegisterIDS) &lt; 0    -0.48      0.44    -1.25     0.20       7.81
+## 16    MS (RegisterIDS) &lt; 0    -0.47      0.45    -1.26     0.22       7.67
+## 17    MV (RegisterIDS) &lt; 0    -0.17      0.49    -0.84     0.76       2.36
+## 18    PV (RegisterIDS) &lt; 0    -0.29      0.48    -1.06     0.53       3.26
+## 19    RV (RegisterIDS) &lt; 0    -0.27      0.47    -0.95     0.59       3.31
+## 20    SA (RegisterIDS) &lt; 0    -0.69      0.52    -1.69     0.01      18.23
+## 21   SAF (RegisterIDS) &lt; 0    -0.39      0.44    -1.11     0.35       5.10
+## 22    SC (RegisterIDS) &lt; 0    -0.36      0.44    -1.07     0.37       4.73
+## 23    TL (RegisterIDS) &lt; 0    -0.74      0.56    -1.84    -0.03      22.32
+## 24    TM (RegisterIDS) &lt; 0    -0.55      0.46    -1.41     0.14      10.40
 ##    Post.Prob Star
-## 1       0.52     
+## 1       0.54     
 ## 2       0.94     
-## 3       0.79     
-## 4       0.83     
-## 5       0.84     
+## 3       0.80     
+## 4       0.82     
+## 5       0.85     
 ## 6       0.96    *
-## 7       0.86     
-## 8       0.89     
+## 7       0.85     
+## 8       0.90     
 ## 9       0.90     
 ## 10      0.93     
-## 11      0.77     
-## 12      0.77     
+## 11      0.78     
+## 12      0.79     
 ## 13      0.80     
 ## 14      0.90     
-## 15      0.88     
+## 15      0.89     
 ## 16      0.88     
-## 17      0.69     
-## 18      0.76     
-## 19      0.75     
-## 20      0.95    *
-## 21      0.85     
-## 22      0.82     
-## 23      0.95     
+## 17      0.70     
+## 18      0.77     
+## 19      0.77     
+## 20      0.95     
+## 21      0.84     
+## 22      0.83     
+## 23      0.96    *
 ## 24      0.91     
 ## ---
 ## &#39;CI&#39;: 90%-CI for one-sided and 95%-CI for two-sided hypotheses.
@@ -777,7 +778,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb76-2"><a href="multi-level-model.html#cb76-2" aria-hidden="true" tabindex="-1"></a><span class="fu">hypothesis</span>(Articulation_m3, <span class="st">&quot;RegisterIDS &lt; 0&quot;</span>)</span></code></pre></div>
 <pre><code>## Hypothesis Tests for class b:
 ##          Hypothesis Estimate Est.Error CI.Lower CI.Upper Evid.Ratio Post.Prob
-## 1 (RegisterIDS) &lt; 0    -0.39      0.21    -0.73    -0.05       29.3      0.97
+## 1 (RegisterIDS) &lt; 0    -0.39       0.2    -0.71    -0.05       32.2      0.97
 ##   Star
 ## 1    *
 ## ---
@@ -789,7 +790,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb78-2"><a href="multi-level-model.html#cb78-2" aria-hidden="true" tabindex="-1"></a><span class="fu">hypothesis</span>(Articulation_student_m3, <span class="st">&quot;RegisterIDS &lt; 0&quot;</span>)</span></code></pre></div>
 <pre><code>## Hypothesis Tests for class b:
 ##          Hypothesis Estimate Est.Error CI.Lower CI.Upper Evid.Ratio Post.Prob
-## 1 (RegisterIDS) &lt; 0    -0.39      0.21    -0.72    -0.04      28.36      0.97
+## 1 (RegisterIDS) &lt; 0    -0.39      0.21    -0.72    -0.04      28.32      0.97
 ##   Star
 ## 1    *
 ## ---

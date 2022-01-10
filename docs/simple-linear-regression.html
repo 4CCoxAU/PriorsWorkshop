@@ -4,27 +4,27 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>Chapter 3 Simple Linear Regression | Workshop on Bayesian Priors</title>
-  <meta name="description" content="This site is a hub for the materials for our workshop on Bayesian data analysis and priors." />
-  <meta name="generator" content="bookdown 0.24 and GitBook 2.6.7" />
+  <title>Chapter 3 Simple Linear Regression | Workshop on Bayesian Inference: Priors and workflow</title>
+  <meta name="description" content="This site provides the materials for a workshop on Bayesian data analysis, with a focus on a rigorous workflow and the definition of priors." />
+  <meta name="generator" content="bookdown 0.24.1 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="Chapter 3 Simple Linear Regression | Workshop on Bayesian Priors" />
+  <meta property="og:title" content="Chapter 3 Simple Linear Regression | Workshop on Bayesian Inference: Priors and workflow" />
   <meta property="og:type" content="book" />
   
   
-  <meta property="og:description" content="This site is a hub for the materials for our workshop on Bayesian data analysis and priors." />
+  <meta property="og:description" content="This site provides the materials for a workshop on Bayesian data analysis, with a focus on a rigorous workflow and the definition of priors." />
   <meta name="github-repo" content="rstudio/bookdown-demo" />
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="Chapter 3 Simple Linear Regression | Workshop on Bayesian Priors" />
+  <meta name="twitter:title" content="Chapter 3 Simple Linear Regression | Workshop on Bayesian Inference: Priors and workflow" />
   
-  <meta name="twitter:description" content="This site is a hub for the materials for our workshop on Bayesian data analysis and priors." />
+  <meta name="twitter:description" content="This site provides the materials for a workshop on Bayesian data analysis, with a focus on a rigorous workflow and the definition of priors." />
   
 
 <meta name="author" content="Riccardo Fusaroli &amp; Chris Cox" />
 
 
-<meta name="date" content="2022-01-09" />
+<meta name="date" content="2022-01-10" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -34,7 +34,7 @@
 <link rel="prev" href="intercepts-only-model.html"/>
 <link rel="next" href="multi-level-model.html"/>
 <script src="libs/header-attrs-2.11/header-attrs.js"></script>
-<script src="libs/jquery-3.5.1/jquery-3.5.1.min.js"></script>
+<script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
@@ -59,6 +59,7 @@
 pre > code.sourceCode { white-space: pre; position: relative; }
 pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
 pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
 code.sourceCode > span { color: inherit; text-decoration: inherit; }
 pre.sourceCode { margin: 0; }
 @media screen {
@@ -210,7 +211,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
       <div class="body-inner">
         <div class="book-header" role="navigation">
           <h1>
-            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Workshop on Bayesian Priors</a>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Workshop on Bayesian Inference: Priors and workflow</a>
           </h1>
         </div>
 
@@ -306,7 +307,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div class="sourceCode" id="cb32"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb32-1"><a href="simple-linear-regression.html#cb32-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Model predictions (population estimate + sigma)</span></span>
 <span id="cb32-2"><a href="simple-linear-regression.html#cb32-2" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(<span class="fu">conditional_effects</span>(Articulation_m2, <span class="at">spaghetti =</span> T, <span class="at">method =</span> <span class="st">&quot;predict&quot;</span>), <span class="at">points =</span> T)</span></code></pre></div>
 <p><img src="_main_files/figure-html/unnamed-chunk-23-3.png" width="672" /></p>
-<p>Q3.5: how do the plots using the “method=”predict"" differ from the first two?</p>
+<p>Q3.5: how do the plots using the “method=”predict”” differ from the first two?</p>
 <p>Answer:</p>
 <hr />
 </div>
@@ -343,17 +344,17 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ##   Links: mu = identity; sigma = identity 
 ## Formula: ArticulationS ~ 1 + Register 
 ##    Data: d (Number of observations: 48) 
-##   Draws: 2 chains, each with iter = 4000; warmup = 0; thin = 1;
+##   Draws: 2 chains, each with iter = 5000; warmup = 1000; thin = 1;
 ##          total post-warmup draws = 8000
 ## 
 ## Population-Level Effects: 
 ##             Estimate Est.Error l-95% CI u-95% CI Rhat Bulk_ESS Tail_ESS
-## Intercept      -0.15      0.17    -0.50     0.19 1.00     5649     4488
-## RegisterIDS    -0.37      0.21    -0.76     0.04 1.00     5783     4640
+## Intercept      -0.15      0.17    -0.50     0.18 1.00     5897     4893
+## RegisterIDS    -0.37      0.21    -0.77     0.05 1.00     5676     4215
 ## 
 ## Family Specific Parameters: 
 ##       Estimate Est.Error l-95% CI u-95% CI Rhat Bulk_ESS Tail_ESS
-## sigma     0.98      0.10     0.80     1.21 1.00     5647     4631
+## sigma     0.98      0.10     0.81     1.22 1.00     4853     4615
 ## 
 ## Draws were sampled using sample(hmc). For each parameter, Bulk_ESS
 ## and Tail_ESS are effective sample size measures, and Rhat is the potential
@@ -368,7 +369,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div class="sourceCode" id="cb38"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb38-1"><a href="simple-linear-regression.html#cb38-1" aria-hidden="true" tabindex="-1"></a><span class="fu">hypothesis</span>(Articulation_m2, <span class="st">&quot;RegisterIDS &lt; 0&quot;</span>)</span></code></pre></div>
 <pre><code>## Hypothesis Tests for class b:
 ##          Hypothesis Estimate Est.Error CI.Lower CI.Upper Evid.Ratio Post.Prob
-## 1 (RegisterIDS) &lt; 0    -0.37      0.21     -0.7    -0.02      23.54      0.96
+## 1 (RegisterIDS) &lt; 0    -0.37      0.21    -0.71    -0.02      22.26      0.96
 ##   Star
 ## 1    *
 ## ---
@@ -499,15 +500,15 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ## Formula: ArticulationS ~ 1 + Register 
 ##          sigma ~ 1 + Register
 ##    Data: d (Number of observations: 48) 
-##   Draws: 2 chains, each with iter = 1000; warmup = 0; thin = 1;
+##   Draws: 2 chains, each with iter = 2000; warmup = 1000; thin = 1;
 ##          total post-warmup draws = 2000
 ## 
 ## Population-Level Effects: 
 ##                   Estimate Est.Error l-95% CI u-95% CI Rhat Bulk_ESS Tail_ESS
-## Intercept            -0.14      0.18    -0.51     0.21 1.00     1600     1207
-## sigma_Intercept      -0.03      0.15    -0.30     0.30 1.00     1392     1359
-## RegisterIDS          -0.35      0.22    -0.76     0.09 1.00     1682     1493
-## sigma_RegisterIDS     0.12      0.22    -0.34     0.57 1.00     1331     1271
+## Intercept            -0.15      0.19    -0.54     0.20 1.00     1551     1183
+## sigma_Intercept      -0.03      0.16    -0.32     0.32 1.00     1613     1090
+## RegisterIDS          -0.34      0.22    -0.77     0.09 1.00     2116     1304
+## sigma_RegisterIDS     0.10      0.23    -0.34     0.57 1.00     1651     1233
 ## 
 ## Draws were sampled using sample(hmc). For each parameter, Bulk_ESS
 ## and Tail_ESS are effective sample size measures, and Rhat is the potential

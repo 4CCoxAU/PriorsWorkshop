@@ -1,4 +1,4 @@
-# Intercepts-only model
+# Modeling your outcome: Intercepts-only Model
 
 ## Video on Intercepts-Only Model
 
@@ -28,14 +28,18 @@ pacman::p_load(tidyverse,
 ```
 
 The data is avaiable here:
+
 ```{r, echo=FALSE}
 xfun::embed_file('vowel_space_area_data.csv')
 ```
 
 Read in the data:
+
 ```{r}
 d <- read.csv('vowel_space_area_data.csv')
-glimpse(d)
+
+glimpse(d) # see below for an explanation of the different variables
+
 ```
 
 ### Introduction to the data
@@ -46,16 +50,19 @@ The dataset we will analyse here consists of the following information:
 
 - i)   Subject (i.e. unique participant pseudonym),
 - ii)  Register (i.e. the speech style used - adult-directed speech (ADS) vs. infant-directed speech (IDS)),
-- iii) ArticulationS (i.e. the dependent variable - represents a standardised version of the vowel space),
+- iii) ArticulationS (i.e. the standardized dependent variable),
 - iv)  ChildSex (i.e. male vs. female), 
 - v)   ChildAge (i.e. from 11 m to 24 m), 
 - vi)  First_child (whether this is the caregiver's first child).
+
+Note that, as detailed in the video, ArticulationS is a standardized variable, that is, we centered it (so that the mean is 0) and divided it by the standard deviation (so that the standard deviation is 1). Standardizing the outcome variable often (but not always!) makes setting priors easier, since we know much about which standardized effect sizes we should expect.
 
 ### Weakly Informative Priors
 
 Let's start by building an intercepts-only model with ArticulationS as our dependent variable. We'll use the function bf() to specify the structure of this first model as follows:
 
 ```{r}
+# Articulation_f1 indicates our first formula to model Articulation
 Articulation_f1 <- bf(ArticulationS ~ 1)
 ```
 
@@ -92,13 +99,14 @@ Articulation_m1_prior0 <-
     sample_prior = "only", #this term specifies that the model only samples from the 
                            #priors specified. 
     
-    #file = "Articulation_m0_prior0", #this parameter saves the model in your working 
+    file = "Articulation_m0_prior0", #this parameter saves the model in your working 
                                       #directory to allow you to load the model at a later point.
-    iter = 2000, #this iter parameter specifies the total number of iterations of the 
+    refit = "on_change", # this parameter checks whether you fit the model already. If you have and nothing changed since, it just loads the model. If anything (data, formula, priors) changed, the model is refit
+    iter = 5000, #this iter parameter specifies the total number of iterations of the 
                  #Markov Chain Monte Carlo (MCMC) algorithm. We run prior predictive checks 
                  #with a small number of iterations as we are not interested in the statistical 
                  #results - we simply use these models to plot samples from our specified priors. 
-    warmup = 200, #this parameter specifies number of warmup (aka burn-in) iterations.
+    warmup = 1000, #this parameter specifies number of warmup iterations. Warmup iterations are used to "learn" the optimal hyper-parameters (settings) to explore the solutions (posterior space) to your problem
     cores = 2, # Number of CPU cores to use when executing the chains - 2 should be more than 
                # enough, but you can increase this if the models are taking too long to run.
     chains = 2, # Number of Markov chains (defaults to 4).
@@ -149,13 +157,14 @@ Articulation_m1_prior <-
     family = gaussian,
     prior = more_informative_priors,
     sample_prior = "only", 
-    iter = 2000,
-    warmup = 200,
+    iter = 5000,
+    warmup = 1000,
     backend = "cmdstanr", 
     threads = threading(2),
     cores = 2,
     chains = 2,
-    #file = "Articulation_m1_prior",
+    file = "Articulation_m1_prior",
+    refit = "on_change",
     control = list(adapt_delta = 0.99, max_treedepth = 20))
 ```
 
@@ -186,7 +195,8 @@ Articulation_m1 <-
     save_pars = save_pars(all = TRUE),
     family = gaussian,
     prior = more_informative_priors,
-    #file = "Articulation_m1",
+    file = "Articulation_m1",
+    refit = "on_change",
     sample_prior = T,
     iter = 5000,
     warmup = 1000,
