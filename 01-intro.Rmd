@@ -1,4 +1,12 @@
-# Part II: The Gaussian intercepts-only model
+# Intercepts-only model
+
+## Video on Intercepts-Only Model
+
+https://youtu.be/j1yxeRqJ0es
+
+## Hands-on Exercises
+
+Let's start by loading the required packages and data:
 
 ```{r setup, include=TRUE}
 #if you don't have the pacman package loaded on your computer, uncomment the next line, install pacman, and load in the required packages
@@ -19,25 +27,31 @@ pacman::p_load(tidyverse,
        viridis)
 ```
 
-PART I:
+The data is avaiable here:
+```{r, echo=FALSE}
+xfun::embed_file('vowel_space_area_data.csv')
+```
 
-Introduction to the data:
-
-Our research question concerns the hyperarticulation hypothesis of infant-directed speech. Do caregivers produce more peripheral vowels in infant-directed speech (IDS) compared to adult-directed speech (ADS)? To answer this question, we manually analysed 9267 extracted vowel tokens from individual caregivers' IDS and ADS. In order eliminate inter-individual differences in formant values that occur due to physiological characteristics, we first z-score-normalised the formant data according to participant and then computed the total area of each caregiver's ADS and IDS vowel space. We used this measure to calculate a standardised mean difference score: Cohen's d.
-    The dataset we will analyse here consists of the following information:
-      i)   Subject (i.e. unique participant pseudonym),
-      ii)  Register (i.e. the speech style used - adult-directed speech (ADS) vs. infant-directed speech (IDS)),
-      iii) ArticulationS (i.e. the dependent variable - represents a standardised version of the vowel space),
-      iv)  ChildSex (i.e. male vs. female), 
-      v)   ChildAge (i.e. from 11 m to 24 m), 
-      vi)  First_child (whether this is the caregiver's first child).
-      
-      
+Read in the data:
 ```{r}
-#load the data:
 d <- read.csv('vowel_space_area_data.csv')
 glimpse(d)
 ```
+
+### Introduction to the data
+
+Our research question concerns the hyperarticulation hypothesis of infant-directed speech. Do caregivers produce more peripheral vowels in infant-directed speech (IDS) compared to adult-directed speech (ADS)? To answer this question, we manually analysed 9267 extracted vowel tokens from individual caregivers' IDS and ADS. In order eliminate inter-individual differences in formant values that occur due to physiological characteristics, we first z-score-normalised the formant data according to participant and then computed the total area of each caregiver's ADS and IDS vowel space. We used this measure to calculate a standardised mean difference score: Cohen's d.
+    
+The dataset we will analyse here consists of the following information:
+
+- i)   Subject (i.e. unique participant pseudonym),
+- ii)  Register (i.e. the speech style used - adult-directed speech (ADS) vs. infant-directed speech (IDS)),
+- iii) ArticulationS (i.e. the dependent variable - represents a standardised version of the vowel space),
+- iv)  ChildSex (i.e. male vs. female), 
+- v)   ChildAge (i.e. from 11 m to 24 m), 
+- vi)  First_child (whether this is the caregiver's first child).
+
+### Weakly Informative Priors
 
 Let's start by building an intercepts-only model with ArticulationS as our dependent variable. We'll use the function bf() to specify the structure of this first model as follows:
 
@@ -108,12 +122,12 @@ Let's compare the predictions from our priors (in blue) with those of the data (
 
 Q1: How should we modify our priors to obtain more realistic predictions from our prior distributions?
 
-Write your answer here:
-
+Answer:
 
 
 __________________________________________________________________________________________________________________________________________
 
+### More Informative Priors
 
 As mentioned above, by specifying the standard deviations of the above priors as 10, we are saying that we expect approximately 95% of the distribution of standardized measures (i.e. ArticulationS) to be between -20 and 20 sds from the mean; however, given our prior knowledge about the measure, a distance of 20 sds from the mean would be extremely unrealistic. Let's try to capture our prior knowledge of the measure in our specification of the priors.
 
@@ -160,6 +174,8 @@ pp_check(Articulation_m1_prior0, ndraws = 100)
 pp_check(Articulation_m1_prior, ndraws = 100)
 ```
 
+### Intercepts-Only Model
+
 Now that our priors appear to be within the order of magnitude of ArticulationS that we expect (i.e. not 10 times more than the range we expect), let's use these priors to build an intercepts-only model for the actual data:
 
 ```{r, results="hide", message=FALSE}
@@ -193,6 +209,8 @@ The plot indicates that our model captures the overall distribution of our depen
 
 Another way to ensure that our model represents a good fit to the data is to plot prior-posterior update plots. These plots show how our model updates from our priors after seeing the data. To plot these data, we'll use as_draws_df() to sample from the prior and posterior distributions for the relevant parameters (i.e. 'Intercept' and 'sigma' in this case) from the above model.
 
+### Prior-Posterior Update Plots
+
 ```{r}
 #overview of model parameters:
 variables(Articulation_m1)
@@ -217,18 +235,15 @@ Q3: How do you think these prior-posterior update plots would compare with those
 weakly_informative_priors <- c(
   prior(normal(0, 10), class = Intercept),
   prior(normal(0, 10), class = sigma))
-  
+
 Answer:
 
 
 
 __________________________________________________________________________________________________________________________________________
-  
-BONUS POINTS: Try to adapt the code for Articulation_m0 and run a model with the weakly-informative priors:
 
-```{r}
-```
 
+### Interpreting Model Output
 Now that we have checked (via posterior predictive checks and prior-posterior update plots) that our model captures relevant information, let's have a look at the model output:
 
 ```{r}
@@ -242,3 +257,14 @@ The model output gives a summary of the model parameters and then provides estim
   - In the 'Family-Specific Parameters' section, the residual variation (i.e., sigma) is estimated to be approximately 1.02 [0.85; 1.25].
   - The Rhat values provide information about the convergence of the algorithm. Rhat values close to 1 suggest that the model has converged.
   - The Bulk_ESS and Tail_ESS (effective sample size (ESS)) capture the sampling efficiency in the bulk and tails of the distribution.
+
+
+
+### Bonus Question
+
+Try to adapt the code for Articulation_m0 and run a model with the weakly-informative priors:
+
+```{r}
+
+
+```

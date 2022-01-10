@@ -1,3 +1,11 @@
-# Recommendations for Further Study
+# Recommendations
 
+## Where to go for further study
+1. We would highly recommend McElreath’s Statistical Rethinking book and online video lectures: (https://www.youtube.com/channel/UCNJK6_DZvcMqNSzQdEkzvzA)
+2. Potsdam Summer School on Statistical Methods for Linguistics and Psychology (https://vasishth.github.io/smlp2021/)
+3. Michael Betancourt has awesome materials (once you already master McElreath’s level) (https://betanalpha.github.io/writing/)
 
+## Feedback on the course
+
+Please help us improve this course by answering the following form:
+https://forms.gle/LDsmPKYM33udV5Qg6

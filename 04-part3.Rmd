@@ -1,6 +1,162 @@
-# Part V: Multi-level model based on informed priors
+# Informed priors
 
-dasdasdsadsad
+## Video on Informed priors:
+
+https://youtu.be/zBEiugiqbd4
+
+## Hands-on Exercises
+
+### How to Encode Information in Priors
+In this part, we'll have a closer look at how to encode information from previous studies within the prior specifications of our models. Let's start with the meta-analytic prior (i.e., Mean ES: 0.62, SE = 0.13) and add it to our prior specifications for the multi-level model. We do this by specifying the prior for the slope as normal(0.62, 0.13), as in the code block below:
+
+```{r, results="hide", message=FALSE, warning=FALSE}
+Articulation_f3 <- bf(ArticulationS ~ 1 + Register + (1+Register|Subject))
+meta_analytic_prior <- c(
+  prior(normal(0, 1), class = Intercept),
+  prior(normal(0, 1), class = sd, coef = Intercept, group = Subject),
+  prior(normal(0.62, 0.13), class = b),
+  prior(normal(0, 1), class = sd, coef = RegisterIDS, group = Subject),
+  prior(normal(1, 0.5), class = sigma),
+  prior(lkj(2), class = cor))
+Articulation_MAprior_m3 <- 
+  brm(
+    Articulation_f3,
+    data = d,
+    save_pars = save_pars(all = TRUE),
+    family = gaussian,
+    prior = meta_analytic_prior,
+    #file = "Articulation_MAprior_m3",
+    sample_prior = T,
+    iter = 10000, 
+    warmup = 1000,
+    cores = 2,
+    chains = 2,
+    backend = "cmdstanr",
+    threads = threading(2),
+    control = list(
+      adapt_delta = 0.999,
+      max_treedepth = 20))
+```
+
+```{r, warning=FALSE}
+pp_check(Articulation_MAprior_m3, ndraws = 50)
+plot(conditional_effects(Articulation_MAprior_m3), points = T)
+summary(Articulation_MAprior_m3)
+```
+
+Q8: How does the slope estimate for this model with the meta-analytic prior compare to that with the skeptical prior (i.e., Articulation_m3)?
+
+__________________________________________________________________________________________________________________________________________
 
 
-##
+Let's try to do the same analysis for the Danish prior (i.e., Mean ES: -0.1, SE = 0.04):
+
+```{r, results="hide", message=FALSE}
+danish_prior <- c(
+  prior(normal(0, 1), class = Intercept),
+  prior(normal(0, 1), class = sd, coef = Intercept, group = Subject),
+  prior(normal(-0.1, 0.04), class = b),
+  prior(normal(0, 1), class = sd, coef = RegisterIDS, group = Subject),
+  prior(normal(1, 0.5), class = sigma),
+  prior(lkj(2), class = cor))
+Articulation_Danishprior_m3 <- 
+  brm(
+    Articulation_f3,
+    data = d,
+    save_pars = save_pars(all = TRUE),
+    family = gaussian,
+    prior = danish_prior,
+    #file = "Articulation_Danishprior_m3",
+    sample_prior = T,
+    iter = 10000, 
+    warmup = 1000,
+    cores = 2,
+    chains = 2,
+    backend = "cmdstanr",
+    threads = threading(2),
+    control = list(
+      adapt_delta = 0.999,
+      max_treedepth = 20))
+```
+
+```{r}
+pp_check(Articulation_Danishprior_m3, ndraws = 50)
+plot(conditional_effects(Articulation_Danishprior_m3), points = T)
+summary(Articulation_Danishprior_m3)
+```
+
+Q9: How does the slope estimate for this model with the Danish prior compare to that with the skeptical prior (i.e., Articulation_m3)?
+
+__________________________________________________________________________________________________________________________________________
+
+### Prior-Posterior Updates Plot
+
+Let's run the following code to extract and visualise the prior and posterior distributions from the different models:
+
+```{r, warning=FALSE}
+danish_prior_posterior <- as_draws_df(Articulation_Danishprior_m3) %>%
+  mutate(priors = "Danish") %>%
+  select(prior_b, b_RegisterIDS, priors)
+  
+ma_prior_posterior <- as_draws_df(Articulation_MAprior_m3) %>%
+  mutate(priors = "MA estimates") %>%
+  select(prior_b, b_RegisterIDS, priors)
+  
+skeptical_prior_posterior <- as_draws_df(Articulation_m3) %>%
+  mutate(priors = "Skeptical estimates") %>%
+  select(prior_b, b_RegisterIDS, priors)
+Posterior <- rbind(danish_prior_posterior, ma_prior_posterior, skeptical_prior_posterior)
+plot1 <- ggplot(Posterior) + 
+  theme_classic() +
+  ggtitle("Priors") +
+  geom_density(aes(x = prior_b, fill = priors), alpha = 0.7) +
+  xlim(c(-1.5, 1.5)) +
+  geom_vline(xintercept = 0.0, linetype = 3) +
+  scale_fill_manual(name = "Prior",
+                  labels = c('Meta-analytic', "Danish", "Skeptical"),
+                  values=c("#FC4E07", "steelblue", "#228B22")) +
+  theme(plot.title = element_text(hjust = 0.5, size=15),
+        axis.ticks.y = element_blank(),
+        axis.text.y = element_blank(),
+        axis.title.y=element_blank(),
+        axis.line.x = element_line(size=0.1),
+        axis.line.y = element_line(size=0.0),
+        axis.text.x = element_blank(),
+        axis.title.x=element_blank(),
+        legend.position = "none")
+plot2 <- ggplot(Posterior) + 
+  theme_classic() +
+  xlim(c(-1.5, 1.5)) +
+  geom_density(aes(x = b_RegisterIDS, fill = priors), alpha = 0.7) +
+  xlab('Effect Size') +
+  ggtitle(expression(paste("Posteriors"))) +
+  geom_vline(xintercept = 0.0, linetype = 3) +
+  scale_fill_manual(name = "Priors:",
+                  labels = c('Danish', 'Meta-analytic', "Skeptical"),
+                  values=c("#FC4E07", "steelblue", "#228B22")) +
+  scale_color_manual(values=c("#FC4E07","#228B22", "steelblue")) + 
+  theme(plot.title = element_text(hjust = 0.5, size=15),
+        axis.ticks.y = element_blank(),
+        axis.text.y = element_blank(),
+        axis.title.y=element_blank(),
+        axis.line = element_line(size=0),
+        legend.position = "bottom")
+priors_posteriors_plot <- plot_grid(plot1, plot2, ncol=1)
+priors_posteriors_plot
+```
+
+
+Q10: Why does the model with the Danish study prior not shift as much as those with the skeptical and meta-analytic priors?
+
+Answer:
+
+
+__________________________________________________________________________________________________________________________________________
+
+
+Q11: What does this tell us about the nature of evidence accumulation in Bayesian models?
+
+Answer:
+
+
+__________________________________________________________________________________________________________________________________________

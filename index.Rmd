@@ -1,5 +1,5 @@
 --- 
-title: "Workshop on Bayesian Data Analysis & Priors"
+title: "Workshop on Bayesian Priors"
 author: "Riccardo Fusaroli & Chris Cox"
 date: "`r Sys.Date()`"
 site: bookdown::bookdown_site
@@ -15,22 +15,39 @@ github-repo: rstudio/bookdown-demo
 
 ---
 
-# Part I: Introduction
+# Introduction
 
-This is a website that provides the lectures and code for our workshop on how to set priors and the Bayesian workflow.
+This is a website that provides the lectures and code for our workshop on Bayesian data analysis and priors. The lectures are recordings of a workshop given on January 6th-7th 2022 to the Embodied Computation Group and the Body, Pain & Perception Lab at Aarhus University. 
 
-## Structure of this Workshop 
+## Structure of this Workshop
 
-This workshop takes you through how to set priors in a step-by-step fashion. The course consists of five parts: 
-        i) Part 1: General Introduction to Bayesian inference,
-        ii) Part 2: The Gaussian intercepts-only model, 
-        iii) Part 3: Linear regression with a dichotomous predictor,
-        iv) Part 4: Multi-level model with repeated measures,
-        v) Part 5: Multi-level model based on informed priors.
+This workshop introduces the Bayesian workflow and teaches you how to set priors in a step-by-step fashion. The course consists of four parts: 
 
-## Link to Introductory Video
+-   1. Intercepts-only Model,
+-   2. Simple Linear Regression,
+-   3. Multi-level Model,
+-   4. Informed Priors.
+ 
+## Preparation
+Here is what you will need for this workshop:
 
-Here is the first video, which provides a soft introduction to the basic concepts of Bayesian inference:
-https://www.youtube.com/watch?v=_7hlAJ6eWI4&t=213s
+- up-to-date R (version 4 or above) and Rstudio (version 1.3 or above) installed and working. See here: https://happygitwithr.com/install-r-rstudio.html
+
+- the “brms” package installed: https://github.com/paul-buerkner/brms N.B. it's not always as simple as doing an install.packages("brms"), so do follow the linked guide!
+
+- If you are already comfortable with using R and stats, we also recommend you install the “cmdstanr” package (which makes fitting models go faster, but is not necessary for the course, nor easy to install): https://mc-stan.org/cmdstanr/articles/cmdstanr.html N.B. it's not always as simple as doing an install.packages("cmdstanr"), so do follow the linked guide!
+
+Without these packages working, you will not be able to tackle the following practical exercises, so do install them before you move to the next section and make sure there are no errors or worrying warnings.
+
+Before we start, we should also note that this workshop does not go into the details of Bayes' theorem. If you are not familiar with the theorem, we strongly recommend you give this 15 min video a watch before the workshop. This should make talk of priors and posteriors much easier to parse.  https://www.youtube.com/watch?v=HZGCoVF3YvM
 
 
+## Introductory Video
+This first video provides an introduction to the course instructors and outlines the structure of the workshop:
+
+https://youtu.be/_7hlAJ6eWI4
+
+## Video on Bayesian inference
+This second video starts with a soft introduction to the basic concepts of Bayesian inference and then provides an overview of the data analysed:
+
+https://youtu.be/SIgxZ-u1s3A
