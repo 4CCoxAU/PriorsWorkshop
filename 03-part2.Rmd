@@ -1,4 +1,4 @@
-# Multi-level model
+# Acknowledging repeated measures: Multi-level model
 
 ## Videos on Multi-level model:
 
@@ -8,11 +8,15 @@ https://youtu.be/A1osWXChYr8
 
 After watching the videos we recommend you download the Markdown file and go through it in Rstudio:
 
-* https://github.com/4CCoxAU/PriorsWorkshop/blob/08ea1968db8114690b04e839502ea5909300a62f/03-part2.Rmd
+```{r, echo=FALSE}
+xfun::embed_file('03-part2.Rmd')
+```
 
-Here the data (same data as the previous markdown)
+The data are available here (same data as the previous markdown):
 
-* https://github.com/4CCoxAU/PriorsWorkshop/blob/08ea1968db8114690b04e839502ea5909300a62f/vowel_space_area_data.csv
+```{r, echo=FALSE}
+xfun::embed_file('vowel_space_area_data.csv')
+```
 
 The content of the markdown is reproduced below.
 

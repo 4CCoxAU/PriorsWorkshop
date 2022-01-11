@@ -6,11 +6,15 @@ https://youtu.be/j1yxeRqJ0es
 
 After watching the video we recommend you download the Markdown file and go through it in Rstudio:
 
-* https://github.com/4CCoxAU/PriorsWorkshop/blob/08ea1968db8114690b04e839502ea5909300a62f/01-intro.Rmd
+```{r, echo=FALSE}
+xfun::embed_file('01-intro.Rmd')
+```
 
-Here the data
+The data are available here:
 
-* https://github.com/4CCoxAU/PriorsWorkshop/blob/08ea1968db8114690b04e839502ea5909300a62f/vowel_space_area_data.csv
+```{r, echo=FALSE}
+xfun::embed_file('vowel_space_area_data.csv')
+```
 
 The content of the markdown is reproduced below.
 
@@ -35,12 +39,6 @@ pacman::p_load(tidyverse,
        brms,
        cowplot,
        viridis)
-```
-
-The data is avaiable here:
-
-```{r, echo=FALSE}
-xfun::embed_file('vowel_space_area_data.csv')
 ```
 
 Read in the data:
