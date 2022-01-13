@@ -24,7 +24,7 @@
 <meta name="author" content="Riccardo Fusaroli &amp; Chris Cox" />
 
 
-<meta name="date" content="2022-01-10" />
+<meta name="date" content="2022-01-13" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -157,7 +157,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="2.2.7" data-path="modeling-your-outcome-intercepts-only-model.html"><a href="modeling-your-outcome-intercepts-only-model.html#bonus-question"><i class="fa fa-check"></i><b>2.2.7</b> Bonus Question</a></li>
 </ul></li>
 </ul></li>
-<li class="chapter" data-level="3" data-path="introducing-a-predictor-simple-linear-regression.html"><a href="introducing-a-predictor-simple-linear-regression.html"><i class="fa fa-check"></i><b>3</b> Introducing a predictor: Simple Linear Regression</a>
+<li class="chapter" data-level="3" data-path="introducing-a-predictor-simple-linear-regression.html"><a href="introducing-a-predictor-simple-linear-regression.html"><i class="fa fa-check"></i><b>3</b> Introducing a Predictor: Simple Linear Regression</a>
 <ul>
 <li class="chapter" data-level="3.1" data-path="introducing-a-predictor-simple-linear-regression.html"><a href="introducing-a-predictor-simple-linear-regression.html#video-on-simple-linear-regression"><i class="fa fa-check"></i><b>3.1</b> Video on Simple Linear Regression:</a></li>
 <li class="chapter" data-level="3.2" data-path="introducing-a-predictor-simple-linear-regression.html"><a href="introducing-a-predictor-simple-linear-regression.html#hands-on-exercises-1"><i class="fa fa-check"></i><b>3.2</b> Hands-on Exercises</a>
@@ -170,7 +170,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="3.2.6" data-path="introducing-a-predictor-simple-linear-regression.html"><a href="introducing-a-predictor-simple-linear-regression.html#bonus-content-on-heteroskedasticity"><i class="fa fa-check"></i><b>3.2.6</b> Bonus Content on Heteroskedasticity</a></li>
 </ul></li>
 </ul></li>
-<li class="chapter" data-level="4" data-path="acknowledging-repeated-measures-multi-level-model.html"><a href="acknowledging-repeated-measures-multi-level-model.html"><i class="fa fa-check"></i><b>4</b> Acknowledging repeated measures: Multi-level model</a>
+<li class="chapter" data-level="4" data-path="acknowledging-repeated-measures-multi-level-model.html"><a href="acknowledging-repeated-measures-multi-level-model.html"><i class="fa fa-check"></i><b>4</b> Acknowledging Repeated Measures: Multi-level model</a>
 <ul>
 <li class="chapter" data-level="4.1" data-path="acknowledging-repeated-measures-multi-level-model.html"><a href="acknowledging-repeated-measures-multi-level-model.html#videos-on-multi-level-model"><i class="fa fa-check"></i><b>4.1</b> Videos on Multi-level model:</a></li>
 <li class="chapter" data-level="4.2" data-path="acknowledging-repeated-measures-multi-level-model.html"><a href="acknowledging-repeated-measures-multi-level-model.html#hands-on-exercises-2"><i class="fa fa-check"></i><b>4.2</b> Hands-on Exercises</a>
@@ -184,7 +184,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="4.2.7" data-path="acknowledging-repeated-measures-multi-level-model.html"><a href="acknowledging-repeated-measures-multi-level-model.html#student-t-model"><i class="fa fa-check"></i><b>4.2.7</b> Student t model</a></li>
 </ul></li>
 </ul></li>
-<li class="chapter" data-level="5" data-path="acknowledging-previous-findings-informed-priors.html"><a href="acknowledging-previous-findings-informed-priors.html"><i class="fa fa-check"></i><b>5</b> Acknowledging previous findings: Informed priors</a>
+<li class="chapter" data-level="5" data-path="acknowledging-previous-findings-informed-priors.html"><a href="acknowledging-previous-findings-informed-priors.html"><i class="fa fa-check"></i><b>5</b> Acknowledging Previous Findings: Informed Priors</a>
 <ul>
 <li class="chapter" data-level="5.1" data-path="acknowledging-previous-findings-informed-priors.html"><a href="acknowledging-previous-findings-informed-priors.html#video-on-informed-priors"><i class="fa fa-check"></i><b>5.1</b> Video on Informed priors:</a></li>
 <li class="chapter" data-level="5.2" data-path="acknowledging-previous-findings-informed-priors.html"><a href="acknowledging-previous-findings-informed-priors.html#hands-on-exercises-3"><i class="fa fa-check"></i><b>5.2</b> Hands-on Exercises</a>
@@ -335,7 +335,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb8-28"><a href="modeling-your-outcome-intercepts-only-model.html#cb8-28" aria-hidden="true" tabindex="-1"></a>                                                            <span class="co">#(e.g., step size). You can leave them like this for now.</span></span></code></pre></div>
 <p>Let’s plot some predictions from our priors by using the following pp_check() function. This plot shows the predictions from our prior distributions in blue and the actual data in black. This allows us to check whether our specifications of prior distributions are appropriate.</p>
 <div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb9-1"><a href="modeling-your-outcome-intercepts-only-model.html#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="fu">pp_check</span>(Articulation_m1_prior0, <span class="at">ndraws =</span> <span class="dv">100</span>)</span></code></pre></div>
-<p><img src="_main_files/figure-html/unnamed-chunk-8-1.png" width="672" /></p>
+<p><img src="_main_files/figure-html/unnamed-chunk-9-1.png" width="672" /></p>
 <p>Run the same pp_check() function above a couple of times and observe the results. You’ll notice that the prior predictive plots vary each time you run the code; that’s because the pp_check() function takes random samples from the model we specified above. It’s therefore good practice to run the pp_check() function a couple of times to make sure that the plots show a pattern in the prior predictions of the model.</p>
 <p>Let’s compare the predictions from our priors (in blue) with those of the data (in black); the predictions appear to have a much larger (and unrealistic) range than that shown by the data. Before moving on, try to answer the following question:</p>
 <p>Q1: How should we modify our priors to obtain more realistic predictions from our prior distributions?</p>
@@ -371,10 +371,10 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <hr />
 <div class="sourceCode" id="cb12"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb12-1"><a href="modeling-your-outcome-intercepts-only-model.html#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Prior predictive check for the weakly informative priors:</span></span>
 <span id="cb12-2"><a href="modeling-your-outcome-intercepts-only-model.html#cb12-2" aria-hidden="true" tabindex="-1"></a><span class="fu">pp_check</span>(Articulation_m1_prior0, <span class="at">ndraws =</span> <span class="dv">100</span>)</span></code></pre></div>
-<p><img src="_main_files/figure-html/unnamed-chunk-11-1.png" width="672" /></p>
+<p><img src="_main_files/figure-html/unnamed-chunk-12-1.png" width="672" /></p>
 <div class="sourceCode" id="cb13"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb13-1"><a href="modeling-your-outcome-intercepts-only-model.html#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Prior predictive check for the more informative priors:</span></span>
 <span id="cb13-2"><a href="modeling-your-outcome-intercepts-only-model.html#cb13-2" aria-hidden="true" tabindex="-1"></a><span class="fu">pp_check</span>(Articulation_m1_prior, <span class="at">ndraws =</span> <span class="dv">100</span>)</span></code></pre></div>
-<p><img src="_main_files/figure-html/unnamed-chunk-11-2.png" width="672" /></p>
+<p><img src="_main_files/figure-html/unnamed-chunk-12-2.png" width="672" /></p>
 </div>
 <div id="intercepts-only-model" class="section level3" number="2.2.4">
 <h3><span class="header-section-number">2.2.4</span> Intercepts-Only Model</h3>
@@ -400,7 +400,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb14-19"><a href="modeling-your-outcome-intercepts-only-model.html#cb14-19" aria-hidden="true" tabindex="-1"></a>      <span class="at">max_treedepth =</span> <span class="dv">15</span> ))</span></code></pre></div>
 <p>Now that we have our first model, we can conduct posterior predictive checks to make sure that our model has captured the data.</p>
 <div class="sourceCode" id="cb15"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb15-1"><a href="modeling-your-outcome-intercepts-only-model.html#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="fu">pp_check</span>(Articulation_m1, <span class="at">ndraws =</span> <span class="dv">100</span>)</span></code></pre></div>
-<p><img src="_main_files/figure-html/unnamed-chunk-13-1.png" width="672" /></p>
+<p><img src="_main_files/figure-html/unnamed-chunk-14-1.png" width="672" /></p>
 <p>The plot indicates that our model captures the overall distribution of our dependent variable (although there is a lot of uncertainty in model predictions).</p>
 <p>Another way to ensure that our model represents a good fit to the data is to plot prior-posterior update plots. These plots show how our model updates from our priors after seeing the data. To plot these data, we’ll use as_draws_df() to sample from the prior and posterior distributions for the relevant parameters (i.e. ‘Intercept’ and ‘sigma’ in this case) from the above model.</p>
 </div>
@@ -417,13 +417,13 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb18-5"><a href="modeling-your-outcome-intercepts-only-model.html#cb18-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_density</span>(<span class="fu">aes</span>(prior_Intercept), <span class="at">fill=</span><span class="st">&quot;steelblue&quot;</span>, <span class="at">color=</span><span class="st">&quot;black&quot;</span>,<span class="at">alpha=</span><span class="fl">0.6</span>) <span class="sc">+</span></span>
 <span id="cb18-6"><a href="modeling-your-outcome-intercepts-only-model.html#cb18-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_density</span>(<span class="fu">aes</span>(b_Intercept), <span class="at">fill=</span><span class="st">&quot;#FC4E07&quot;</span>, <span class="at">color=</span><span class="st">&quot;black&quot;</span>,<span class="at">alpha=</span><span class="fl">0.6</span>) <span class="sc">+</span> </span>
 <span id="cb18-7"><a href="modeling-your-outcome-intercepts-only-model.html#cb18-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_classic</span>()</span></code></pre></div>
-<p><img src="_main_files/figure-html/unnamed-chunk-14-1.png" width="672" /></p>
+<p><img src="_main_files/figure-html/unnamed-chunk-15-1.png" width="672" /></p>
 <div class="sourceCode" id="cb19"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb19-1"><a href="modeling-your-outcome-intercepts-only-model.html#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Plot the prior-posterior update plot for sigma:</span></span>
 <span id="cb19-2"><a href="modeling-your-outcome-intercepts-only-model.html#cb19-2" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(Posterior_m1) <span class="sc">+</span></span>
 <span id="cb19-3"><a href="modeling-your-outcome-intercepts-only-model.html#cb19-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_density</span>(<span class="fu">aes</span>(prior_sigma), <span class="at">fill=</span><span class="st">&quot;steelblue&quot;</span>, <span class="at">color=</span><span class="st">&quot;black&quot;</span>,<span class="at">alpha=</span><span class="fl">0.6</span>) <span class="sc">+</span></span>
 <span id="cb19-4"><a href="modeling-your-outcome-intercepts-only-model.html#cb19-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_density</span>(<span class="fu">aes</span>(sigma), <span class="at">fill=</span><span class="st">&quot;#FC4E07&quot;</span>, <span class="at">color=</span><span class="st">&quot;black&quot;</span>,<span class="at">alpha=</span><span class="fl">0.6</span>) <span class="sc">+</span> </span>
 <span id="cb19-5"><a href="modeling-your-outcome-intercepts-only-model.html#cb19-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_classic</span>()</span></code></pre></div>
-<p><img src="_main_files/figure-html/unnamed-chunk-14-2.png" width="672" /></p>
+<p><img src="_main_files/figure-html/unnamed-chunk-15-2.png" width="672" /></p>
 <p>These prior-posterior update plots (with the prior in blue and the posterior in orange) indicate that our model has learned after seeing the data - great stuff! To check your intuitions, try to answer the following question:</p>
 <p>Q3: How do you think these prior-posterior update plots would compare with those of the weakly informative priors we specified above (repeated below)?</p>
 <p>weakly_informative_priors &lt;- c(
