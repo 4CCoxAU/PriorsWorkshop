@@ -1,4 +1,4 @@
-# Acknowledging repeated measures: Multi-level model
+# Acknowledging Repeated Measures: Multi-level model
 
 ## Videos on Multi-level model:
 

@@ -45,6 +45,27 @@ For each section, you will find a video lecture (building on the previous sectio
 
 We strongly recommend you watch a video, download the markdown (and data) and go through the code, fitting the models, and answering the questions, instead of just quickly browsing the webpage with the code and output.
 
+Here you can download a .zip file with all of the Rmarkdown files and data:
+
+```{r, echo=FALSE}
+xfun::embed_file('Rmd_files.zip')
+```
+
+And here is the full playlist of videos:
+
+-   https://youtu.be/_7hlAJ6eWI4 (Introduction I, 9 min, 34 secs)
+
+-   https://youtu.be/SIgxZ-u1s3A (Introduction II, 18 min, 29 secs)
+
+-   https://youtu.be/j1yxeRqJ0es (Modeling your Outcome, 32 min, 4 secs)
+
+-   https://youtu.be/7tGixoOdW5U (Introducing a Predictor, 29 min, 14 secs)
+
+-   https://youtu.be/yUs4LB_9KWw (Acknowledging Repeated Measures I, 7 min, 1 sec)
+
+-   https://youtu.be/A1osWXChYr8 (Acknowledging Repeated Measures II, 45 min, 34 secs)
+
+-   https://youtu.be/zBEiugiqbd4 (Acknowledging Previous Findings, 27 min, 56 secs)
  
 ## Preparation
 Here is what you will need for this workshop:

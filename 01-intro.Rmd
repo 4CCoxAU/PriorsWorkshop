@@ -1,4 +1,4 @@
-# Modeling your outcome: Intercepts-only Model
+# Modeling your Outcome: Intercepts-only Model
 
 ## Video on Intercepts-Only Model
 

@@ -1,4 +1,4 @@
-# Introducing a predictor: Simple Linear Regression
+# Introducing a Predictor: Simple Linear Regression
 
 ## Video on Simple Linear Regression:
 
